@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { Analytics } from "@vercel/analytics/react";
 import "../../styles/style.css";
 import AOS from "aos";
 import "../../styles/aos.css";
@@ -36,6 +37,7 @@ function Page() {
     if (isMobile) {
         return (
             <div id="page">
+                <Analytics />
                 <MobileHome />
                 <MobileAbout />
                 <MobilePortfolio />
@@ -49,6 +51,7 @@ function Page() {
     } else {
         return (
             <div id="page">
+                <Analytics />
                 <NavBar />
                 <Home />
                 <About />
