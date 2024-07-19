@@ -10,7 +10,42 @@ function Portfolio() {
 
             <div className="container" data-aos="fade-up">
                 <a
-                    href="https://todaylunch.vercel.app"
+                    href="https://novalaw.kr"
+                    target="_blank"
+                    title="Nova Law Firm"
+                    className="spec"
+                >
+                    <div className="mobile-card-container">
+                        <div className="column-center">
+                            <img
+                                loading="lazy"
+                                src="img/novalaw.jpg"
+                                className="card-img"
+                            />
+                            <span className="card-title">
+                                <strong> Nova Law Firm</strong>
+                            </span>
+                        </div>
+                        <div className="card-text">
+                            <span className="roadmap-element">
+                                Made Official Web Page of{" "}
+                                <strong>NovaLaw</strong>, which is Law Firm
+                                <br />
+                                in Incheon, Songdo.
+                            </span>
+
+                            <div className="card-footer">
+                                <strong>
+                                    <br />
+                                    24. 07. 11~
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a
+                    href="https://todaylun.ch"
                     target="_blank"
                     title="TodayLunch"
                     className="spec"
