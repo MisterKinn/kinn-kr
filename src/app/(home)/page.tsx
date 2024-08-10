@@ -16,6 +16,7 @@ import Profile from "@/components/home/Profile";
 import Banner from "@/components/home/Banner";
 import Footer from "@/components/home/Footer";
 
+import SideBar from "@/components/home/mobile/Sidebar";
 import MobileHome from "@/components/home/mobile/Home";
 import MobileAbout from "@/components/home/mobile/About";
 import MobilePortfolio from "@/components/home/mobile/Portfolio";
@@ -38,6 +39,7 @@ function Page() {
         return (
             <div id="page">
                 <Analytics />
+                <SideBar />
                 <MobileHome />
                 <MobileAbout />
                 <MobilePortfolio />
