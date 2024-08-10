@@ -18,7 +18,7 @@ function Sidebar() {
                 <div className="sidebar-content">
                     <a className="closebtn" onClick={closeMenu}>
                         <img
-                            src="img/close.png"
+                            src="img/sidebar-close.png"
                             alt="CloseBtn"
                             className="close-img"
                         />
