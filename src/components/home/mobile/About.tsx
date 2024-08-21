@@ -35,7 +35,10 @@ function About() {
                 <br />
                 My motto is{" "}
                 <span className="motto-text">
-                    <span className="white">"TRY TO BE USEFUL"</span>.
+                    <span className="white">
+                        "Success is achived through action, not words"
+                    </span>
+                    .
                 </span>
                 <br />
                 <br />
@@ -46,20 +49,11 @@ function About() {
                 and <span className="white">Junior</span> of high school.
                 <br />
                 <br />
-                I'm dreaming of
+                I'm dreaming of being
                 <br />
-                working at{" "}
-                <a
-                    href="https://toss.im"
-                    target="_blank"
-                    title="TOSS"
-                    className="link"
-                >
-                    <img loading="lazy" src="img/toss.png" className="toss" />
-                </a>{" "}
-                &
+                <span className="white">a Successful Entrepreneur</span>,
                 <br />
-                being citizen of <br />
+                and being citizen of <br />
                 <span className="white">the United States of America</span>.
             </p>
         </div>

@@ -4,7 +4,12 @@ function Experience() {
             <h2 className="list">Experience</h2>
 
             <div className="container">
-                <a href=" " target="_blank" title="Ileonang" className="spec">
+                <a
+                    href="https://www.instagram.com/p/C3fgDCfyijL/?img_index=1"
+                    target="_blank"
+                    title="Ileonang"
+                    className="spec"
+                >
                     <div className="card-container">
                         <div className="column-center">
                             <img

@@ -6,7 +6,12 @@ function Experience() {
             </h2>
 
             <div className="container">
-                <span className="spec">
+                <a
+                    href="https://www.instagram.com/p/C3fgDCfyijL/?img_index=1"
+                    target="_blank"
+                    title="Ileonang"
+                    className="spec"
+                >
                     <div className="mobile-card-container" data-aos="fade-up">
                         <div className="column-center">
                             <img
@@ -35,7 +40,7 @@ function Experience() {
                             </div>
                         </div>
                     </div>
-                </span>
+                </a>
             </div>
         </div>
     );

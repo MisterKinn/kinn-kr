@@ -138,8 +138,13 @@ function Portfolio() {
                     </div>
                 </a>
 
-                <span className="spec">
-                    <div className="card-container spec">
+                <a
+                    href="https://www.instagram.com/p/C3fgDCfyijL/?img_index=1"
+                    target="_blank"
+                    title="Ileonang"
+                    className="spec"
+                >
+                    <div className="card-container">
                         <div className="column-center">
                             <img
                                 loading="lazy"
@@ -162,7 +167,7 @@ function Portfolio() {
                             </div>
                         </div>
                     </div>
-                </span>
+                </a>
 
                 <a
                     href="/qr"
