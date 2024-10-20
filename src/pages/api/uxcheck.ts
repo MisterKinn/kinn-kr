@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { chromium } from "playwright"; // Import Playwright
+import playwright from "playwright-aws-lambda"; // Use playwright-aws-lambda
 
-// Initialize Playwright and scrape the webpage's HTML and CSS
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -9,18 +8,15 @@ export default async function handler(
     const { url } = req.body;
 
     if (!url) {
-        console.error("URL is missing in the request.");
         return res.status(400).json({ error: "URL is required" });
     }
 
     try {
-        // Launch Playwright Chromium
-        const browser = await chromium.launch();
+        const browser = await playwright.launchChromium({ headless: true });
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle" });
+        await page.goto(url, { waitUntil: "networkidle2" });
 
-        const pageContent = await page.content(); // Fetch HTML
-
+        const pageContent = await page.content();
         const pageStyles: string[] = await page.evaluate(() => {
             const styles: string[] = [];
             Array.from(document.styleSheets).forEach((sheet) => {
@@ -45,15 +41,8 @@ export default async function handler(
         const manualFeedback = analyzeUXManually(pageContent, pageStyles);
         return res.status(200).json(manualFeedback);
     } catch (error) {
-        // Log the error and return manual analysis instead
         console.error("Error during page analysis:", error);
-
-        // Fallback to manual UX analysis
-        return res
-            .status(500)
-            .json({
-                error: "Failed to analyze the page, fallback to manual analysis",
-            });
+        return res.status(500).json({ error: "Failed to analyze the page" });
     }
 }
 
