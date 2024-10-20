@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { Analytics } from "@vercel/analytics/react";
 import "../../styles/style.css";
 import AOS from "aos";
-import "../../styles/aos.css";
+import "@/styles/aos.css";
 
 import NavBar from "@/components/home/NavBar";
 import Home from "@/components/home/Home";
