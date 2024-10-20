@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { chromium } from "playwright"; // Import Playwright
+import chromium from "@sparticuz/chromium"; // Import Chromium
+import puppeteer from "puppeteer-core"; // Use puppeteer-core
 
-// Initialize Playwright and scrape the webpage's HTML and CSS
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -9,49 +9,34 @@ export default async function handler(
     const { url } = req.body;
 
     if (!url) {
-        console.error("URL is missing in the request.");
         return res.status(400).json({ error: "URL is required" });
     }
 
     try {
-        // Launch Playwright Chromium
-        const browser = await chromium.launch();
-        const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle" });
-
-        const pageContent = await page.content(); // Fetch HTML
-
-        const pageStyles: string[] = await page.evaluate(() => {
-            const styles: string[] = [];
-            Array.from(document.styleSheets).forEach((sheet) => {
-                try {
-                    if (sheet.cssRules) {
-                        Array.from(sheet.cssRules).forEach((rule) =>
-                            styles.push(rule.cssText)
-                        );
-                    }
-                } catch (e) {
-                    console.warn(
-                        "Could not access stylesheet due to cross-origin restrictions: ",
-                        e
-                    );
-                }
-            });
-            return styles;
+        // Launch Puppeteer with Chromium from Sparticuz
+        const browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(), // Get Chromium executable
+            headless: chromium.headless,
         });
+
+        const page = await browser.newPage();
+        await page.goto(url, { waitUntil: "networkidle0" });
+
+        const pageContent = await page.content();
+        // You can also collect CSS or any other resources needed
 
         await browser.close();
 
-        const manualFeedback = analyzeUXManually(pageContent, pageStyles);
-        return res.status(200).json(manualFeedback);
-    } catch (error) {
-        // Log the error and return manual analysis instead
-        console.error("Error during page analysis:", error);
-
-        // Fallback to manual UX analysis
-        return res.status(500).json({
-            error: "Failed to analyze the page, fallback to manual analysis",
+        // Perform your manual analysis or further operations with pageContent
+        return res.status(200).json({
+            feedback: "Page analyzed successfully",
+            content: pageContent,
         });
+    } catch (error) {
+        console.error("Error during page analysis:", error);
+        return res.status(500).json({ error: "Failed to analyze the page" });
     }
 }
 
