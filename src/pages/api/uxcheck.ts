@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import playwright from "playwright-aws-lambda"; // Use playwright-aws-lambda
+import { chromium } from "playwright"; // Import Playwright
 
+// Initialize Playwright and scrape the webpage's HTML and CSS
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -8,16 +9,18 @@ export default async function handler(
     const { url } = req.body;
 
     if (!url) {
+        console.error("URL is missing in the request.");
         return res.status(400).json({ error: "URL is required" });
     }
 
     try {
-        const browser = await playwright.launchChromium({ headless: true });
+        // Launch Playwright Chromium
+        const browser = await chromium.launch();
         const page = await browser.newPage();
-        // Fixing the issue by using "networkidle" instead of "networkidle2"
         await page.goto(url, { waitUntil: "networkidle" });
 
-        const pageContent = await page.content();
+        const pageContent = await page.content(); // Fetch HTML
+
         const pageStyles: string[] = await page.evaluate(() => {
             const styles: string[] = [];
             Array.from(document.styleSheets).forEach((sheet) => {
@@ -42,8 +45,13 @@ export default async function handler(
         const manualFeedback = analyzeUXManually(pageContent, pageStyles);
         return res.status(200).json(manualFeedback);
     } catch (error) {
+        // Log the error and return manual analysis instead
         console.error("Error during page analysis:", error);
-        return res.status(500).json({ error: "Failed to analyze the page" });
+
+        // Fallback to manual UX analysis
+        return res.status(500).json({
+            error: "Failed to analyze the page, fallback to manual analysis",
+        });
     }
 }
 

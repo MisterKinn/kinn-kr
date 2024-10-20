@@ -1,3 +1,16 @@
 {
-    "version": 2
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/node"
+        }
+    ],
+    "functions": {
+        "api/uxcheck.ts": {
+            "runtime": "nodejs16.x"
+        }
+    },
+    "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "0"
+    }
 }
