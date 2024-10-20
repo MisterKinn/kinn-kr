@@ -1,0 +1,41 @@
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+#nav-bar {
+    position: fixed;
+    top: -0.4em;
+    left: 0;
+    height: 75px;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #1c1c1c;
+}
+
+.nav-link {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    height: 100%;
+    font-size: 17px;
+}
+
+.nav-link:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.nav-link.active {
+    background-color: #04aa6d;
+    color: white;
+}
