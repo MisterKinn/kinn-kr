@@ -10,6 +10,51 @@ function Portfolio() {
 
             <div className="container" data-aos="fade-up">
                 <a
+                    href="/uxinsight"
+                    target="_blank"
+                    title="UX Insight"
+                    className="spec"
+                >
+                    <div className="card-container">
+                        <div className="column-center">
+                            <img
+                                loading="lazy"
+                                src="img/ux.png"
+                                className="card-img"
+                            />
+                            <span className="card-title">
+                                <strong> UX Insight</strong>
+                            </span>
+                        </div>
+                        <div className="card-text">
+                            <span className="roadmap-element">
+                                Making a <strong>Web Analyze service</strong>{" "}
+                                which dissects
+                                <br />
+                                Web Pages' UX and offers UX feedback.
+                            </span>
+
+                            <div className="card-footer">
+                                <strong>
+                                    <br />
+                                    24. 10. 20~
+                                </strong>
+                            </div>
+                        </div>
+
+                        <div className="overlay">
+                            <span>
+                                Click the Card
+                                <br />
+                                to learn more
+                                <br />
+                                about UX Insight
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a
                     href="https://novalaw.kr"
                     target="_blank"
                     title="Nova Law Firm"

@@ -8,7 +8,43 @@ function Portfolio() {
                 Click the Card to see the detail.
             </h3>
 
-            <div className="container" data-aos="fade-up">
+            <div className="mobile-container" data-aos="fade-up">
+                <a
+                    href="/uxinsight"
+                    target="_blank"
+                    title="UX Insight"
+                    className="spec"
+                >
+                    <div className="mobile-card-container">
+                        <div className="column-center">
+                            <img
+                                loading="lazy"
+                                src="img/ux.png"
+                                className="card-img"
+                            />
+                            <span className="mobile-card-title">
+                                <strong> UX Insight</strong>
+                            </span>
+                        </div>
+                        <div className="card-text">
+                            <span className="roadmap-element">
+                                Making a <strong>Web Analyze service</strong>,
+                                <br />
+                                which dissects Web Pages' UX
+                                <br />
+                                and offers UX feedback.
+                            </span>
+
+                            <div className="card-footer">
+                                <strong>
+                                    <br />
+                                    24. 10. 20~
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
                 <a
                     href="https://novalaw.kr"
                     target="_blank"
