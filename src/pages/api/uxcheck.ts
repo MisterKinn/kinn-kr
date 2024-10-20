@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import chromium from "@sparticuz/chromium"; // Import Chromium
-import puppeteer from "puppeteer-core"; // Use puppeteer-core
+import { chromium as playwrightChromium } from "playwright-core";
+import chromium from "playwright-aws-lambda"; // For serverless environments
 
 export default async function handler(
     req: NextApiRequest,
@@ -12,31 +12,46 @@ export default async function handler(
         return res.status(400).json({ error: "URL is required" });
     }
 
+    let browser;
     try {
-        // Launch Puppeteer with Chromium from Sparticuz
-        const browser = await puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(), // Get Chromium executable
-            headless: chromium.headless,
+        console.log("Launching Playwright Chromium...");
+
+        // Launch Chromium using Playwright in a serverless environment
+        browser = await playwrightChromium.launch({
+            headless: true, // Ensure headless for serverless environments
+            // Do not include executablePath
         });
 
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.goto(url, { waitUntil: "networkidle" });
 
-        const pageContent = await page.content();
-        // You can also collect CSS or any other resources needed
+        const pageContent = await page.content(); // Fetch HTML content of the page
+        const cssStyles = await page.$$eval(
+            "style, link[rel=stylesheet]",
+            (elements) => elements.map((el) => el.innerHTML || "")
+        );
 
-        await browser.close();
+        await browser.close(); // Close the browser after work is done
 
-        // Perform your manual analysis or further operations with pageContent
+        // Call the manual analysis function to get feedback based on content
+        const manualFeedback = analyzeUXManually(pageContent, cssStyles);
+
         return res.status(200).json({
-            feedback: "Page analyzed successfully",
-            content: pageContent,
+            success: true,
+            feedback: manualFeedback.feedback,
+            locations: manualFeedback.locations,
+            message: "Page analyzed successfully",
         });
     } catch (error) {
-        console.error("Error during page analysis:", error);
-        return res.status(500).json({ error: "Failed to analyze the page" });
+        console.error("Error during Playwright page analysis:", error);
+
+        if (browser) {
+            await browser.close(); // Ensure the browser is closed if there's an error
+        }
+
+        return res.status(500).json({
+            error: "Failed to analyze the page due to an internal error.",
+        });
     }
 }
 
@@ -47,6 +62,13 @@ function analyzeUXManually(
 ): { feedback: string[]; locations: string[] } {
     const feedback: string[] = [];
     const locations: string[] = [];
+
+    // Return a default message if no HTML content is available
+    if (!htmlContent) {
+        feedback.push("No content available for manual analysis.");
+        locations.push("No content was retrieved for analysis.");
+        return { feedback, locations };
+    }
 
     const formatLocations = (tags: string[]): string => {
         const formatted = tags.slice(0, 10).join(", "); // Start with the first 10 tags
