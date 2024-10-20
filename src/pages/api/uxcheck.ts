@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer";
+import { chromium } from "playwright"; // Import Playwright
 
-// Initialize Puppeteer and scrape the webpage's HTML and CSS
+// Initialize Playwright and scrape the webpage's HTML and CSS
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -14,14 +14,10 @@ export default async function handler(
     }
 
     try {
-        // Launch Puppeteer without chrome-aws-lambda
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"], // Ensure Puppeteer works in server environments
-        });
-
+        // Launch Playwright Chromium
+        const browser = await chromium.launch();
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
+        await page.goto(url, { waitUntil: "networkidle" });
 
         const pageContent = await page.content(); // Fetch HTML
 
@@ -46,7 +42,6 @@ export default async function handler(
 
         await browser.close();
 
-        // Fallback: Directly use manual UX analysis without ChatGPT
         const manualFeedback = analyzeUXManually(pageContent, pageStyles);
         return res.status(200).json(manualFeedback);
     } catch (error) {
@@ -70,7 +65,6 @@ function analyzeUXManually(
     const feedback: string[] = [];
     const locations: string[] = [];
 
-    // Helper function to limit tags to 10 or limit the total length of the string to 150 characters
     const formatLocations = (tags: string[]): string => {
         const formatted = tags.slice(0, 10).join(", "); // Start with the first 10 tags
         if (formatted.length > 150) {
@@ -81,8 +75,7 @@ function analyzeUXManually(
         return formatted; // Otherwise, return the joined tags as is
     };
 
-    // Add your 30 conditions here (truncated for simplicity)
-    // Example:
+    // 1. Missing Alt Text on Images
     const imgTags = extractTag(htmlContent, "img");
     const imgLocations: string[] = [];
     imgTags.forEach((tag) => {
