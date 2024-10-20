@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer";
+import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core";
 
 // Initialize Puppeteer and scrape the webpage's HTML and CSS
 export default async function handler(
@@ -7,7 +8,6 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const { url } = req.body;
-    res.setHeader("Access-Control-Allow-Origin", "*");
 
     if (!url) {
         console.error("URL is missing in the request.");
@@ -15,30 +15,22 @@ export default async function handler(
     }
 
     try {
-        // Try to analyze using ChatGPT API first
-        const gptResponse = await analyzeWithChatGPT(url);
-
-        if (gptResponse) {
-            console.log("Received response from GPT API.");
-            return res.status(200).json(gptResponse); // Return GPT response
-        }
-    } catch (gptError) {
-        console.error("Error with GPT API:", gptError);
-        console.log("Falling back to manual UX analysis...");
-    }
-
-    // If GPT API fails, perform manual UX analysis
-    try {
+        console.log("Launching Chromium...");
         const browser = await puppeteer.launch({
-            headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"], // Ensure Puppeteer works in server environments
+            executablePath: await chromium.executablePath,
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            headless: chromium.headless,
         });
 
         const page = await browser.newPage();
+        console.log("Navigating to the page:", url);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
 
+        console.log("Extracting page content...");
         const pageContent = await page.content(); // Fetch HTML
 
+        console.log("Extracting CSS styles...");
         const pageStyles: string[] = await page.evaluate(() => {
             const styles: string[] = [];
             Array.from(document.styleSheets).forEach((sheet) => {
@@ -65,31 +57,6 @@ export default async function handler(
     } catch (error) {
         console.error("Error during page analysis:", error);
         return res.status(500).json({ error: "Failed to analyze the page" });
-    }
-}
-
-// Function to call the GPT API
-async function analyzeWithChatGPT(url: string) {
-    const prompt = `You are a UX expert. Analyze the following URL for any UX issues and suggest improvements: ${url}`;
-
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, // ChatGPT API key
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: prompt }],
-            temperature: 0.7,
-        }),
-    });
-
-    const data = await response.json();
-    if (response.ok) {
-        return { feedback: [data.choices[0].message.content], locations: [] }; // Modify based on actual GPT response
-    } else {
-        throw new Error(data.error || "Failed to get response from GPT API");
     }
 }
 
