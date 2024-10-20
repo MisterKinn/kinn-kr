@@ -14,7 +14,8 @@ export default async function handler(
     try {
         const browser = await playwright.launchChromium({ headless: true });
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle2" });
+        // Fixing the issue by using "networkidle" instead of "networkidle2"
+        await page.goto(url, { waitUntil: "networkidle" });
 
         const pageContent = await page.content();
         const pageStyles: string[] = await page.evaluate(() => {
