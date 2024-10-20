@@ -7,6 +7,7 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const { url } = req.body;
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     if (!url) {
         console.error("URL is missing in the request.");
