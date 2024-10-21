@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import axios from "axios";
+import { chromium as playwrightChromium } from "playwright-core";
+import chromium from "playwright-aws-lambda"; // For serverless environments
 
 export default async function handler(
     req: NextApiRequest,
@@ -11,15 +12,29 @@ export default async function handler(
         return res.status(400).json({ error: "URL is required" });
     }
 
+    let browser;
     try {
-        console.log("Fetching page content with Axios...");
+        console.log("Launching Playwright Chromium...");
 
-        // Fetch the HTML content using Axios
-        const response = await axios.get(url);
-        const pageContent = response.data;
+        // Launch Chromium using Playwright in a serverless environment
+        browser = await playwrightChromium.launch({
+            headless: true, // Ensure headless for serverless environments
+            // Do not include executablePath
+        });
+
+        const page = await browser.newPage();
+        await page.goto(url, { waitUntil: "networkidle" });
+
+        const pageContent = await page.content(); // Fetch HTML content of the page
+        const cssStyles = await page.$$eval(
+            "style, link[rel=stylesheet]",
+            (elements) => elements.map((el) => el.innerHTML || "")
+        );
+
+        await browser.close(); // Close the browser after work is done
 
         // Call the manual analysis function to get feedback based on content
-        const manualFeedback = analyzeUXManually(pageContent);
+        const manualFeedback = analyzeUXManually(pageContent, cssStyles);
 
         return res.status(200).json({
             success: true,
@@ -28,7 +43,11 @@ export default async function handler(
             message: "Page analyzed successfully",
         });
     } catch (error) {
-        console.error("Error during page analysis with Axios:", error);
+        console.error("Error during Playwright page analysis:", error);
+
+        if (browser) {
+            await browser.close(); // Ensure the browser is closed if there's an error
+        }
 
         return res.status(500).json({
             error: "Failed to analyze the page due to an internal error.",
@@ -37,10 +56,10 @@ export default async function handler(
 }
 
 // Manual UX analysis function with 30 conditions
-function analyzeUXManually(htmlContent: string): {
-    feedback: string[];
-    locations: string[];
-} {
+function analyzeUXManually(
+    htmlContent: string,
+    cssStyles: string[]
+): { feedback: string[]; locations: string[] } {
     const feedback: string[] = [];
     const locations: string[] = [];
 
@@ -52,13 +71,13 @@ function analyzeUXManually(htmlContent: string): {
     }
 
     const formatLocations = (tags: string[]): string => {
-        const formatted = tags.slice(0, 10).join(", ");
+        const formatted = tags.slice(0, 10).join(", "); // Start with the first 10 tags
         if (formatted.length > 150) {
-            return formatted.slice(0, 150) + " ...";
+            return formatted.slice(0, 150) + " ..."; // Limit the string to 150 characters
         } else if (tags.length > 10) {
-            return formatted + ", ...";
+            return formatted + ", ..."; // If there are more than 10 tags
         }
-        return formatted;
+        return formatted; // Otherwise, return the joined tags as is
     };
 
     // 1. Missing Alt Text on Images
@@ -70,7 +89,7 @@ function analyzeUXManually(htmlContent: string): {
         }
     });
     if (imgLocations.length > 0) {
-        feedback.push("Missing alt attribute in image tag.");
+        feedback.push(`Missing alt attribute in image tag.`);
         locations.push(formatLocations(imgLocations));
     }
 
@@ -83,32 +102,31 @@ function analyzeUXManually(htmlContent: string): {
         }
     });
     if (inputLocations.length > 0) {
-        feedback.push("Form input without label.");
+        feedback.push(`Form input without label.`);
         locations.push(formatLocations(inputLocations));
     }
 
     // 3. Small Font Sizes
     const fontLocations: string[] = [];
-    const styleTags = extractTag(htmlContent, "style");
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (style.includes("font-size") && style.includes("12px")) {
             fontLocations.push(style);
         }
     });
     if (fontLocations.length > 0) {
-        feedback.push("Small font size detected.");
+        feedback.push(`Small font size detected.`);
         locations.push(formatLocations(fontLocations));
     }
 
     // 4. Low Contrast Issues
     const contrastLocations: string[] = [];
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (style.includes("color") && style.includes("#fff")) {
             contrastLocations.push(style);
         }
     });
     if (contrastLocations.length > 0) {
-        feedback.push("Low contrast detected.");
+        feedback.push(`Low contrast detected.`);
         locations.push(formatLocations(contrastLocations));
     }
 
@@ -119,25 +137,25 @@ function analyzeUXManually(htmlContent: string): {
         !htmlContent.includes('<meta name="viewport"')
     ) {
         metaLocations.push("<meta> tags missing in the <head> section.");
-        feedback.push("Missing important meta tags.");
+        feedback.push(`Missing important meta tags.`);
         locations.push(formatLocations(metaLocations));
     }
 
     // 6. Missing H1 Tag
     if (!htmlContent.includes("<h1")) {
-        feedback.push("Missing <h1> tag.");
+        feedback.push(`Missing <h1> tag.`);
         locations.push("No <h1> tag found");
     }
 
     // 7. Button Size Issue
     const buttonLocations: string[] = [];
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (style.includes("button") && style.includes("width: 44px")) {
             buttonLocations.push(style);
         }
     });
     if (buttonLocations.length > 0) {
-        feedback.push("Button size too small (should be at least 44x44px).");
+        feedback.push(`Button size too small (should be at least 44x44px).`);
         locations.push(formatLocations(buttonLocations));
     }
 
@@ -150,25 +168,25 @@ function analyzeUXManually(htmlContent: string): {
         }
     });
     if (ariaLocations.length > 0) {
-        feedback.push("Missing ARIA roles in interactive elements.");
+        feedback.push(`Missing ARIA roles in interactive elements.`);
         locations.push(formatLocations(ariaLocations));
     }
 
     // 9. Text Readability Issues
     const smallTextLocations: string[] = [];
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (style.includes("font-size") && parseInt(style.split(":")[1]) < 14) {
             smallTextLocations.push(style);
         }
     });
     if (smallTextLocations.length > 0) {
-        feedback.push("Text readability issues (font size too small).");
+        feedback.push(`Text readability issues (font size too small).`);
         locations.push(formatLocations(smallTextLocations));
     }
 
     // 10. Touch Target Size Too Small
     const touchTargetLocations: string[] = [];
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (
             (style.includes("a") || style.includes("button")) &&
             style.includes("width: 30px")
@@ -178,38 +196,38 @@ function analyzeUXManually(htmlContent: string): {
     });
     if (touchTargetLocations.length > 0) {
         feedback.push(
-            "Touch target size too small (should be at least 44x44px)."
+            `Touch target size too small (should be at least 44x44px).`
         );
         locations.push(formatLocations(touchTargetLocations));
     }
 
     // 11. Missing Skip to Content Link
     if (!htmlContent.includes('href="#main-content"')) {
-        feedback.push("Missing skip to content link.");
+        feedback.push(`Missing skip to content link.`);
         locations.push("No skip-to-content link found");
     }
 
     // 12. Missing Title Tag
     if (!htmlContent.includes("<title>")) {
-        feedback.push("Missing <title> tag.");
+        feedback.push(`Missing <title> tag.`);
         locations.push("No <title> tag found");
     }
 
     // 13. Missing Language Attribute
     if (!htmlContent.includes('lang="')) {
-        feedback.push("Missing lang attribute in <html> tag.");
+        feedback.push(`Missing lang attribute in <html> tag.`);
         locations.push("<html> tag missing lang attribute");
     }
 
     // 14. Missing Favicon
     if (!htmlContent.includes('<link rel="icon"')) {
-        feedback.push("Missing favicon.");
+        feedback.push(`Missing favicon.`);
         locations.push("No favicon found in <head>");
     }
 
     // 15. Autoplaying Media Detected
     if (htmlContent.includes("autoplay")) {
-        feedback.push("Autoplaying media detected.");
+        feedback.push(`Autoplaying media detected.`);
         locations.push("Media with autoplay attribute");
     }
 
@@ -219,7 +237,7 @@ function analyzeUXManually(htmlContent: string): {
         (tag) => !tag.includes(">") || tag.includes("></a>")
     );
     if (emptyLinks.length > 0) {
-        feedback.push("Empty links detected.");
+        feedback.push(`Empty links detected.`);
         locations.push(formatLocations(emptyLinks));
     }
 
@@ -231,42 +249,42 @@ function analyzeUXManually(htmlContent: string): {
     );
     if (suspiciousLinks.length > 0) {
         feedback.push(
-            "Suspicious links detected (e.g., '#' or 'javascript:void(0)')."
+            `Suspicious links detected (e.g., "#" or "javascript:void(0)").`
         );
         locations.push(formatLocations(suspiciousLinks));
     }
 
     // 18. Text Contrast Issues (light text on white background)
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (
             style.includes("color: #fff") &&
             style.includes("background-color: #fff")
         ) {
             feedback.push(
-                "Text contrast issue (white text on white background)."
+                `Text contrast issue (white text on white background).`
             );
             locations.push(style);
         }
     });
 
     // 19. Text Too Dense
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (
             style.includes("line-height") &&
             parseFloat(style.split(":")[1]) < 1.2
         ) {
-            feedback.push("Text is too dense (line height too small).");
+            feedback.push(`Text is too dense (line height too small).`);
             locations.push(style);
         }
     });
 
     // 20. Text Too Wide
-    styleTags.forEach((style) => {
+    cssStyles.forEach((style) => {
         if (
             style.includes("max-width: 100%") ||
             style.includes("width: 100vw")
         ) {
-            feedback.push("Text spans too wide on larger screens.");
+            feedback.push(`Text spans too wide on larger screens.`);
             locations.push(style);
         }
     });
@@ -275,7 +293,7 @@ function analyzeUXManually(htmlContent: string): {
     const buttonImages = extractTag(htmlContent, "button img");
     buttonImages.forEach((tag) => {
         if (!tag.includes("alt=")) {
-            feedback.push("Missing alt text for button images.");
+            feedback.push(`Missing alt text for button images.`);
             locations.push(tag);
         }
     });
@@ -283,7 +301,7 @@ function analyzeUXManually(htmlContent: string): {
     // 22. Input Fields with Placeholder as Label
     inputTags.forEach((tag) => {
         if (tag.includes("placeholder") && !htmlContent.includes("<label")) {
-            feedback.push("Input fields relying on placeholder as label.");
+            feedback.push(`Input fields relying on placeholder as label.`);
             locations.push(tag);
         }
     });
@@ -291,7 +309,7 @@ function analyzeUXManually(htmlContent: string): {
     // 23. Overuse of Bold Text
     const boldText = extractTag(htmlContent, "strong");
     if (boldText.length > 10) {
-        feedback.push("Overuse of bold text detected.");
+        feedback.push(`Overuse of bold text detected.`);
         locations.push(formatLocations(boldText));
     }
 
@@ -299,27 +317,27 @@ function analyzeUXManually(htmlContent: string): {
     const scriptTags = extractTag(htmlContent, "script");
     if (scriptTags.length > 10) {
         feedback.push(
-            "Too many scripts detected, which may slow down the page."
+            `Too many scripts detected, which may slow down the page.`
         );
         locations.push(formatLocations(scriptTags));
     }
 
     // 25. Missing Breadcrumbs
     if (!htmlContent.includes('<nav aria-label="breadcrumb"')) {
-        feedback.push("Breadcrumb navigation missing.");
+        feedback.push(`Breadcrumb navigation missing.`);
         locations.push("No breadcrumbs found.");
     }
 
     // 26. Missing Responsive Design Tags
     if (!htmlContent.includes('<meta name="viewport"')) {
-        feedback.push("Missing viewport meta tag for responsive design.");
+        feedback.push(`Missing viewport meta tag for responsive design.`);
         locations.push('No <meta name="viewport"> found.');
     }
 
     // 27. Deprecated HTML Tags Detected
     const deprecatedTags = extractTag(htmlContent, "marquee, font");
     if (deprecatedTags.length > 0) {
-        feedback.push("Deprecated HTML tags detected.");
+        feedback.push(`Deprecated HTML tags detected.`);
         locations.push(formatLocations(deprecatedTags));
     }
 
@@ -328,7 +346,7 @@ function analyzeUXManually(htmlContent: string): {
     formTags.forEach((tag) => {
         if (!htmlContent.includes("required")) {
             feedback.push(
-                "Form without validation (missing 'required' attribute)."
+                `Form without validation (missing "required" attribute).`
             );
             locations.push(tag);
         }
@@ -336,14 +354,14 @@ function analyzeUXManually(htmlContent: string): {
 
     // 29. Missing Back to Top Button
     if (!htmlContent.includes('href="#top"')) {
-        feedback.push("Missing back-to-top button.");
+        feedback.push(`Missing back-to-top button.`);
         locations.push("No back-to-top button found");
     }
 
     // 30. Inconsistent Heading Structure
     if (htmlContent.includes("<h2") && !htmlContent.includes("<h1")) {
         feedback.push(
-            "Inconsistent heading structure (Missing <h1> before <h2>)."
+            `Inconsistent heading structure (Missing <h1> before <h2>).`
         );
         locations.push("Found <h2> tag before <h1>");
     }
