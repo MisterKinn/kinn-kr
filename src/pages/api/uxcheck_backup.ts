@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { chromium as playwrightChromium } from "playwright-core";
-import chromium from "playwright-aws-lambda"; // For serverless environments
 
 export default async function handler(
     req: NextApiRequest,
@@ -14,9 +13,6 @@ export default async function handler(
 
     let browser;
     try {
-        console.log("Launching Playwright Chromium...");
-
-        // Launch Chromium using Playwright in a serverless environment
         browser = await playwrightChromium.launch({
             headless: true, // Ensure headless for serverless environments
             // Do not include executablePath

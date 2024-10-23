@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description:
         "A service which analyzes Web Pages' UX and offers UX feedback.",
     icons: {
-        icon: "img/kinn.png",
+        icon: "img/ux.png",
     },
     other: {
         url: "img/black-banner.png",

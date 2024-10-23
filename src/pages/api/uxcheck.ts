@@ -1,6 +1,43 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
+// Function to request ChatGPT analysis using OpenAI's API
+async function requestChatGPTAnalysis(url: string) {
+    const openAIUrl = "https://api.openai.com/v1/chat/completions";
+    const apiKey = process.env.OPENAI_API_KEY; // Ensure you have the API key in your environment variables
+
+    const prompt = `
+        Analyze the UX of the following webpage: ${url}.
+        Identify potential issues with accessibility, responsiveness, and design.
+        Suggest improvements based on UX best practices.
+    `;
+
+    const response = await axios.post(
+        openAIUrl,
+        {
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "You are an expert UX designer." },
+                { role: "user", content: prompt },
+            ],
+            temperature: 0.7,
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json",
+            },
+        }
+    );
+
+    const chatGPTAnalysis = response.data.choices[0].message.content;
+    // Return the ChatGPT response with empty feedback if not enough data is found
+    return {
+        feedback: [chatGPTAnalysis],
+        locations: [], // ChatGPT might not provide specific locations, so we leave this empty
+    };
+}
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -12,27 +49,45 @@ export default async function handler(
     }
 
     try {
-        console.log("Fetching page content with Axios...");
+        console.log("Requesting ChatGPT analysis...");
 
-        // Fetch the HTML content using Axios
-        const response = await axios.get(url);
-        const pageContent = response.data;
-
-        // Call the manual analysis function to get feedback based on content
-        const manualFeedback = analyzeUXManually(pageContent);
-
+        // Try requesting analysis from ChatGPT
+        const chatGPTResponse = await requestChatGPTAnalysis(url);
         return res.status(200).json({
             success: true,
-            feedback: manualFeedback.feedback,
-            locations: manualFeedback.locations,
-            message: "Page analyzed successfully",
+            feedback: chatGPTResponse.feedback,
+            locations: chatGPTResponse.locations,
+            message: "Page analyzed successfully using ChatGPT",
         });
     } catch (error) {
-        console.error("Error during page analysis with Axios:", error);
+        console.log(
+            "ChatGPT analysis failed, falling back to manual analysis..."
+        );
 
-        return res.status(500).json({
-            error: "Failed to analyze the page due to an internal error.",
-        });
+        try {
+            // Fetch the HTML content using Axios
+            const response = await axios.get(url);
+            const pageContent = response.data;
+
+            // Call the manual analysis function to get feedback based on content
+            const manualFeedback = analyzeUXManually(pageContent);
+
+            return res.status(200).json({
+                success: true,
+                feedback: manualFeedback.feedback,
+                locations: manualFeedback.locations,
+                message: "Page analyzed successfully with fallback method",
+            });
+        } catch (manualError) {
+            console.error(
+                "Error during fallback manual page analysis:",
+                manualError
+            );
+
+            return res.status(500).json({
+                error: "Failed to analyze the page due to an internal error.",
+            });
+        }
     }
 }
 

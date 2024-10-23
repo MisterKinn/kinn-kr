@@ -100,6 +100,7 @@ export default function UXInsight() {
                                 <li
                                     key={index}
                                     className="mobile-feedback-item"
+                                    data-aos="fade-up"
                                 >
                                     <div className="mobile-center">
                                         <span className="mobile-feedback-index">
@@ -154,7 +155,11 @@ export default function UXInsight() {
                         <h2>Feedbacks</h2>
                         <ul>
                             {feedbackWithLocations.map((item, index) => (
-                                <li key={index} className="feedback-item">
+                                <li
+                                    key={index}
+                                    className="feedback-item"
+                                    data-aos="fade-up"
+                                >
                                     <div className="center">
                                         <span className="feedback-index">
                                             {index + 1}.{" "}
