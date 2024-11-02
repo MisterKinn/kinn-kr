@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode.react";
-import Footer from "../../components/home/Footer";
 import "../../styles/qr.css";
 
 interface HTMLCanvasElementWithToDataURL extends HTMLCanvasElement {
@@ -16,6 +15,8 @@ function QR() {
         const textInputValue = textInputRef.current?.value.trim();
         if (textInputValue) {
             setQrCodeData(textInputValue);
+        } else {
+            setQrCodeData("");
         }
     };
 
@@ -36,21 +37,6 @@ function QR() {
     };
     return (
         <div className="page-container">
-            <header className="header">
-                <a
-                    href="https://kinn.kr/"
-                    target="_blank"
-                    title="Kinn's Lounge"
-                >
-                    <img
-                        loading="lazy"
-                        src="img/kinn-banner.png"
-                        alt="Kinn's Lounge"
-                        className="banner"
-                    />
-                </a>
-            </header>
-
             <main className="main">
                 <div className="qr-container">
                     <h1 className="title">QR Crafter</h1>
@@ -63,7 +49,7 @@ function QR() {
                         placeholder="Type here"
                         onInput={generateQR}
                     />
-                    <div id="result">
+                    <div id="result" className={!qrCodeData ? "hidden" : ""}>
                         {qrCodeData && <QRCode value={qrCodeData} size={128} />}
                     </div>
                     <button className="download-button" onClick={downloadQR}>
@@ -71,10 +57,6 @@ function QR() {
                     </button>
                 </div>
             </main>
-
-            <footer className="footer">
-                <Footer />
-            </footer>
         </div>
     );
 }
