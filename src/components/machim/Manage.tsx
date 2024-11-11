@@ -11,15 +11,14 @@ function Manage() {
                             <div className="column-center">
                                 <img src="img/clean.png" className="card-img" />
                                 <span className="card-title">
-                                    <strong>청소</strong>
+                                    <strong>Clean</strong>
                                 </span>
                             </div>
                         </div>
                         <div className="card-text">
-                            <span className="white">[ /clean (숫자) ]</span>{" "}
-                            (으)로 사용이 가능하며, <br />
-                            해당 메시지를 제외한 (숫자)만큼의 <br />
-                            메시지가 삭제됩니다!
+                            You can use with <span className="white">[ /clean (number) ]</span>,
+                            <br />
+                            (number) messages are deleted!
                         </div>
                     </div>
                 </div>
@@ -30,15 +29,16 @@ function Manage() {
                             <div className="column-center">
                                 <img src="img/slow.png" className="card-img" />
                                 <span className="card-title">
-                                    <strong>슬로우</strong>
+                                    <strong>Slow</strong>
                                 </span>
                             </div>
                         </div>
                         <div className="card-text">
-                            <span className="white">[ /slow (숫자) ]</span>{" "}
-                            (으)로 사용이 가능하며,
+                            You can use with <span className="white">[ /slow (number) ]</span>,
                             <br />
-                            (숫자)초 만큼 채널에 슬로우가 적용됩니다!
+                            (number) seconds slow is applied to channel!
+                            <br />
+                            (You can adjust slow <span className="white">1</span> to <span className="white">21,600</span> seconds)
                         </div>
                     </div>
                 </div>

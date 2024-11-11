@@ -4,8 +4,7 @@ function Support() {
             <h1 className="support" data-aos="fade-up">
                 <br />
                 <br />
-                다재다능한 <strong>.마침이</strong> 봇을 <br />
-                당신의 서버에서 사용해보세요!
+                Use Machim Bot in your server!
             </h1>
 
             <div className="center" data-aos="fade-up">

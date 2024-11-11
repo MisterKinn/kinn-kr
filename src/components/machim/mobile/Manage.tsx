@@ -11,17 +11,16 @@ function Manage() {
                             <div className="column-center">
                                 <img src="img/clean.png" className="card-img" />
                                 <span className="card-title">
-                                    <strong>청소</strong>
+                                <strong>Clean</strong>
                                 </span>
                             </div>
                         </div>
                         <div className="mobile-card-text">
-                            <span className="white">[ /clean (숫자) ]</span>{" "}
-                            (으)로 사용이
+                            You can use with
                             <br />
-                            가능하며, 해당 메시지를 제외한
+                            <span className="white">[ /clean (number) ]</span>,
                             <br />
-                            (숫자)만큼의 메시지가 삭제됩니다!
+                            (number) messages are deleted!
                         </div>
                     </div>
                 </div>
@@ -32,16 +31,16 @@ function Manage() {
                             <div className="column-center">
                                 <img src="img/slow.png" className="card-img" />
                                 <span className="card-title">
-                                    <strong>슬로우</strong>
+                                    <strong>Slow</strong>
                                 </span>
                             </div>
                         </div>
                         <div className="mobile-card-text">
-                            <span className="white">[ /slow (숫자) ]</span>{" "}
-                            (으)로 사용이 <br />
-                            가능하며, (숫자)초 만큼 채널에
+                            You can use with
                             <br />
-                            슬로우가 적용됩니다!
+                            <span className="white">[ /slow (number) ]</span>,
+                            <br />
+                            (number) seconds slow is applied to channel!
                         </div>
                     </div>
                 </div>

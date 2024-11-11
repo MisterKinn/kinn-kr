@@ -335,7 +335,7 @@ function Portfolio() {
                 <a
                     href="/machim"
                     target="_blank"
-                    title=".마침이"
+                    title="Machim"
                     className="spec"
                 >
                     <div className="card-container">
@@ -346,7 +346,7 @@ function Portfolio() {
                                 className="card-img"
                             />
                             <span className="card-title">
-                                <strong> .마침이</strong>
+                                <strong> Machim</strong>
                             </span>
                         </div>
                         <div className="card-text">
@@ -364,7 +364,7 @@ function Portfolio() {
 
                         <div className="overlay">
                             <span>
-                                Click the Card to learn more about .마침이
+                                Click the Card to learn more about Machim
                             </span>
                         </div>
                     </div>
