@@ -36,7 +36,8 @@ function About() {
                 My motto is{" "}
                 <span className="motto-text">
                     <span className="white">
-                        "Success is achived through action, not words"
+                        "I care about the reality of the goodness, not the
+                        perception of it."
                     </span>
                     .
                 </span>
