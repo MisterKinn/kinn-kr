@@ -34,8 +34,9 @@ function About() {
                 My motto is{" "}
                 <span className="motto-text">
                     <span className="white">
-                        "I care about the reality of the goodness, not the
-                        perception of it."
+                        "I care about the reality of the goodness,
+                        <br />
+                        not the perception of it."
                     </span>
                     .
                 </span>
