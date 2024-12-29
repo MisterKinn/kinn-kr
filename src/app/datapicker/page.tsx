@@ -89,7 +89,7 @@ export default function PhotoMetadata() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Photo Metadata Viewer</h1>
+            <h1 className={styles.title}>Data Picker</h1>
             <input
                 type="file"
                 accept="image/jpeg,image/jpg"
