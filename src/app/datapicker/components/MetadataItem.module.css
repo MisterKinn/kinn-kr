@@ -1,0 +1,37 @@
+.item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 0.25rem;
+}
+
+.value {
+    color: #576574;
+    word-break: break-word;
+    padding-left: 0;
+}
+
+/* Tablet and desktop layout */
+@media (min-width: 640px) {
+    .item {
+        flex-direction: row;
+        font-size: 0.9rem;
+    }
+
+    .label {
+        min-width: 120px;
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+
+    .value {
+        flex: 1;
+    }
+}
