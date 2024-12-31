@@ -26,7 +26,7 @@ function Portfolio() {
                                 <strong>DataPicker</strong>
                             </span>
                         </div>
-                        <div className="mobile-card-text">
+                        <div className="card-text">
                             <span className="roadmap-element">
                                 Making a{" "}
                                 <strong>Image MetaData Extract Service</strong>{" "}
