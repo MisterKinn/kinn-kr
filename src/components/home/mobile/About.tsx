@@ -5,12 +5,12 @@ function About() {
                 About Me
             </h1>
             <p className="mobile-aboutme-text" data-aos="fade-up">
-                <span className="white">Hello!</span> My name is
+                <span className="white">Hello!</span>
                 <br />
-                <span className="white">SeongYeon Kim</span> (a.k.a.
-                <span className="white">Kinn</span>),
+                My name is <span className="white">SeongYeon Kim</span>
                 <br />
-                and I'm a student
+                (a.k.a.
+                <span className="white">Kinn</span>), and I'm a student
                 <br />
                 <span className="white">FrontEnd Developer.</span>
                 <br />
@@ -36,29 +36,28 @@ function About() {
                 My motto is{" "}
                 <span className="motto-text">
                     <span className="white">
-                        "I care about the reality
+                        "I care about
                         <br />
-                        of the goodness, not the
+                        the reality of the goodness,
                         <br />
-                        perception of it."
+                        not the perception of it."
                     </span>
                     .
                 </span>
                 <br />
                 <br />
-                I'm <span className="white">18</span> years old
-                <br />
-                (in Korean age),
+                I'm <span className="white">18</span> years old,
                 <br />
                 and <span className="white">Junior</span> of high school.
                 <br />
                 <br />
-                I'm dreaming of being
+                I'm going to work at <span className="white">Startup</span>
                 <br />
-                <span className="white">a Successful Entrepreneur</span>,
+                as a <span className="white">Developer</span>, and eventually
                 <br />
-                and being citizen of <br />
-                <span className="white">the United States of America</span>.
+                I'll be <span className="white">a Successful Enterpreneur</span>
+                <br />
+                and be the citizen of the <span className="white">U.S.A.</span>
             </p>
         </div>
     );

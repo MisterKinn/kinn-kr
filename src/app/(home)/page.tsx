@@ -10,6 +10,7 @@ import NavBar from "@/components/home/NavBar";
 import Home from "@/components/home/Home";
 import About from "@/components/home/About";
 import Portfolio from "@/components/home/Portfolio";
+import TimeLine from "@/components/home/Timeline";
 import Experience from "@/components/home/Experience";
 import Skills from "@/components/home/Skills";
 import Profile from "@/components/home/Profile";

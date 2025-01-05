@@ -19,41 +19,6 @@ function Portfolio() {
                         <div className="column-center">
                             <img
                                 loading="lazy"
-                                src="img/datapicker.png"
-                                className="card-img"
-                            />
-                            <span className="mobile-card-title">
-                                <strong>DataPicker</strong>
-                            </span>
-                        </div>
-                        <div className="card-text">
-                            <span className="roadmap-element">
-                                Making a{" "}
-                                <strong>Image MetaData Extract Service</strong>{" "}
-                                <br />
-                                which displays several data of certain image.
-                            </span>
-
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    24. 10. 20~
-                                </strong>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a
-                    href="/uxinsight"
-                    target="_blank"
-                    title="UX Insight"
-                    className="spec"
-                >
-                    <div className="mobile-card-container">
-                        <div className="column-center">
-                            <img
-                                loading="lazy"
                                 src="img/ux.png"
                                 className="card-img"
                             />

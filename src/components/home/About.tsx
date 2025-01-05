@@ -42,16 +42,18 @@ function About() {
                 </span>
                 <br />
                 <br />
-                I'm <span className="white">18</span> years old (in Korean age),
+                I'm <span className="white">18</span> years old,
                 <br />
                 and <span className="white">Junior</span> of high school.
                 <br />
                 <br />
-                I'm dreaming of being{" "}
-                <span className="white">a Successful Entrepreneur</span>,
+                I'm going to work at <span className="white">Startup</span> as a{" "}
+                <span className="white">Developer</span>,
                 <br />
-                and being citizen of{" "}
-                <span className="white">the United States of America</span>.
+                and eventually I'll be{" "}
+                <span className="white">a Successful Enterpreneur</span>
+                <br />
+                and be the citizen of the <span className="white">U.S.A.</span>
             </p>
         </div>
     );

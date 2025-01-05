@@ -68,7 +68,8 @@ body {
     margin: 0;
 }
 
-.container {
+.container,
+.mobile-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
