@@ -1,0 +1,116 @@
+.portfolio {
+    height: 50px;
+    width: 50px;
+    margin-left: 30%;
+    padding-right: 20px;
+}
+
+.click-card {
+    text-align: center;
+    margin-top: -2em;
+    margin-bottom: 3em;
+    color: white;
+}
+
+.portfolio-3d {
+    padding: 2rem;
+    background: #000000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.portfolio-align {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.portfolio-item {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+}
+
+.portfolio-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-preview,
+.card-preview-small,
+.card-preview-small2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    background-color: #0b0b0b;
+    overflow: hidden;
+}
+
+.card-preview img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-preview-small img {
+    height: 75%;
+    width: 75%;
+}
+
+.card-preview-small2 img {
+    height: 75%;
+    width: auto;
+}
+
+.card-info {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.card-info h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.card-info p {
+    margin: 0 0 1rem;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.date {
+    display: block;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.portfolio-3d h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}

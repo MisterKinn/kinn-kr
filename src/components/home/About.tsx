@@ -51,7 +51,7 @@ function About() {
                 <span className="white">Developer</span>,
                 <br />
                 and eventually I'll be{" "}
-                <span className="white">a Successful Enterpreneur</span>
+                <span className="white">a Successful Entrepreneur</span>
                 <br />
                 and be the citizen of the <span className="white">U.S.A.</span>
             </p>
