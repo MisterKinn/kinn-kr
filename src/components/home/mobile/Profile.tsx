@@ -18,7 +18,7 @@ function Profile() {
                     title="Mail"
                     className="m-spec"
                 >
-                    <div className="m-card-container">
+                    <div className="m-card-container3">
                         <div className="m-column-center">
                             <img
                                 loading="lazy"
@@ -42,7 +42,7 @@ function Profile() {
                     title="Instagram"
                     className="m-spec"
                 >
-                    <div className="m-card-container">
+                    <div className="m-card-container3">
                         <div className="m-column-center">
                             <img
                                 loading="lazy"
@@ -66,7 +66,7 @@ function Profile() {
                     title="Discord"
                     className="m-spec"
                 >
-                    <div className="m-card-container">
+                    <div className="m-card-container3">
                         <div className="m-column-center">
                             <img
                                 loading="lazy"
@@ -90,7 +90,7 @@ function Profile() {
                     title="GitHub"
                     className="m-spec"
                 >
-                    <div className="m-card-container">
+                    <div className="m-card-container3">
                         <div className="m-column-center">
                             <img
                                 loading="lazy"
