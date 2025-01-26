@@ -17,7 +17,7 @@ function Experience() {
                     title="Highthon"
                     className="spec"
                 >
-                    <div className="card-container">
+                    <div className="card-container" data-aos="fade-up">
                         <div className="column-center">
                             <img
                                 loading="lazy"
@@ -55,6 +55,8 @@ function Experience() {
                     </div>
                 </a>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }

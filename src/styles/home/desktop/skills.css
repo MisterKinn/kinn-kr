@@ -1,0 +1,98 @@
+#Skills {
+    padding: 4rem 2rem;
+}
+
+#list {
+    font-size: 3.5em;
+    margin: 1rem auto 0.5rem;
+    align-self: flex-start;
+    text-align: left;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+    max-width: 1200px;
+}
+
+#explain {
+    margin: 1rem auto 0.5rem;
+    margin-top: 0.25em;
+    align-self: flex-start;
+    font-weight: normal;
+    text-align: left;
+    color: #dddddd;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+    max-width: 1200px;
+    line-height: 1.6;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.spec2 {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.card-container2 {
+    background-color: #ffffff10;
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.card-container2:hover {
+    transform: translateY(-10px);
+    background-color: #ffffff18;
+}
+
+.column-center2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-img2 {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.card-title2 {
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+}
+
+.card-footer2 {
+    text-align: center;
+    font-size: 0.5em;
+    color: #a0a0a0;
+}
+
+.scroll {
+    margin-top: 2rem;
+}
+
+.card-img {
+    transition: transform 0.3s ease;
+}
+
+.card-container2:hover .card-img {
+    transform: scale(1.1);
+}
+
+.spec2 {
+    transition: transform 0.3s ease;
+}
+
+.spec2:hover {
+    transform: scale(1.02);
+}

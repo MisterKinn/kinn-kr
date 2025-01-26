@@ -1,22 +1,28 @@
+import "../../../styles/home/desktop/skills.css";
+
 function Skills() {
     return (
         <div id="Skills" data-aos="fade-up">
-            <h2 className="list">Skills</h2>
+            <h2 id="list">Skills</h2>
+            <h3 id="explain">
+                Creating immersive web experiences with cutting-edge
+                technologies.
+            </h3>
             <div className="container">
-                <div className="spec">
-                    <div className="card-container2 spec2">
+                <div className="spec2">
+                    <div className="card-container2">
                         <div>
                             <div className="column-center">
                                 <img
                                     loading="lazy"
                                     src="img/html.png"
-                                    className="card-img"
+                                    className="card-img2"
                                 />
-                                <span className="card-title">
+                                <span className="card-title2">
                                     <strong>HTML</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer2">
                                 <strong>
                                     <br />
                                     20. 07. 09~
@@ -26,20 +32,20 @@ function Skills() {
                     </div>
                 </div>
 
-                <div className="spec">
-                    <div className="card-container2 spec2">
+                <div className="spec2">
+                    <div className="card-container2">
                         <div>
                             <div className="column-center">
                                 <img
                                     loading="lazy"
                                     src="img/css.png"
-                                    className="card-img"
+                                    className="card-img2"
                                 />
-                                <span className="card-title">
+                                <span className="card-title2">
                                     <strong>CSS</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer2">
                                 <strong>
                                     <br />
                                     20. 08. 16~
@@ -49,20 +55,20 @@ function Skills() {
                     </div>
                 </div>
 
-                <div className="spec">
-                    <div className="card-container2 spec2">
+                <div className="spec2">
+                    <div className="card-container2">
                         <div>
                             <div className="column-center">
                                 <img
                                     loading="lazy"
                                     src="img/js.png"
-                                    className="card-img"
+                                    className="card-img2"
                                 />
-                                <span className="card-title">
+                                <span className="card-title2">
                                     <strong>JavaScript</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer2">
                                 <strong>
                                     <br />
                                     21. 01. 13~
@@ -74,20 +80,20 @@ function Skills() {
             </div>
 
             <div className="container scoll">
-                <div className="spec">
-                    <div className="card-container2 spec2">
+                <div className="spec2">
+                    <div className="card-container2">
                         <div>
                             <div className="column-center">
                                 <img
                                     loading="lazy"
                                     src="img/React.png"
-                                    className="card-img"
+                                    className="card-img2"
                                 />
-                                <span className="card-title">
+                                <span className="card-title2">
                                     <strong>React</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer2">
                                 <strong>
                                     <br />
                                     23. 05. 12~
@@ -97,20 +103,20 @@ function Skills() {
                     </div>
                 </div>
 
-                <div className="spec">
-                    <div className="card-container2 spec2">
+                <div className="spec2">
+                    <div className="card-container2">
                         <div>
                             <div className="column-center">
                                 <img
                                     loading="lazy"
                                     src="img/Nextjs.png"
-                                    className="card-img"
+                                    className="card-img2"
                                 />
-                                <span className="card-title">
+                                <span className="card-title2">
                                     <strong>Next.js</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer2">
                                 <strong>
                                     <br />
                                     24. 02. 17~
