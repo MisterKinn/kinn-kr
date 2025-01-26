@@ -107,7 +107,7 @@ function Portfolio() {
                             <p>
                                 Operating RoadMap, which is
                                 <br />
-                                Web Development Circle of my school.
+                                Web Development Circle of my high school.
                             </p>
                             <span className="date">24. 03. 08~</span>
                         </div>

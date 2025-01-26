@@ -3,7 +3,7 @@ import "@/styles/home/mobile/home.css";
 function Home() {
     return (
         <div id="Home">
-            <div className="m-home-container">
+            <div className="m-home-container m-gradient-background">
                 <div className="m-home-content">
                     <div className="m-text-section">
                         <h1 className="m-greeting">

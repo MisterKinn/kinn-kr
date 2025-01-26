@@ -39,8 +39,11 @@ function Portfolio() {
                         <div className="m-card-info" id="compressed">
                             <h3>UX Insight</h3>
                             <p>
-                                Making a Web UX Analyze service which dissects
-                                Web Page and gives feedback.
+                                Making a Web UX Analyze service
+                                <br />
+                                which dissects Web Page
+                                <br />
+                                and gives feedback.
                             </p>
                             <span className="m-date">24. 10. 20~</span>
                         </div>
@@ -64,8 +67,9 @@ function Portfolio() {
                         <div className="m-card-info">
                             <h3>Nova Law Firm</h3>
                             <p>
-                                Made Official Web Page of NovaLaw, which is Law
-                                Firm in Incheon, Songdo.
+                                Made Official Web Page of NovaLaw,
+                                <br />
+                                which is Law Firm in Incheon, Songdo.
                             </p>
                             <span className="m-date">24. 07. 11~</span>
                         </div>
@@ -89,8 +93,11 @@ function Portfolio() {
                         <div className="m-card-info">
                             <h3>TodayLunch</h3>
                             <p>
-                                Operating TodayLunch Web Page & Instagram
-                                Account, which informs school meal.
+                                Operating TodayLunch
+                                <br />
+                                Web Page & Instagram Account,
+                                <br />
+                                which informs school meal.
                             </p>
                             <span className="m-date">24. 04. 11~</span>
                         </div>
@@ -114,8 +121,11 @@ function Portfolio() {
                         <div className="m-card-info">
                             <h3>RoadMap</h3>
                             <p>
-                                Operating RoadMap, which is Web Development
-                                Circle of my school.
+                                Operating RoadMap, which is
+                                <br />
+                                Web Development Circle
+                                <br />
+                                of my high school.
                             </p>
                             <span className="m-date">24. 03. 08~</span>
                         </div>
@@ -139,8 +149,11 @@ function Portfolio() {
                         <div className="m-card-info">
                             <h3>QR Crafter</h3>
                             <p>
-                                Making a QR Code Generate Service, which
-                                generates & downloads QR Code.
+                                Making a QR Code Generate Service,
+                                <br />
+                                which generates & downloads
+                                <br />
+                                QR Code.
                             </p>
                             <span className="m-date">23. 12. 08~</span>
                         </div>
@@ -164,8 +177,10 @@ function Portfolio() {
                         <div className="m-card-info">
                             <h3>Machim</h3>
                             <p>
-                                Making My Own Discord Bot, which has server
-                                management & utility features.
+                                Making My Own Discord Bot,
+                                <br />
+                                which has server management
+                                <br />& utility features.
                             </p>
                             <span className="m-date">21. 02. 07~</span>
                         </div>

@@ -81,7 +81,7 @@
 
 .m-arrow {
     width: 4em;
-    margin-top: 10em;
+    margin-top: 5em;
     animation: MoveUpDown 2s linear infinite;
     position: relative;
 }
@@ -94,4 +94,12 @@
     50% {
         bottom: 1em;
     }
+}
+
+.m-gradient-background {
+    background: linear-gradient(
+        to bottom,
+        rgba(13, 17, 23, 0.9) 0%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
 }
