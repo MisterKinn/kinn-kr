@@ -26,9 +26,6 @@ function Sidebar() {
                     <a href="../#Home" title="Home">
                         Home
                     </a>
-                    <a href="../#About" title="About">
-                        About
-                    </a>
                     <a href="../#Portfolio" title="Portfolio">
                         Portfolio
                     </a>

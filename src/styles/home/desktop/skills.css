@@ -36,6 +36,11 @@
     margin-left: 1em;
     margin-right: 1em;
     margin-bottom: 1em;
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+    height: 3em;
+    width: 7em;
 }
 
 .card-container2 {

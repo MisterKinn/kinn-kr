@@ -12,40 +12,16 @@ body {
     scroll-behavior: smooth;
 }
 
-.profile-overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    margin-left: -2em;
-    margin-right: -2em;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 30px;
-    color: white;
+#About,
+#Portfolio,
+#Experience,
+#Skills,
+#Profile {
+    overflow-y: hidden;
 }
 
 .blank {
     margin-top: 12.5em;
-}
-
-.About {
-    text-align: center;
-    margin-top: 5em;
-    padding-top: 3em;
-    font-size: 50px;
-    color: #0064ff;
-}
-
-.mobile-aboutme-text {
-    margin-bottom: 7.5em;
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.support {
-    text-align: center;
-    font-size: 50px;
-    color: #00ffff;
 }
 
 .banner {
@@ -64,98 +40,18 @@ body {
     margin-right: auto;
 }
 
-.margin10 {
-    margin-top: 10%;
-}
-
-.mobile-list {
+.footer-text {
+    margin-top: -2.5em;
+    margin-bottom: 2.5em;
     text-align: center;
-    margin-top: 3em;
-    padding-top: 3em;
-    font-size: 3.75em;
-    color: white;
+    font-size: 1.5em;
+    color: #bbbbbb;
 }
 
-.discord {
-    width: auto;
-}
-
-.spec {
-    font-size: 35px;
-    color: white;
-    text-decoration: none;
-}
-
-.spec2,
-.spec3 {
-    font-size: 35px;
-    color: white;
-    text-decoration: none;
-    height: 3em;
-    width: 7em;
-}
-
-.account {
-    height: 4em;
-    margin: 30px;
-    max-width: 6em;
-}
-
-.skill {
-    height: 6em;
-    margin: 20px;
-    max-width: 6em;
-}
-
-.explain {
-    text-align: left;
-    margin-left: 30%;
-}
-
-.profile {
-    height: 80px;
-    width: 100px;
-    margin-left: 300px;
-    margin-bottom: 50px;
-}
-
-.version {
+.m-footer-text {
+    margin-top: -1.5em;
+    margin-bottom: 2.5em;
     text-align: center;
-    padding-right: 40%;
-    padding-top: 5%;
-    font-size: 35px;
-    color: white;
-}
-
-.release {
-    padding-left: 25%;
-    padding-top: 0%;
-    font-size: 20px;
-    color: white;
-}
-
-.img {
-    width: 30%;
-    height: auto;
-    display: block;
-    padding-left: 60%;
-}
-
-.link {
-    text-decoration: none;
-}
-
-p {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: #a0a0a0;
-}
-
-#About,
-#Portfolio,
-#Experience,
-#Skills,
-#Profile {
-    overflow-y: hidden;
+    font-size: 1.5em;
+    color: #bbbbbb;
 }

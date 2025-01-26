@@ -12,7 +12,7 @@ function Footer() {
 
     return (
         <div>
-            <p>
+            <p className="m-footer-text">
                 &copy; <span id="copyright-year" ref={yearRef} />{" "}
                 <strong>Kinn</strong>.
                 <br />

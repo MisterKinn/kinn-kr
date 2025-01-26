@@ -1,0 +1,73 @@
+#Profile {
+    padding: 4rem 2rem;
+}
+
+.container3 {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 1.5em;
+}
+
+.spec {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-container3 {
+    background-color: #ffffff10;
+    border-radius: 15px;
+    padding: 1.5rem;
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-container3:hover {
+    transform: translateY(-10px);
+    background-color: #ffffff18;
+}
+
+.column-center3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-img3 {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.card-title3 {
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+}
+
+.card-footer3 {
+    text-align: center;
+    font-size: 1em;
+    color: #a0a0a0;
+}
+
+.card-container3:hover .card-img {
+    transform: scale(1.1);
+}
+
+.spec:hover {
+    transform: scale(1.02);
+}
+
+@media (min-width: 1200px) {
+    .container {
+        padding: 0 2rem;
+    }
+}

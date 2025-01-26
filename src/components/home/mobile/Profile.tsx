@@ -1,63 +1,61 @@
+import "../../../styles/home/mobile/profile.css";
+
 function Profile() {
     return (
-        <div id="Profile">
-            <h2 id="Profile" className="list" data-aos="fade-up">
-                Profile
-            </h2>
-
-            <div className="container" data-aos="fade-up">
+        <div id="Profile" data-aos="fade-up">
+            <h2 id="m-list">Profile</h2>
+            <h3 id="m-explain">
+                Build deeper connections with me
+                <br />
+                in every way.
+                <br />
+                Click the card to connect with me.
+            </h3>
+            <div className="m-container">
                 <a
                     href="mailto:kinn@kinn.kr"
                     target="_blank"
                     title="Mail"
-                    className="spec"
+                    className="m-spec"
                 >
-                    <div className="card-container2 spec3">
-                        <div>
-                            <div className="column-center">
-                                <img
-                                    loading="lazy"
-                                    src="img/mail.png"
-                                    className="card-img"
-                                />
-                                <span className="card-title">
-                                    <strong> Mail</strong>
-                                </span>
-                            </div>
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    kinn@kinn.kr
-                                </strong>
-                            </div>
+                    <div className="m-card-container">
+                        <div className="m-column-center">
+                            <img
+                                loading="lazy"
+                                src="img/mail.png"
+                                className="m-card-img"
+                                alt="Mail"
+                            />
+                            <span className="m-card-title">
+                                <strong>Mail</strong>
+                            </span>
+                        </div>
+                        <div className="m-card-footer">
+                            <strong>kinn@kinn.kr</strong>
                         </div>
                     </div>
                 </a>
 
                 <a
-                    href="https://www.instagram.com/kinn__sy/"
+                    href="https://www.instagram.com/kinn__sy"
                     target="_blank"
                     title="Instagram"
-                    className="spec"
+                    className="m-spec"
                 >
-                    <div className="card-container2 spec3">
-                        <div>
-                            <div className="column-center">
-                                <img
-                                    loading="lazy"
-                                    src="img/instagram.png"
-                                    className="card-img"
-                                />
-                                <span className="card-title">
-                                    <strong> Instagram</strong>
-                                </span>
-                            </div>
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    kinn__sy
-                                </strong>
-                            </div>
+                    <div className="m-card-container">
+                        <div className="m-column-center">
+                            <img
+                                loading="lazy"
+                                src="img/instagram.png"
+                                className="m-card-img"
+                                alt="Instagram"
+                            />
+                            <span className="m-card-title">
+                                <strong>Instagram</strong>
+                            </span>
+                        </div>
+                        <div className="m-card-footer">
+                            <strong>kinn__sy</strong>
                         </div>
                     </div>
                 </a>
@@ -66,58 +64,52 @@ function Profile() {
                     href="https://discord.com/users/602459845534416896/"
                     target="_blank"
                     title="Discord"
-                    className="spec"
+                    className="m-spec"
                 >
-                    <div className="card-container2 spec3">
-                        <div>
-                            <div className="column-center">
-                                <img
-                                    loading="lazy"
-                                    src="img/discord.png"
-                                    className="card-img discord"
-                                />
-                                <span className="card-title">
-                                    <strong> Discord</strong>
-                                </span>
-                            </div>
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    mrkinn
-                                </strong>
-                            </div>
+                    <div className="m-card-container">
+                        <div className="m-column-center">
+                            <img
+                                loading="lazy"
+                                src="img/discord.png"
+                                className="m-card-img"
+                                alt="Discord"
+                            />
+                            <span className="m-card-title">
+                                <strong>Discord</strong>
+                            </span>
+                        </div>
+                        <div className="m-card-footer">
+                            <strong>mrkinn</strong>
                         </div>
                     </div>
                 </a>
 
                 <a
-                    href="https://github.com/MisterKinn/"
+                    href="https://github.com/MisterKinn"
                     target="_blank"
                     title="GitHub"
-                    className="spec"
+                    className="m-spec"
                 >
-                    <div className="card-container2 spec3">
-                        <div>
-                            <div className="column-center">
-                                <img
-                                    loading="lazy"
-                                    src="img/github.png"
-                                    className="card-img discord"
-                                />
-                                <span className="card-title">
-                                    <strong> Github</strong>
-                                </span>
-                            </div>
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    MisterKinn
-                                </strong>
-                            </div>
+                    <div className="m-card-container">
+                        <div className="m-column-center">
+                            <img
+                                loading="lazy"
+                                src="img/github.png"
+                                className="m-card-img"
+                                alt="GitHub"
+                            />
+                            <span className="m-card-title">
+                                <strong>GitHub</strong>
+                            </span>
+                        </div>
+                        <div className="m-card-footer">
+                            <strong>MisterKinn</strong>
                         </div>
                     </div>
                 </a>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }

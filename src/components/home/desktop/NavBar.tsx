@@ -12,10 +12,6 @@ function NavBar() {
                         <strong>Home</strong>
                     </Link>
 
-                    <Link href="../#About" className="nav-link" scroll={true}>
-                        <strong>About</strong>
-                    </Link>
-
                     <Link
                         href="../#Portfolio"
                         className="nav-link"

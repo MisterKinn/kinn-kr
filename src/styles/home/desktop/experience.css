@@ -32,8 +32,8 @@
     display: flex;
     flex-direction: column;
     flex: 0 0 calc(25% - 5px);
-    height: 5em;
-    width: 13em;
+    height: 10em;
+    width: 25em;
     gap: 30px;
     position: relative;
     background-color: #1c1c1c;
@@ -67,22 +67,19 @@
 }
 
 .card-title {
-    font-size: 27.5px;
-}
-
-.converter {
-    font-size: 21px;
+    margin-left: 0.5em;
+    font-size: 2em;
 }
 
 .card-text {
     text-align: left;
-    font-size: 0.5em;
-    color: grey;
+    font-size: 1.1em;
+    color: #bbbbbb;
 }
 
 .card-footer {
-    font-size: 17px;
-    color: white;
+    font-size: 0.8em;
+    color: #a0a0a0;
 }
 
 .white {

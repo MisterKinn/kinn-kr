@@ -1,41 +1,40 @@
+import "../../../styles/home/desktop/profile.css";
+
 function Profile() {
     return (
         <div id="Profile" data-aos="fade-up">
-            <h2 id="Profile" className="list">
+            <h2 id="list" data-aos="fade-up">
                 Profile
             </h2>
-            <div className="container">
+            <h3 id="explain" data-aos="fade-up">
+                Build deeper connection with me in every ways.
+                <br />
+                Click the card to connect with me.
+            </h3>
+            <div className="container3">
                 <a
                     href="mailto:kinn@kinn.kr"
                     target="_blank"
                     title="Mail"
                     className="spec"
                 >
-                    <div className="card-container2 spec3">
+                    <div className="card-container3">
                         <div>
-                            <div className="column-center">
+                            <div className="column-center3">
                                 <img
                                     loading="lazy"
                                     src="img/mail.png"
-                                    className="card-img"
+                                    className="card-img3"
                                 />
-                                <span className="card-title">
+                                <span className="card-title3">
                                     <strong> Mail</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer3">
                                 <strong>
                                     <br />
                                     kinn@kinn.kr
                                 </strong>
-                            </div>
-                        </div>
-
-                        <div className="overlay">
-                            <div className="profile-overlay-text">
-                                Click the Card
-                                <br />
-                                to Mail me
                             </div>
                         </div>
                     </div>
@@ -47,33 +46,23 @@ function Profile() {
                     title="Instagram"
                     className="spec"
                 >
-                    <div className="card-container2 spec3">
+                    <div className="card-container3">
                         <div>
-                            <div className="column-center">
+                            <div className="column-center3">
                                 <img
                                     loading="lazy"
                                     src="img/instagram.png"
-                                    className="card-img"
+                                    className="card-img3"
                                 />
-                                <span className="card-title">
+                                <span className="card-title3">
                                     <strong> Instagram</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer3">
                                 <strong>
                                     <br />
                                     kinn__sy
                                 </strong>
-                            </div>
-                        </div>
-
-                        <div className="overlay">
-                            <div className="profile-overlay-text">
-                                Click the Card
-                                <br />
-                                to learn more
-                                <br />
-                                about Instagram
                             </div>
                         </div>
                     </div>
@@ -85,33 +74,23 @@ function Profile() {
                     title="Discord"
                     className="spec"
                 >
-                    <div className="card-container2 spec3">
+                    <div className="card-container3">
                         <div>
-                            <div className="column-center">
+                            <div className="column-center3">
                                 <img
                                     loading="lazy"
                                     src="img/discord.png"
-                                    className="card-img discord"
+                                    className="card-img3"
                                 />
-                                <span className="card-title">
+                                <span className="card-title3">
                                     <strong> Discord</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer3">
                                 <strong>
                                     <br />
                                     mrkinn
                                 </strong>
-                            </div>
-                        </div>
-
-                        <div className="overlay">
-                            <div className="profile-overlay-text">
-                                Click the Card
-                                <br />
-                                to learn more
-                                <br />
-                                about Discord
                             </div>
                         </div>
                     </div>
@@ -123,38 +102,30 @@ function Profile() {
                     title="GitHub"
                     className="spec"
                 >
-                    <div className="card-container2 spec3">
+                    <div className="card-container3">
                         <div>
-                            <div className="column-center">
+                            <div className="column-center3">
                                 <img
                                     loading="lazy"
                                     src="img/github.png"
-                                    className="card-img discord"
+                                    className="card-img3 discord"
                                 />
-                                <span className="card-title">
+                                <span className="card-title3">
                                     <strong> GitHub</strong>
                                 </span>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer3">
                                 <strong>
                                     <br />
                                     MisterKinn
                                 </strong>
                             </div>
                         </div>
-
-                        <div className="overlay">
-                            <div className="profile-overlay-text">
-                                Click the Card
-                                <br />
-                                to learn more
-                                <br />
-                                about GitHub
-                            </div>
-                        </div>
                     </div>
                 </a>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }

@@ -126,6 +126,8 @@ function Skills() {
                     </div>
                 </div>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }
