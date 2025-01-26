@@ -11,8 +11,8 @@ import About from "@/components/machim/About";
 import Manage from "@/components/machim/Manage";
 import Utility from "@/components/machim/Utility";
 import Support from "@/components/machim/Support";
-import Banner from "@/components/home/Banner";
-import Footer from "@/components/home/Footer";
+import Banner from "@/components/home/desktop/Banner";
+import Footer from "@/components/home/desktop/Footer";
 
 import MobileHome from "@/components/machim/mobile/Home";
 import MobileAbout from "@/components/machim/mobile/About";

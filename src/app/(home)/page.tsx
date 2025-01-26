@@ -6,20 +6,17 @@ import "../../styles/style.css";
 import AOS from "aos";
 import "@/styles/aos.css";
 
-import NavBar from "@/components/home/NavBar";
-import Home from "@/components/home/Home";
-import About from "@/components/home/About";
-import Portfolio from "@/components/home/Portfolio";
-import TimeLine from "@/components/home/Timeline";
-import Experience from "@/components/home/Experience";
-import Skills from "@/components/home/Skills";
-import Profile from "@/components/home/Profile";
-import Banner from "@/components/home/Banner";
-import Footer from "@/components/home/Footer";
+import NavBar from "@/components/home/desktop/NavBar";
+import Home from "@/components/home/desktop/Home";
+import Portfolio from "@/components/home/desktop/Portfolio";
+import Experience from "@/components/home/desktop/Experience";
+import Skills from "@/components/home/desktop/Skills";
+import Profile from "@/components/home/desktop/Profile";
+import Banner from "@/components/home/desktop/Banner";
+import Footer from "@/components/home/desktop/Footer";
 
 import SideBar from "@/components/home/mobile/Sidebar";
 import MobileHome from "@/components/home/mobile/Home";
-import MobileAbout from "@/components/home/mobile/About";
 import MobilePortfolio from "@/components/home/mobile/Portfolio";
 import MobileExperience from "@/components/home/mobile/Experience";
 import MobileSkills from "@/components/home/mobile/Skills";

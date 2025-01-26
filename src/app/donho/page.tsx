@@ -1,7 +1,7 @@
 "use client";
 import "../../styles/link.css";
-import Banner from "../../components/home/Banner";
-import Footer from "../../components/home/Footer";
+import Banner from "../../components/home/desktop/Banner";
+import Footer from "../../components/home/desktop/Footer";
 import styled from "styled-components";
 
 const MobileDonhoWeb = styled.div`

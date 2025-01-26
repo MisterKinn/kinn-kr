@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { exchangeRates, convertCurrency, getUserCountry } from "./converter";
 import "../../styles/converter.css";
-import Footer from "../../components/home/Footer";
+import Footer from "../../components/home/desktop/Footer";
 
 function Converter() {
     const [fromCurrency, setFromCurrency] = useState("krw");

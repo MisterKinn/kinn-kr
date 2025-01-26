@@ -187,6 +187,8 @@ function Portfolio() {
                     </div>
                 </a>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }
