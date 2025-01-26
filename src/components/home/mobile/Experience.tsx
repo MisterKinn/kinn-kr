@@ -53,6 +53,8 @@ function MobileExperience() {
                     </div>
                 </a>
             </div>
+
+            <div className="blank"></div>
         </div>
     );
 }

@@ -7,12 +7,10 @@ function Portfolio() {
                 Portfolio
             </h2>
             <h3 id="explain" data-aos="fade-up">
-                Crafting innovative and user-centric Frontend Web projects,
+                Crafting impactful Frontend projects that deliver ecstatic
+                experience for lasting impressions.
                 <br />
-                transforming creative ideas into seamless and captivating
-                digital experiences which leave a lasting impression.
-                <br />
-                Click the card to see the detail.
+                Click the card to try captivating project.
             </h3>
 
             <div className="portfolio-grid" data-aos="fade-up">

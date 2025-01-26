@@ -5,8 +5,9 @@ function MobileSkills() {
         <div id="Skills" data-aos="fade-up">
             <h2 id="m-list">Skills</h2>
             <h3 id="m-explain">
-                Creating immersive web experiences with cutting-edge
-                technologies.
+                Creating immersive web experiences
+                <br />
+                with cutting-edge technologies.
             </h3>
 
             <div className="m-container2">

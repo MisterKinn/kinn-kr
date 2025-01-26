@@ -70,8 +70,9 @@
 .m-card-text {
     text-align: center;
     margin-top: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.85em;
     line-height: 1.4;
+    color: #bbbbbb;
 }
 
 .m-highthon-element {
