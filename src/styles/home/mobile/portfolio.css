@@ -1,0 +1,113 @@
+#Portfolio {
+    overflow: hidden;
+}
+
+.m-portfolio-3d {
+    padding: 1rem;
+    background: #000000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.m-portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+#m-list {
+    font-size: 2.5em;
+    margin: 0.5rem auto 0.5rem;
+    align-self: flex-start;
+    text-align: left;
+    color: white;
+    width: calc(100% - 0rem);
+    padding: 0 0.25rem;
+    max-width: 1200px;
+}
+
+#m-explain {
+    margin: 1rem auto 1.5rem;
+    margin-top: -0.5em;
+    align-self: flex-start;
+    text-align: left;
+    color: #dddddd;
+    width: calc(100% - 0rem);
+    padding: 0 0.25rem;
+    max-width: 1200px;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.m-portfolio-item {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.m-portfolio-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.m-card-preview,
+.m-card-preview-small,
+.m-card-preview-small2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #0b0b0b;
+}
+
+.m-card-preview img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.m-card-preview-small img {
+    height: 100%;
+    width: 75%;
+}
+
+.m-card-preview-small2 img {
+    height: 70%;
+    width: auto;
+}
+
+.m-card-info {
+    padding: 1rem;
+    flex: 1;
+}
+
+.m-card-info h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.m-card-info p {
+    margin: 0 0 0.75rem;
+    color: #999;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.m-date {
+    display: block;
+    color: #777;
+    font-size: 0.75rem;
+}

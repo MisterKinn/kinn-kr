@@ -119,29 +119,6 @@ function Skills() {
                         </div>
                     </div>
                 </div>
-
-                <div className="spec">
-                    <div className="card-container2 spec2">
-                        <div>
-                            <div className="column-center">
-                                <img
-                                    loading="lazy"
-                                    src="img/RN.png"
-                                    className="card-img"
-                                />
-                                <span className="card-title">
-                                    <strong>React Native</strong>
-                                </span>
-                            </div>
-                            <div className="card-footer">
-                                <strong>
-                                    <br />
-                                    24. 07. 29~
-                                </strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

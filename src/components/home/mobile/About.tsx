@@ -46,7 +46,7 @@ function About() {
                 </span>
                 <br />
                 <br />
-                I'm <span className="white">18</span> years old,
+                I'm <span className="white">19</span> years old,
                 <br />
                 and <span className="white">Junior</span> of high school.
                 <br />
@@ -55,7 +55,7 @@ function About() {
                 <br />
                 as a <span className="white">Developer</span>, and eventually
                 <br />
-                I'll be <span className="white">a Successful Enterpreneur</span>
+                I'll be <span className="white">a Successful Entrepreneur</span>
                 <br />
                 and be the citizen of the <span className="white">U.S.A.</span>
             </p>

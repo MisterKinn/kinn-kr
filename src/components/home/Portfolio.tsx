@@ -1,13 +1,18 @@
-import "@/styles/home/portfolio.css";
+import "@/styles/home/desktop/portfolio.css";
 
 function Portfolio() {
     return (
         <div id="Portfolio" className="portfolio-3d">
-            <h2 className="list" data-aos="fade-up">
+            <h2 id="list" data-aos="fade-up">
                 Portfolio
             </h2>
-            <h3 className="click-card" data-aos="fade-up">
-                Click the Card to see the detail.
+            <h3 id="explain" data-aos="fade-up">
+                Crafting innovative and user-centric Frontend Web projects,
+                <br />
+                transforming creative ideas into seamless and captivating
+                digital experiences which leave a lasting impression.
+                <br />
+                Click the card to see the detail.
             </h3>
 
             <div className="portfolio-grid" data-aos="fade-up">
@@ -23,11 +28,9 @@ function Portfolio() {
                         <div className="card-info" id="compressed">
                             <h3>UX Insight</h3>
                             <p>
-                                Making a Web Analyze service
+                                Making a Web UX Analyze service
                                 <br />
-                                which dissects Web Pages' UX
-                                <br />
-                                and offers UX feedback.
+                                which dissects Web Page and gives feedback.
                             </p>
                             <span className="date">24. 10. 20~</span>
                         </div>
@@ -51,8 +54,9 @@ function Portfolio() {
                         <div className="card-info">
                             <h3>Nova Law Firm</h3>
                             <p>
-                                Made Official Web Page of NovaLaw, which is Law
-                                Firm in Incheon, Songdo.
+                                Made Official Web Page of NovaLaw,
+                                <br />
+                                which is Law Firm in Incheon, Songdo.
                             </p>
                             <span className="date">24. 07. 11~</span>
                         </div>
@@ -101,8 +105,9 @@ function Portfolio() {
                         <div className="card-info">
                             <h3>RoadMap</h3>
                             <p>
-                                Operating RoadMap, which is Web Development Club
-                                of my school.
+                                Operating RoadMap, which is
+                                <br />
+                                Web Development Circle of my school.
                             </p>
                             <span className="date">24. 03. 08~</span>
                         </div>
@@ -126,8 +131,9 @@ function Portfolio() {
                         <div className="card-info">
                             <h3>QR Crafter</h3>
                             <p>
-                                Making a QR Code Generate Service, which
-                                generates & downloads QR Code.
+                                Making a QR Code Generate Service,
+                                <br />
+                                which generates & downloads QR Code.
                             </p>
                             <span className="date">23. 12. 08~</span>
                         </div>
@@ -151,8 +157,9 @@ function Portfolio() {
                         <div className="card-info">
                             <h3>Machim</h3>
                             <p>
-                                Making My Own Discord Bot, which has server
-                                management & utility features.
+                                Making My Own Discord Bot, which has
+                                <br />
+                                server management & utility features.
                             </p>
                             <span className="date">21. 02. 07~</span>
                         </div>

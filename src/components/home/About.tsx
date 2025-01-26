@@ -42,7 +42,7 @@ function About() {
                 </span>
                 <br />
                 <br />
-                I'm <span className="white">18</span> years old,
+                I'm <span className="white">19</span> years old,
                 <br />
                 and <span className="white">Junior</span> of high school.
                 <br />
