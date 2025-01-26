@@ -1,33 +1,35 @@
+import "@/styles/home/mobile/home.css";
+
 function Home() {
     return (
-        <div id="home">
-            <img src="img/kinn-banner-mobile.jpg" className="header-img" />
-            <div className="header-container" data-aos="fade-up">
-                <h2 className="hello">
-                    Hello, I'm
-                </h2>
-                <h1 className="mobile-kinn">
-                    Kinn
-                </h1>
-                <div>
-                    <div className="mobile-introduce">
-                        Nice to meet you!{" "}
-                        <img
-                            loading="lazy"
-                            draggable="false"
-                            src="img/wave.png"
-                            className="wave"
-                        />
-                    </div>
+        <div id="Home" className="m-home-container">
+            <div className="m-home-content">
+                <div className="m-text-section">
+                    <h1 className="m-greeting">
+                        Hello <span className="wave">👋</span>
+                        <br />
+                        I'm SeongYeon Kim
+                    </h1>
+                    <p className="m-description">
+                        I'm a student Frontend Developer with a passion for
+                        crafting functional, impactful experiences that resonate
+                        with users.
+                    </p>
                 </div>
             </div>
 
-            <div className="img-container" data-aos="fade-up">
-                <img
-                    loading="lazy"
-                    src="https://todaylunch.vercel.app/img/arrow.png"
-                    className="mobile-arrow"
-                />
+            <div className="m-profile-section">
+                <div className="m-profile-image-container">
+                    <img
+                        src="img/profile.png"
+                        alt="Profile"
+                        className="m-profile-image"
+                    />
+                </div>
+            </div>
+
+            <div className="m-arrow-container" data-aos="fade-up">
+                <img loading="lazy" src="img/arrow.png" className="m-arrow" />
             </div>
         </div>
     );

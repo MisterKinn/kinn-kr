@@ -38,13 +38,6 @@ body {
     position: absolute;
 }
 
-.img-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    position: absolute;
-}
-
 .scroll {
     opacity: 0;
     visibility: hidden;
@@ -190,53 +183,6 @@ body {
     color: white;
 }
 
-.introduce {
-    text-align: center;
-    font-size: 3em;
-    color: #eee;
-}
-
-.mobile-introduce {
-    text-align: center;
-    font-size: 2em;
-    color: #eee;
-}
-
-.wave {
-    height: 1em;
-    width: 1em;
-}
-
-.arrow {
-    width: 5em;
-    margin-top: 40em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    animation: MoveUpDown 2s linear infinite;
-    position: relative;
-}
-
-.mobile-arrow {
-    width: 5em;
-    margin-top: 35em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    animation: MoveUpDown 2s linear infinite;
-    position: relative;
-}
-
-@keyframes MoveUpDown {
-    0%,
-    100% {
-        bottom: 0;
-    }
-    50% {
-        bottom: 2em;
-    }
-}
-
 .white {
     color: white;
     font-weight: bold;
@@ -250,15 +196,6 @@ body {
 .f1 {
     height: 1em;
     width: auto;
-}
-
-.toss {
-    height: 2.75em;
-    width: auto;
-    margin-top: -1em;
-    margin-bottom: -1em;
-    margin-left: -1em;
-    margin-right: -1em;
 }
 
 .blank {

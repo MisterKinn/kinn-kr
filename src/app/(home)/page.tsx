@@ -42,7 +42,6 @@ function Page() {
                 <Analytics />
                 <SideBar />
                 <MobileHome />
-                <MobileAbout />
                 <MobilePortfolio />
                 <MobileExperience />
                 <MobileSkills />
@@ -57,7 +56,6 @@ function Page() {
                 <Analytics />
                 <NavBar />
                 <Home />
-                <About />
                 <Portfolio />
                 <Experience />
                 <Skills />
