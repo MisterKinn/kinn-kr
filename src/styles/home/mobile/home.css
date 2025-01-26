@@ -67,6 +67,7 @@
 .m-description {
     font-size: 1em;
     line-height: 1.5;
+    font-weight: normal;
     margin: 1rem 0;
     color: #bbbbbb;
     padding: 0 1rem;
@@ -80,7 +81,7 @@
 
 .m-arrow {
     width: 4em;
-    margin-top: 15em;
+    margin-top: 10em;
     animation: MoveUpDown 2s linear infinite;
     position: relative;
 }

@@ -1,4 +1,4 @@
-import "@/styles/home/mobile/portfolio.css";
+import "../../../styles/home/mobile/portfolio.css";
 
 function Portfolio() {
     return (
@@ -11,9 +11,11 @@ function Portfolio() {
                 <br />
                 Frontend Web projects,
                 <br />
-                transforming creative ideas into seamless
+                transforming creative ideas into
                 <br />
-                and captivating digital experiences
+                seamless and captivating
+                <br />
+                digital experiences
                 <br />
                 which leave a lasting impression.
                 <br />
@@ -30,7 +32,7 @@ function Portfolio() {
                         <div className="m-card-preview-small">
                             <img
                                 loading="lazy"
-                                src="img/ux.png"
+                                src="img/uxinsight_square.png"
                                 alt="UX Insight Preview"
                             />
                         </div>
@@ -105,7 +107,7 @@ function Portfolio() {
                         <div className="m-card-preview-small">
                             <img
                                 loading="lazy"
-                                src="img/road-map.png"
+                                src="img/roadmap_square.png"
                                 alt="RoadMap Preview"
                             />
                         </div>
@@ -130,7 +132,7 @@ function Portfolio() {
                         <div className="m-card-preview-small">
                             <img
                                 loading="lazy"
-                                src="img/link.png"
+                                src="img/qr_square.png"
                                 alt="QR Crafter Preview"
                             />
                         </div>
@@ -152,10 +154,10 @@ function Portfolio() {
                     className="m-portfolio-item"
                 >
                     <div className="m-portfolio-card" data-aos="fade-up">
-                        <div className="m-card-preview-small2">
+                        <div className="m-card-preview-small">
                             <img
                                 loading="lazy"
-                                src="img/Machim.png"
+                                src="img/machim_square.png"
                                 alt="Machim Preview"
                             />
                         </div>

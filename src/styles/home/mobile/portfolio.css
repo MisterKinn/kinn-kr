@@ -13,9 +13,9 @@
 }
 
 .m-portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0.5rem;
     width: 100%;
 }
@@ -26,7 +26,7 @@
     align-self: flex-start;
     text-align: left;
     color: white;
-    width: calc(100% - 0rem);
+    width: calc(100% - 5rem);
     padding: 0 0.25rem;
     max-width: 1200px;
 }
@@ -35,29 +35,31 @@
     margin: 1rem auto 1.5rem;
     margin-top: -0.5em;
     align-self: flex-start;
+    font-weight: normal;
     text-align: left;
     color: #dddddd;
-    width: calc(100% - 0rem);
+    width: calc(100% - 5rem);
     padding: 0 0.25rem;
     max-width: 1200px;
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: 1.6;
 }
 
 .m-portfolio-item {
     text-decoration: none;
     color: inherit;
-    width: 100%;
+    width: 80%;
 }
 
 .m-portfolio-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
     background: #1a1a1a;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .m-card-preview,
@@ -72,7 +74,8 @@
     background-color: #0b0b0b;
 }
 
-.m-card-preview img {
+.m-card-preview img,
+.m-card-preview-small img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -80,7 +83,7 @@
 
 .m-card-preview-small img {
     height: 100%;
-    width: 75%;
+    width: 100%;
 }
 
 .m-card-preview-small2 img {
