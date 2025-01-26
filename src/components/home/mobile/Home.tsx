@@ -18,16 +18,6 @@ function Home() {
                 </div>
             </div>
 
-            <div className="m-profile-section">
-                <div className="m-profile-image-container">
-                    <img
-                        src="img/profile.png"
-                        alt="Profile"
-                        className="m-profile-image"
-                    />
-                </div>
-            </div>
-
             <div className="m-arrow-container" data-aos="fade-up">
                 <img loading="lazy" src="img/arrow.png" className="m-arrow" />
             </div>

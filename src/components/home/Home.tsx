@@ -2,7 +2,7 @@ import "@/styles/home/desktop/home.css";
 
 function Home() {
     return (
-        <div id="Home" className="home-container">
+        <div id="Home" className="home-container gradient-background">
             <div className="home-content">
                 <div className="text-section">
                     <h1 className="greeting">
