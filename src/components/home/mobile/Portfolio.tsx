@@ -9,7 +9,7 @@ function Portfolio() {
             <h3 id="m-explain" data-aos="fade-up">
                 Crafting impactful Frontend projects
                 <br />
-                hat deliver ecstatic experience
+                that deliver ecstatic experience
                 <br />
                 for lasting impressions.
                 <br />
