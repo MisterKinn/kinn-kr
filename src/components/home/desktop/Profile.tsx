@@ -95,6 +95,35 @@ function Profile() {
                         </div>
                     </div>
                 </a>
+            </div>
+            <div className="container3">
+                <a
+                    href="https://www.linkedin.com/in/%E3%85%A4seongyeon-kim-223994296/"
+                    target="_blank"
+                    title="LinkedIn"
+                    className="spec"
+                >
+                    <div className="card-container3">
+                        <div>
+                            <div className="column-center3">
+                                <img
+                                    loading="lazy"
+                                    src="img/linkedin.png"
+                                    className="card-img3"
+                                />
+                                <span className="card-title3">
+                                    <strong> Linkedin</strong>
+                                </span>
+                            </div>
+                            <div className="card-footer3">
+                                <strong>
+                                    <br />
+                                    SeongYeon Kim
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </a>
 
                 <a
                     href="https://github.com/MisterKinn"
