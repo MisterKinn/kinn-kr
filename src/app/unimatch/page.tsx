@@ -231,7 +231,7 @@ export default function Home() {
             exploration2 > 100
         ) {
             setSuggestion({
-                error: "Please enter valid percentiles between 0 and 100 for all fields",
+                error: "모든 입력란에 정확한 수치를 입력하십시오.",
             });
             setMyAvg(null);
             return;

@@ -14,7 +14,6 @@ function Portfolio() {
             </h3>
 
             <div className="portfolio-grid" data-aos="fade-up">
-
                 <a href="/unimatch" target="_blank" className="portfolio-item">
                     <div className="portfolio-card">
                         <div className="card-preview-small">
@@ -53,32 +52,6 @@ function Portfolio() {
                                 which dissects Web Page and gives feedback.
                             </p>
                             <span className="date">24. 10. 20~</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a
-                    href="https://novalaw.kr"
-                    target="_blank"
-                    title="Nova Law Firm"
-                    className="portfolio-item"
-                >
-                    <div className="portfolio-card">
-                        <div className="card-preview">
-                            <img
-                                loading="lazy"
-                                src="img/novalaw.jpg"
-                                alt="Nova Law Firm Preview"
-                            />
-                        </div>
-                        <div className="card-info">
-                            <h3>Nova Law Firm</h3>
-                            <p>
-                                Made Official Web Page of NovaLaw,
-                                <br />
-                                which is Law Firm in Incheon, Songdo.
-                            </p>
-                            <span className="date">24. 07. 11~</span>
                         </div>
                     </div>
                 </a>

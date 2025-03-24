@@ -70,6 +70,11 @@
     flex-direction: column;
 }
 
+.portfolio-card2 {
+    overflow: hidden;
+    height: 100%;
+}
+
 .card-preview,
 .card-preview-small,
 .card-preview-small2 {
