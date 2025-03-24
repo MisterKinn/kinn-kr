@@ -21,6 +21,14 @@ function NavBar() {
                     </Link>
 
                     <Link
+                        href="../#Outsource"
+                        className="nav-link"
+                        scroll={true}
+                    >
+                        <strong>Outsource</strong>
+                    </Link>
+
+                    <Link
                         href="../#Experience"
                         className="nav-link"
                         scroll={true}
