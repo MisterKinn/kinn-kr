@@ -403,6 +403,7 @@ export default function Home() {
                                     <div
                                         key={index}
                                         className="university-card"
+                                        data-aos="fade-up"
                                     >
                                         <h4>{uni.name}</h4>
                                         <div className="stats">
