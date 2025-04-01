@@ -122,28 +122,28 @@ export default function Home() {
                 englishPenalty = 0;
                 break;
             case 2:
-                englishPenalty = 5;
+                englishPenalty = 4;
                 break;
             case 3:
-                englishPenalty = 15;
+                englishPenalty = 3;
                 break;
             case 4:
-                englishPenalty = 30;
+                englishPenalty = 3;
                 break;
             case 5:
-                englishPenalty = 40;
+                englishPenalty = 3;
                 break;
             case 6:
-                englishPenalty = 50;
+                englishPenalty = 3;
                 break;
             case 7:
-                englishPenalty = 60;
+                englishPenalty = 3;
                 break;
             case 8:
-                englishPenalty = 70;
+                englishPenalty = 3;
                 break;
             case 9:
-                englishPenalty = 80;
+                englishPenalty = 3;
                 break;
             default:
                 englishPenalty = 0;
