@@ -35,7 +35,9 @@ function Portfolio() {
                             <p>
                                 Making an University Suggestion Service
                                 <br />
-                                for High School Students based on SAT scores.
+                                for High School Students
+                                <br />
+                                based on Korean SAT scores.
                             </p>
                             <span className="m-date">25. 03.24~</span>
                         </div>

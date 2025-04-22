@@ -1,11 +1,11 @@
-import "@/styles/home/desktop/home.css";
+import "../../../styles/home/desktop/home.css";
 
 function Home() {
     return (
         <div id="Home">
-            <div className="home-container gradient-background">
+            <div className="home-container">
                 <div className="home-content" data-aos="fade-up">
-                    <div className="text-section">
+                    <div>
                         <h1 className="greeting">
                             Hello <span className="wave">👋</span>
                             <br />
@@ -21,21 +21,12 @@ function Home() {
                     </div>
                 </div>
 
-                <div className="arrow-container" data-aos="fade-up">
-                    <img loading="lazy" src="img/arrow.png" className="arrow" />
-                </div>
-
-                <div className="profile-section" data-aos="fade-up">
-                    <div className="profile-image-container">
-                        <img
-                            src="img/profile.png"
-                            alt="Profile"
-                            className="profile-image"
-                        />
-                    </div>
-                </div>
+                <div className="gradient-overlay" />
             </div>
-            <div className="blank"></div>
+
+            <div className="arrow-container" data-aos="fade-up">
+                <img loading="lazy" src="img/arrow.png" className="arrow" />
+            </div>
         </div>
     );
 }

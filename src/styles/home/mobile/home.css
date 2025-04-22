@@ -1,37 +1,51 @@
 .m-home-container {
-    height: 100vh;
-    background: #0d1117;
+    min-height: 100vh;
     color: white;
-    padding: 1rem;
+    padding: 0 1.5rem;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background: linear-gradient(
+        90deg,
+        #5a4fcf 0%,
+        #00008b 25%,
+        #6a5acd 50%,
+        #4d4dff 75%,
+        #0039a6 100%
+    );
+    background-size: 200% 100%;
+    animation: gradientFlow 10s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .m-home-content {
-    width: 100%;
-    margin-top: 10em;
-    padding: 1rem;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.m-text-section {
-    width: 100%;
-    margin: 1rem 0;
+    padding-top: 2rem;
 }
 
 .m-greeting {
     font-size: 2.2em;
     font-weight: 700;
-    margin-top: 2.5em;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+    margin-bottom: 1.2rem;
+    gap: 0.5rem;
 }
 
-.wave {
+.m-wave {
     display: inline-block;
     animation: wave 2s infinite;
     transform-origin: 70% 70%;
@@ -69,19 +83,33 @@
     line-height: 1.5;
     font-weight: normal;
     margin: 1rem 0;
+    margin-top: 2.5em;
     color: #bbbbbb;
     padding: 0 1rem;
 }
 
+.m-gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, black);
+    pointer-events: none;
+}
+
 .m-arrow-container {
-    display: flex;
-    justify-content: center;
+    margin-top: -8em;
+    margin-bottom: 20em;
     width: 100%;
 }
 
 .m-arrow {
     width: 4em;
-    margin-top: 5em;
+    margin-top: 0em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     animation: MoveUpDown 2s linear infinite;
     position: relative;
 }
@@ -92,14 +120,6 @@
         bottom: 0;
     }
     50% {
-        bottom: 1em;
+        bottom: 1.5em;
     }
-}
-
-.m-gradient-background {
-    background: linear-gradient(
-        to bottom,
-        rgba(13, 17, 23, 0.9) 0%,
-        rgba(0, 0, 0, 0.2) 100%
-    );
 }
