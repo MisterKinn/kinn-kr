@@ -29,6 +29,7 @@ export default function Home() {
 
     const [koreanGrade, setKoreanGrade] = useState<string>("");
     const [mathGrade, setMathGrade] = useState<string>("");
+    const [englishGrade, setEnglishGrade] = useState<string>("");
     const [exploration1Grade, setExploration1Grade] = useState<string>("");
     const [exploration2Grade, setExploration2Grade] = useState<string>("");
     const [suggestion, setSuggestion] = useState<
@@ -148,14 +149,14 @@ export default function Home() {
         {
             name: "인하대",
             majors: ["인문계열 평균", "자연계열 평균"],
-            humanitiesAvg: 243.9,
-            naturalSciencesAvg: 265.4,
+            humanitiesAvg: 242.1,
+            naturalSciencesAvg: 252.2,
         },
         {
             name: "아주대",
             majors: ["인문계열 평균", "자연계열 평균"],
-            humanitiesAvg: 247.3,
-            naturalSciencesAvg: 273.7,
+            humanitiesAvg: 242.2,
+            naturalSciencesAvg: 249.8,
         },
         {
             name: "단국대",
@@ -193,9 +194,52 @@ export default function Home() {
             humanitiesAvg: 239.6,
             naturalSciencesAvg: 240,
         },
+        {
+            name: "성결대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 218.8,
+            naturalSciencesAvg: 220.1,
+        },
+        {
+            name: "수원대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 240.1,
+            naturalSciencesAvg: 264.3,
+        },
+        {
+            name: "신한대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 187.8,
+            naturalSciencesAvg: 0,
+        },
+        {
+            name: "안양대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 225.7,
+            naturalSciencesAvg: 234.6,
+        },
+        {
+            name: "용인대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 231.2,
+            naturalSciencesAvg: 0,
+        },
+        {
+            name: "한국항공대",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 0,
+            naturalSciencesAvg: 240.1,
+        },
+        {
+            name: "한양대(에리카)",
+            majors: ["인문계열 평균", "자연계열 평균"],
+            humanitiesAvg: 234.6,
+            naturalSciencesAvg: 248.8,
+        },
     ];
 
     const calculatePercentage = (myAvg: number, uniAvg: number) => {
+        if (uniAvg === 0) return 0;
         const difference = myAvg - uniAvg;
         let percentage;
         if (myAvg < uniAvg) {
@@ -213,32 +257,69 @@ export default function Home() {
 
         const korean = parseFloat(koreanGrade);
         const math = parseFloat(mathGrade);
+        const english = parseFloat(englishGrade);
         const exploration1 = parseFloat(exploration1Grade);
         const exploration2 = parseFloat(exploration2Grade);
 
         if (
             isNaN(korean) ||
             isNaN(math) ||
+            isNaN(english) ||
             isNaN(exploration1) ||
             isNaN(exploration2) ||
             korean < 0 ||
             korean > 100 ||
             math < 0 ||
             math > 100 ||
+            english < 1 ||
+            english > 9 ||
             exploration1 < 0 ||
             exploration1 > 100 ||
             exploration2 < 0 ||
             exploration2 > 100
         ) {
             setSuggestion({
-                error: "모든 입력란에 정확한 수치를 입력하십시오.",
+                error: "모든 입력란에 정확한 수치를 입력하십시오. (영어: 1-9, 나머지: 0-100)",
             });
             setMyAvg(null);
             return;
         }
 
-        const calculatedMyAvg =
-            korean + math + (exploration1 + exploration2) / 2;
+        const baseMyAvg = korean + math + (exploration1 + exploration2) / 2;
+        let englishPenalty: number;
+        switch (english) {
+            case 1:
+                englishPenalty = 0;
+                break;
+            case 2:
+                englishPenalty = 4;
+                break;
+            case 3:
+                englishPenalty = 3;
+                break;
+            case 4:
+                englishPenalty = 3;
+                break;
+            case 5:
+                englishPenalty = 3;
+                break;
+            case 6:
+                englishPenalty = 3;
+                break;
+            case 7:
+                englishPenalty = 3;
+                break;
+            case 8:
+                englishPenalty = 3;
+                break;
+            case 9:
+                englishPenalty = 3;
+                break;
+            default:
+                englishPenalty = 0;
+        }
+        const calculatedMyAvg = baseMyAvg - englishPenalty;
+
         setMyAvg(calculatedMyAvg);
 
         const adjustedUniversities = [
@@ -259,6 +340,9 @@ export default function Home() {
             "세종대",
             "인하대",
             "아주대",
+            "성결대",
+            "한국항공대",
+            "한양대(에리카)",
         ];
 
         const universitiesWithPercentage = universityData
@@ -284,19 +368,24 @@ export default function Home() {
                         adjustment = 10;
                     else adjustment = 20;
 
-                    result.adjustedHumanitiesAvg =
-                        uni.humanitiesAvg - adjustment;
-                    result.adjustedNaturalSciencesAvg =
-                        uni.naturalSciencesAvg - adjustment;
-                    result.adjustedHumanitiesPercentage = calculatePercentage(
-                        calculatedMyAvg,
-                        result.adjustedHumanitiesAvg
-                    );
-                    result.adjustedNaturalSciencesPercentage =
-                        calculatePercentage(
-                            calculatedMyAvg,
-                            result.adjustedNaturalSciencesAvg
-                        );
+                    if (uni.humanitiesAvg !== 0) {
+                        result.adjustedHumanitiesAvg =
+                            uni.humanitiesAvg - adjustment;
+                        result.adjustedHumanitiesPercentage =
+                            calculatePercentage(
+                                calculatedMyAvg,
+                                result.adjustedHumanitiesAvg
+                            );
+                    }
+                    if (uni.naturalSciencesAvg !== 0) {
+                        result.adjustedNaturalSciencesAvg =
+                            uni.naturalSciencesAvg - adjustment;
+                        result.adjustedNaturalSciencesPercentage =
+                            calculatePercentage(
+                                calculatedMyAvg,
+                                result.adjustedNaturalSciencesAvg
+                            );
+                    }
                 }
 
                 return result;
@@ -314,21 +403,11 @@ export default function Home() {
                         uni.adjustedNaturalSciencesPercentage >= 40 &&
                         uni.adjustedNaturalSciencesPercentage <= 100)
             )
-            .sort(
-                (a, b) =>
-                    Math.max(
-                        b.humanitiesPercentage,
-                        b.naturalSciencesPercentage,
-                        b.adjustedHumanitiesPercentage || 0,
-                        b.adjustedNaturalSciencesPercentage || 0
-                    ) -
-                    Math.max(
-                        a.humanitiesPercentage,
-                        a.naturalSciencesPercentage,
-                        a.adjustedHumanitiesPercentage || 0,
-                        a.adjustedNaturalSciencesPercentage || 0
-                    )
-            );
+            .sort((a, b) => {
+                const aMaxAvg = Math.max(a.humanitiesAvg, a.naturalSciencesAvg);
+                const bMaxAvg = Math.max(b.humanitiesAvg, b.naturalSciencesAvg);
+                return bMaxAvg - aMaxAvg || b.humanitiesAvg - a.humanitiesAvg;
+            });
 
         setSuggestion(
             universitiesWithPercentage.length > 0
@@ -361,6 +440,15 @@ export default function Home() {
                         className="input"
                         min="0"
                         max="100"
+                    />
+                    <input
+                        type="number"
+                        value={englishGrade}
+                        onChange={(e) => setEnglishGrade(e.target.value)}
+                        placeholder="영어 등급 (1-9)"
+                        className="input"
+                        min="1"
+                        max="9"
                     />
                     <input
                         type="number"
@@ -403,6 +491,7 @@ export default function Home() {
                                     <div
                                         key={index}
                                         className="university-card"
+                                        data-aos="fade-up"
                                     >
                                         <h4>{uni.name}</h4>
                                         <div className="stats">
@@ -411,9 +500,11 @@ export default function Home() {
                                                     인문계열 평균 (일반전형)
                                                 </span>
                                                 <span className="value">
-                                                    {uni.humanitiesAvg.toFixed(
-                                                        2
-                                                    )}
+                                                    {uni.humanitiesAvg !== 0
+                                                        ? uni.humanitiesAvg.toFixed(
+                                                              2
+                                                          )
+                                                        : "데이터 없음"}
                                                 </span>
                                                 <span className="percentage">
                                                     적합도:{" "}
@@ -428,9 +519,12 @@ export default function Home() {
                                                     자연계열 평균 (일반전형)
                                                 </span>
                                                 <span className="value">
-                                                    {uni.naturalSciencesAvg.toFixed(
-                                                        2
-                                                    )}
+                                                    {uni.naturalSciencesAvg !==
+                                                    0
+                                                        ? uni.naturalSciencesAvg.toFixed(
+                                                              2
+                                                          )
+                                                        : "데이터 없음"}
                                                 </span>
                                                 <span className="percentage">
                                                     적합도:{" "}
