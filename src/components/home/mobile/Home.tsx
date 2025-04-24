@@ -27,7 +27,9 @@ function HomeMobile() {
             </div>
 
             <div className="m-arrow-container" data-aos="fade-up">
-                <img loading="lazy" src="img/arrow.png" className="m-arrow" />
+                <a href="#Portfolio">
+                    <img loading="lazy" src="img/arrow.png" className="m-arrow" />
+                </a>
             </div>
         </div>
     );

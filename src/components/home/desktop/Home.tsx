@@ -25,7 +25,9 @@ function Home() {
             </div>
 
             <div className="arrow-container" data-aos="fade-up">
-                <img loading="lazy" src="img/arrow.png" className="arrow" />
+                <a href="#Portfolio">
+                    <img loading="lazy" src="img/arrow.png" className="arrow" />
+                </a>
             </div>
         </div>
     );
