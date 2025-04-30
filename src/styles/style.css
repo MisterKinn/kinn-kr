@@ -1,11 +1,17 @@
+@import url("https://static.toss.im/tps/main.css");
+@import url("https://static.toss.im/tps/others.css");
+
 nextjs-portal {
     display: none;
+}
+
+* {
+    font-family: "Toss Product Sans";
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Noto Sans KR, sans-serif;
     background-color: black;
     position: relative;
     overflow-x: hidden;

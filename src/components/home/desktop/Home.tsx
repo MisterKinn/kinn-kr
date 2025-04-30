@@ -4,7 +4,7 @@ function Home() {
     return (
         <div id="Home">
             <div className="home-container">
-                <div className="home-content" data-aos="fade-up">
+                <div className="home-content">
                     <div>
                         <h1 className="greeting">
                             Hello <span className="wave">👋</span>
@@ -24,7 +24,7 @@ function Home() {
                 <div className="gradient-overlay" />
             </div>
 
-            <div className="arrow-container" data-aos="fade-up">
+            <div className="arrow-container">
                 <a href="#Portfolio">
                     <img loading="lazy" src="img/arrow.png" className="arrow" />
                 </a>
