@@ -2,29 +2,6 @@
     padding: 4rem 2rem;
 }
 
-#list {
-    font-size: 3.5em;
-    margin: 1rem auto 0.5rem;
-    align-self: flex-start;
-    text-align: left;
-    width: calc(100% - 2rem);
-    padding: 0 1rem;
-    max-width: 1200px;
-}
-
-#explain {
-    margin: 1rem auto 0.5rem;
-    margin-top: 0.25em;
-    align-self: flex-start;
-    font-weight: normal;
-    text-align: left;
-    color: #dddddd;
-    width: calc(100% - 2rem);
-    padding: 0 1rem;
-    max-width: 1200px;
-    line-height: 1.6;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;

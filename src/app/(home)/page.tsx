@@ -20,7 +20,6 @@ import SideBar from "@/components/home/mobile/Sidebar";
 import MobileHome from "@/components/home/mobile/Home";
 import MobilePortfolio from "@/components/home/mobile/Portfolio";
 import MobileOutsource from "@/components/home/mobile/Outsource";
-import MobileExperience from "@/components/home/mobile/Experience";
 import MobileSkills from "@/components/home/mobile/Skills";
 import MobileProfile from "@/components/home/mobile/Profile";
 import MobileBanner from "@/components/home/mobile/Banner";

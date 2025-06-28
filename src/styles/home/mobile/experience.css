@@ -1,22 +1,24 @@
 #m-list {
     font-size: 2.5em;
-    margin: 0.5rem auto 0.5rem;
     align-self: flex-start;
     text-align: left;
-    color: white;
-    width: calc(100% - 5rem);
+    margin-left: 0.25em;
     padding: 0 0.25rem;
     max-width: 1200px;
+    color: #e0e0ff;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    animation: fadeIn 1s ease-out;
 }
 
 #m-explain {
-    margin: 1rem auto 1.5rem;
     margin-top: -0.5em;
     align-self: flex-start;
     font-weight: normal;
     text-align: left;
     color: #dddddd;
-    width: calc(100% - 5rem);
+    margin: 1em;
     padding: 0 0.25rem;
     max-width: 1200px;
     font-size: 0.9em;

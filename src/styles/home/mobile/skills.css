@@ -1,3 +1,28 @@
+#m-list {
+    font-size: 2.5em;
+    align-self: flex-start;
+    text-align: left;
+    padding: 0 0.25rem;
+    max-width: 1200px;
+    color: #e0e0ff;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    animation: fadeIn 1s ease-out;
+}
+
+#m-explain {
+    margin-top: -0.5em;
+    align-self: flex-start;
+    font-weight: normal;
+    text-align: left;
+    color: #dddddd;
+    padding: 0 0.25rem;
+    max-width: 1200px;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
 #Skills {
     padding: 2rem 1rem;
 }
