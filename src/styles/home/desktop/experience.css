@@ -1,111 +1,277 @@
 #list {
-    font-size: 3.5em;
-    margin: 1rem auto 0.5rem;
-    align-self: flex-start;
+    font-size: 3em;
+    margin: 1.5rem 0 0.5rem;
     text-align: left;
-    width: calc(100% - 2rem);
-    padding: 0 1rem;
-    max-width: 1200px;
-    color: white;
+    color: #e0e0ff;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    animation: fadeIn 1s ease-out;
 }
 
 #explain {
-    margin: 1rem auto 0.5rem;
-    margin-top: 0.25em;
-    align-self: flex-start;
-    font-weight: normal;
+    margin: 0.5rem 0 0;
+    font-weight: 400;
     text-align: left;
-    color: #dddddd;
-    width: calc(100% - 2rem);
-    padding: 0 1rem;
-    max-width: 1200px;
+    color: #b0b0ff;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5;
 }
 
-.container {
+.page-container {
+    min-height: 100vh;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    margin-top: 2.5em;
+    margin-top: -5em;
+    padding: 2rem;
 }
 
-.card-container {
+.content-wrapper {
+    max-width: 1000px;
+    text-align: left;
+}
+
+.experience-header {
     display: flex;
     flex-direction: column;
-    flex: 0 0 calc(25% - 5px);
-    height: 10em;
-    width: 25em;
-    gap: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+}
+
+.timeline {
+    display: block;
     position: relative;
-    background-color: #1c1c1c;
-    color: white;
-    box-shadow: 0px 2px 4px rbga(0, 0, 0, 0, 3);
-    border-radius: 16px;
-    margin: 10px;
-    padding: 24px;
+    max-width: 1000px;
+    margin: 3em auto;
+    padding: 0 1rem;
 }
 
-.card-container:hover .column-center,
-.card-container:hover .card-text {
-    opacity: 0.25;
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25px;
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(to bottom, #3b82f6, #9333ea);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(147, 51, 234, 0.3);
 }
 
-.card-container:hover .overlay {
+.timeline-year {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+    padding-left: 60px;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5em;
+    padding-left: 60px;
+}
+
+.timeline-marker {
+    display: block;
+    position: absolute;
+    top: 0.5rem; /* Adjusted to align with year or card */
+    left: 18px;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(90deg, #3b82f6, #9333ea);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    transform: scale(1.3);
+    box-shadow: 0 0 12px rgba(147, 51, 234, 0.7);
+}
+
+.timeline-content {
+    display: block;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+    text-decoration: none;
+    overflow: hidden;
+    min-width: 300px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.timeline-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.experience-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(59, 130, 246, 0.2),
+        rgba(147, 51, 234, 0.2)
+    );
+    opacity: 0;
+    border-radius: 1rem;
+    transition: opacity 0.5s ease;
+}
+
+.timeline-content:hover .experience-glow {
     opacity: 1;
-    transform: scale(1);
 }
 
-.column-center {
+.timeline-header {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    column-gap: 0.5em;
+    column-gap: 0.75em;
+    margin-bottom: 1em;
 }
 
-.card-img {
-    height: 50px;
-    width: 50px;
+.timeline-img {
+    height: 40px;
+    width: 40px;
+    filter: brightness(1.2);
+    transition: transform 0.3s ease;
 }
 
-.card-title {
-    margin-left: 0.5em;
-    font-size: 2em;
+.timeline-content:hover .timeline-img {
+    transform: scale(1.1);
 }
 
-.card-text {
-    text-align: left;
-    font-size: 1.1em;
-    color: #bbbbbb;
+.experience-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
 }
 
-.card-footer {
-    font-size: 0.8em;
-    color: #a0a0a0;
+.experience-description {
+    font-size: 1em;
+    color: #e5e7eb;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-family: "Inter", sans-serif;
 }
 
-.white {
-    color: white;
-    font-weight: bold;
+.experience-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #d1d5db;
+    margin-top: 1em;
+    margin-bottom: 0;
+    font-family: "Inter", sans-serif;
 }
 
 .overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    top: 0;
-    transform: scale(0.5);
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        90deg,
+        rgba(59, 130, 246, 0.3),
+        rgba(147, 51, 234, 0.3)
+    );
+    border-radius: 1rem;
     opacity: 0;
-    transition: transform 0.1s ease 0s;
+    transition: opacity 0.5s ease;
+    width: 100%; /* Ensure overlay matches the parent's width */
 }
 
 .overlay span {
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    margin-left: -2em;
-    margin-right: -2em;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 30px;
-    color: white;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    padding: 0.5rem;
+}
+
+.timeline-content:hover .overlay {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 1rem;
+    }
+
+    #list {
+        font-size: 2.5rem;
+    }
+
+    #explain {
+        font-size: 1rem;
+    }
+
+    .timeline {
+        margin: 2em auto;
+    }
+
+    .timeline-item {
+        padding-left: 50px;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-marker {
+        left: 13px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+        min-width: 250px;
+        width: 85%;
+        max-width: 350px;
+    }
+
+    .timeline-year {
+        font-size: 1.5rem;
+    }
+
+    .experience-title {
+        font-size: 1.25rem;
+    }
+
+    .experience-description {
+        font-size: 0.8rem;
+    }
+
+    .experience-meta {
+        font-size: 0.7rem;
+    }
 }

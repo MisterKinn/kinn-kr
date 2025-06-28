@@ -25,6 +25,13 @@
     line-height: 1.6;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2.5em;
+}
+
 .container2 {
     display: flex;
     justify-content: center;

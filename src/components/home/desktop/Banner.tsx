@@ -4,7 +4,7 @@ function Banner() {
             <a href="https://kinn.kr/" target="_blank" title="Kinn's Lounge">
                 <img
                     loading="lazy"
-                    src="img/kinn-banner.png"
+                    src="../img/kinn-banner.png"
                     alt="Kinn's Lounge"
                     className="banner margin10"
                 />

@@ -43,7 +43,7 @@ function Page() {
                 <MobileHome />
                 <MobilePortfolio />
                 <MobileOutsource />
-                <MobileExperience />
+                <Experience />
                 <MobileSkills />
                 <MobileProfile />
                 <MobileBanner />

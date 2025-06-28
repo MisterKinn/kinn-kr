@@ -2,13 +2,15 @@ import "../../../styles/home/desktop/skills.css";
 
 function Skills() {
     return (
-        <div id="Skills" data-aos="fade-up">
-            <h2 id="list">Skills</h2>
-            <h3 id="explain">
+        <div id="Skills">
+            <h2 id="list" data-aos="fade-up">
+                Skills
+            </h2>
+            <h3 id="explain" data-aos="fade-up">
                 Creating immersive web experiences with cutting-edge
                 technologies.
             </h3>
-            <div className="container">
+            <div className="container" data-aos="fade-up">
                 <div className="spec2">
                     <div className="card-container2">
                         <div>
@@ -79,7 +81,7 @@ function Skills() {
                 </div>
             </div>
 
-            <div className="container scoll">
+            <div className="container" data-aos="fade-up">
                 <div className="spec2">
                     <div className="card-container2">
                         <div>
