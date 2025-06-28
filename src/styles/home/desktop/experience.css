@@ -12,7 +12,7 @@
     margin: 0.5rem 0 0;
     font-weight: 400;
     text-align: left;
-    color: #b0b0ff;
+    color: white;
     font-family: "Inter", sans-serif;
     font-size: 1.2em;
     line-height: 1.5;
@@ -282,5 +282,9 @@
 
     .experience-meta {
         font-size: 0.7rem;
+    }
+
+    .overlay span {
+        font-size: 1em;
     }
 }
