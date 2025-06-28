@@ -8,10 +8,11 @@ function Experience() {
                     Experience
                 </h2>
                 <h3 id="explain" data-aos="fade-up">
-                    Explore my journey of learning and growth through key
-                    opportunities.
+                    Explore my journey of learning and growth
                     <br />
-                    Click an entry to see the details.
+                    through invaluable opportunities.
+                    <br />
+                    Click the card to see the detail.
                 </h3>
             </div>
 
