@@ -23,15 +23,14 @@ interface Strategy {
 
 const StrategyPage: NextPage = () => {
     const [raceConditions, setRaceConditions] = useState<RaceCondition>({
-        weather: "Dry",
-        trackTemp: "28°C",
-        trackCondition: "Medium Grip",
+        weather: "",
+        trackTemp: "",
+        trackCondition: "",
     });
     const [userStrategy, setUserStrategy] = useState<Strategy | null>(null);
     const [score, setScore] = useState<number | null>(null);
     const [totalRaceLaps, setTotalRaceLaps] = useState<number>(56);
 
-    // Randomize race conditions and laps on mount
     useEffect(() => {
         const randomWeather = ["Dry", "Wet", "Mixed"][
             Math.floor(Math.random() * 3)
@@ -40,7 +39,7 @@ const StrategyPage: NextPage = () => {
         const randomCondition = ["Low Grip", "Medium Grip", "High Grip"][
             Math.floor(Math.random() * 3)
         ];
-        const randomLaps = Math.floor(Math.random() * (80 - 50 + 1)) + 50; // Random between 50 and 80
+        const randomLaps = Math.floor(Math.random() * (80 - 50 + 1)) + 50;
         setRaceConditions({
             weather: randomWeather,
             trackTemp: randomTemp,
@@ -49,37 +48,83 @@ const StrategyPage: NextPage = () => {
         setTotalRaceLaps(randomLaps);
     }, []);
 
-    // Decision tree for optimal strategy
     const getOptimalStrategy = (): Strategy => {
         if (raceConditions.weather === "Wet") {
             return {
-                stops: 1,
+                stops: 0,
                 stints: [{ tire: "Wet", laps: totalRaceLaps }],
             };
         }
-        if (
-            raceConditions.weather === "Mixed" ||
-            raceConditions.trackTemp > "30°C"
-        ) {
+
+        const tempNum = parseInt(raceConditions.trackTemp.replace("°C", ""));
+        let baseTire = "";
+        if (raceConditions.trackCondition === "High Grip") baseTire = "Soft";
+        else if (raceConditions.trackCondition === "Medium Grip")
+            baseTire = "Medium";
+        else if (raceConditions.trackCondition === "Low Grip")
+            baseTire = "Hard";
+
+        let tempInfluence = "";
+        if (tempNum > 30) tempInfluence = "Hard";
+        else tempInfluence = "Soft";
+
+        let primaryTire = baseTire;
+        if (tempInfluence === "Hard" && baseTire !== "Soft")
+            primaryTire = "Hard";
+        else if (tempInfluence === "Soft" && baseTire !== "Hard")
+            primaryTire = "Soft";
+
+        // Special handling for Mixed weather to enforce Intermediate
+        if (raceConditions.weather === "Mixed") {
             return {
                 stops: 2,
                 stints: [
                     {
                         tire: "Intermediate",
-                        laps: Math.floor(totalRaceLaps / 3),
+                        laps: Math.floor(totalRaceLaps * 0.5),
                     },
-                    { tire: "Medium", laps: Math.floor(totalRaceLaps / 3) },
+                    {
+                        tire: primaryTire,
+                        laps: Math.floor(totalRaceLaps * 0.3),
+                    },
                     {
                         tire: "Hard",
-                        laps: totalRaceLaps - 2 * Math.floor(totalRaceLaps / 3),
+                        laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.8),
                     },
                 ],
             };
         }
+
+        // For Dry weather
+        if (tempNum > 30 || raceConditions.trackCondition === "Low Grip") {
+            return {
+                stops: 2,
+                stints: [
+                    {
+                        tire: primaryTire,
+                        laps: Math.floor(totalRaceLaps * 0.4),
+                    },
+                    {
+                        tire:
+                            primaryTire === "Soft"
+                                ? "Medium"
+                                : primaryTire === "Medium"
+                                ? "Hard"
+                                : "Medium",
+                        laps: Math.floor(totalRaceLaps * 0.4),
+                    },
+                    {
+                        tire: "Hard",
+                        laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.8),
+                    },
+                ],
+            };
+        }
+
         return {
             stops: 1,
             stints: [
-                { tire: "Medium", laps: Math.floor(totalRaceLaps * 0.6) },
+                { tire: primaryTire, laps: Math.floor(totalRaceLaps * 0.6) },
                 {
                     tire: "Hard",
                     laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.6),
@@ -90,7 +135,6 @@ const StrategyPage: NextPage = () => {
 
     const optimalStrategy = getOptimalStrategy();
 
-    // Score calculation based on tire and lap match
     const calculateScore = (userStints: Stint[]): number => {
         const optimalTires = optimalStrategy.stints.map((s) => s.tire);
         const userTires = userStints.map((s) => s.tire);
@@ -113,8 +157,19 @@ const StrategyPage: NextPage = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const stops = parseInt((e.target as any).stops.value);
+        if (stops === 0 && raceConditions.weather !== "Wet") {
+            alert("0-stop strategy is only allowed in Wet weather conditions!");
+            return;
+        }
         const stints: Stint[] =
-            stops === 1
+            stops === 0
+                ? [
+                      {
+                          tire: (e.target as any).tire1.value,
+                          laps: parseInt((e.target as any).laps1.value),
+                      },
+                  ]
+                : stops === 1
                 ? [
                       {
                           tire: (e.target as any).tire1.value,
@@ -150,7 +205,7 @@ const StrategyPage: NextPage = () => {
         setScore(calculateScore(stints));
     };
 
-    const [stops, setStops] = useState<number>(1); // Track selected stops to show/hide third stint
+    const [stops, setStops] = useState<number>(1);
 
     const handleStopsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStops(parseInt(e.target.value));
@@ -227,6 +282,7 @@ const StrategyPage: NextPage = () => {
                                 onChange={handleStopsChange}
                                 className="bg-gray-700 p-2 rounded w-full text-white"
                             >
+                                <option value="0">0 Stop</option>
                                 <option value="1">1 Stop</option>
                                 <option value="2">2 Stops</option>
                             </select>
@@ -347,9 +403,8 @@ const StrategyPage: NextPage = () => {
                     </section>
                 )}
             </main>
-
             <footer className="bg-black py-4 text-center text-gray-400">
-                <p>&copy; 2025 Kinn. All Rights Reserved.</p>
+                <p>© 2025 Kinn. All Rights Reserved.</p>
             </footer>
         </div>
     );
