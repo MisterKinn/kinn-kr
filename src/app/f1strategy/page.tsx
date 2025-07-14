@@ -6,7 +6,6 @@ import Head from "next/head";
 import "../../styles/style.css";
 import AOS from "aos";
 import "@/styles/aos.css";
-import "../../styles/home/desktop/Home.css";
 import "../../styles/f1strategy.css";
 
 function Home() {
