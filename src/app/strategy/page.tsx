@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -348,6 +347,7 @@ const StrategyPage: NextPage = () => {
                     </section>
                 )}
             </main>
+
             <footer className="bg-black py-4 text-center text-gray-400">
                 <p>&copy; 2025 Kinn. All Rights Reserved.</p>
             </footer>

@@ -17,13 +17,6 @@ function Home() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white font-montserrat">
-            <Head>
-                <title>F1 Tire Strategy Explorer</title>
-                <meta
-                    name="description"
-                    content="Learn about Formula 1 and its tire strategies"
-                />
-            </Head>
             <div className="home">
                 <img src="img/f1.jpg" className="header-img" />
                 <div className="header-container">
