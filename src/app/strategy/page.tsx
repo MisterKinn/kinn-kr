@@ -23,13 +23,14 @@ interface Strategy {
 
 const StrategyPage: NextPage = () => {
     const [raceConditions, setRaceConditions] = useState<RaceCondition>({
-        weather: "",
-        trackTemp: "",
-        trackCondition: "",
+        weather: "Dry",
+        trackTemp: "28°C",
+        trackCondition: "Medium Grip",
     });
     const [userStrategy, setUserStrategy] = useState<Strategy | null>(null);
     const [score, setScore] = useState<number | null>(null);
     const [totalRaceLaps, setTotalRaceLaps] = useState<number>(56);
+    const [stintLaps, setStintLaps] = useState<number[]>([0, 0, 0]); // Track laps for each stint
 
     useEffect(() => {
         const randomWeather = ["Dry", "Wet", "Mixed"][
@@ -39,13 +40,14 @@ const StrategyPage: NextPage = () => {
         const randomCondition = ["Low Grip", "Medium Grip", "High Grip"][
             Math.floor(Math.random() * 3)
         ];
-        const randomLaps = Math.floor(Math.random() * (80 - 50 + 1)) + 50;
+        const randomLaps = Math.floor(Math.random() * (70 - 30 + 1)) + 30; // Random between 30 and 70
         setRaceConditions({
             weather: randomWeather,
             trackTemp: randomTemp,
             trackCondition: randomCondition,
         });
         setTotalRaceLaps(randomLaps);
+        setStintLaps([0, 0, 0]); // Reset stint laps on new race conditions
     }, []);
 
     const getOptimalStrategy = (): Strategy => {
@@ -74,7 +76,6 @@ const StrategyPage: NextPage = () => {
         else if (tempInfluence === "Soft" && baseTire !== "Hard")
             primaryTire = "Soft";
 
-        // Special handling for Mixed weather to enforce Intermediate
         if (raceConditions.weather === "Mixed") {
             return {
                 stops: 2,
@@ -95,7 +96,6 @@ const StrategyPage: NextPage = () => {
             };
         }
 
-        // For Dry weather
         if (tempNum > 30 || raceConditions.trackCondition === "Low Grip") {
             return {
                 stops: 2,
@@ -205,10 +205,17 @@ const StrategyPage: NextPage = () => {
         setScore(calculateScore(stints));
     };
 
+    const handleLapChange = (index: number, value: string) => {
+        const newLaps = [...stintLaps];
+        newLaps[index] = value ? parseInt(value) : 0;
+        setStintLaps(newLaps);
+    };
+
     const [stops, setStops] = useState<number>(1);
 
     const handleStopsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStops(parseInt(e.target.value));
+        setStintLaps([0, 0, 0]); // Reset laps when stops change
     };
 
     return (
@@ -313,7 +320,21 @@ const StrategyPage: NextPage = () => {
                                     className="bg-gray-700 p-2 rounded w-full text-white"
                                     min="1"
                                     max={totalRaceLaps}
+                                    onChange={(e) =>
+                                        handleLapChange(0, e.target.value)
+                                    }
+                                    value={stintLaps[0] || ""}
                                 />
+                                <p className="text-sm text-gray-400">
+                                    Remaining:{" "}
+                                    {totalRaceLaps -
+                                        (stintLaps[0] +
+                                            stintLaps[1] +
+                                            (stops >= 2
+                                                ? stintLaps[2]
+                                                : 0))}{" "}
+                                    laps
+                                </p>
                             </div>
                             <div>
                                 <label className="block text-lg mb-2">
@@ -340,7 +361,21 @@ const StrategyPage: NextPage = () => {
                                     className="bg-gray-700 p-2 rounded w-full text-white"
                                     min="1"
                                     max={totalRaceLaps}
+                                    onChange={(e) =>
+                                        handleLapChange(1, e.target.value)
+                                    }
+                                    value={stintLaps[1] || ""}
                                 />
+                                <p className="text-sm text-gray-400">
+                                    Remaining:{" "}
+                                    {totalRaceLaps -
+                                        (stintLaps[0] +
+                                            stintLaps[1] +
+                                            (stops >= 2
+                                                ? stintLaps[2]
+                                                : 0))}{" "}
+                                    laps
+                                </p>
                             </div>
                         </div>
                         {stops === 2 && (
@@ -369,7 +404,21 @@ const StrategyPage: NextPage = () => {
                                     className="bg-gray-700 p-2 rounded w-full text-white"
                                     min="1"
                                     max={totalRaceLaps}
+                                    onChange={(e) =>
+                                        handleLapChange(2, e.target.value)
+                                    }
+                                    value={stintLaps[2] || ""}
                                 />
+                                <p className="text-sm text-gray-400">
+                                    Remaining:{" "}
+                                    {totalRaceLaps -
+                                        (stintLaps[0] +
+                                            stintLaps[1] +
+                                            (stops >= 2
+                                                ? stintLaps[2]
+                                                : 0))}{" "}
+                                    laps
+                                </p>
                             </div>
                         )}
                         <button
