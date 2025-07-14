@@ -35,9 +35,7 @@ function Home() {
             <header className="relative bg-cover bg-center h-64 checkered-bg">
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 text-center pt-16">
-                    <h1 className="text-5xl font-extrabold tracking-tight text-white">
-                        F1 Tire Strategy Explorer
-                    </h1>
+                    <h1 className="text-5xl font-extrabold tracking-tight text-white"></h1>
                 </div>
             </header>
             <main className="max-w-5xl mx-auto p-8">
