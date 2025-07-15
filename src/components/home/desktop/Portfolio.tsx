@@ -1,4 +1,4 @@
-import "@/styles/home/desktop/portfolio.css";
+import "../../../styles/home/desktop/portfolio.css";
 
 function Portfolio() {
     return (
@@ -14,6 +14,32 @@ function Portfolio() {
             </h3>
 
             <div className="portfolio-grid" data-aos="fade-up">
+                <a
+                    href="/f1strategy"
+                    target="_blank"
+                    className="portfolio-item"
+                >
+                    <div className="portfolio-card">
+                        <div className="card-preview-small">
+                            <img
+                                loading="lazy"
+                                src="img/f1-logo.png"
+                                alt="F1 Strategy Explorer"
+                                id="compressed"
+                            />
+                        </div>
+                        <div className="card-info">
+                            <h3>F1 Strategy Explorer</h3>
+                            <p>
+                                Making a Formula 1 Tire Strategy Simulter
+                                <br />
+                                which rates user's race tire strategy.
+                            </p>
+                            <span className="date">25. 07. 15~</span>
+                        </div>
+                    </div>
+                </a>
+
                 <a href="/unimatch" target="_blank" className="portfolio-item">
                     <div className="portfolio-card">
                         <div className="card-preview-small">
@@ -23,7 +49,7 @@ function Portfolio() {
                                 alt="UniMatch"
                             />
                         </div>
-                        <div className="card-info" id="compressed">
+                        <div className="card-info">
                             <h3>UniMatch</h3>
                             <p>
                                 Making an University Suggestion Service
@@ -44,7 +70,7 @@ function Portfolio() {
                                 alt="UX Insight"
                             />
                         </div>
-                        <div className="card-info" id="compressed">
+                        <div className="card-info">
                             <h3>UX Insight</h3>
                             <p>
                                 Making a Web UX Analyze service

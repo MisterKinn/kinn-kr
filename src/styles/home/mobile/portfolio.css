@@ -105,6 +105,11 @@
     width: auto;
 }
 
+#m-compressed {
+    height: 9em;
+    width: auto;
+}
+
 .m-card-info {
     padding: 1rem;
     flex: 1;
