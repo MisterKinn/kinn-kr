@@ -158,7 +158,14 @@ function Home() {
                     <p className="text-lg mt-4" data-aos="fade-up">
                         Teams must use at least two compounds and pit at least
                         once per race, with strategies varying from 1-stop to
-                        2-stop plans based on race lap counts.
+                        2-stop plans based on race lap counts. Tire choices
+                        depend on weather (sunny, cloudy, possible rain, light
+                        rain, heavy rain) and track conditions (Dry, Damp, Wet).
+                        Use slick tires (Soft, Medium, Hard) in sunny and cloudy
+                        weather with Dry tracks, dry or intermediate tires in
+                        possible rain with Damp tracks, intermediate tires in
+                        light rain with Damp tracks, and wet tires in heavy rain
+                        with Wet tracks.
                     </p>
                 </section>
                 <section className="mb-12" data-aos="fade-up">
@@ -271,10 +278,11 @@ function Home() {
                             className="text-3xl font-bold mb-6"
                             data-aos="fade-up"
                         >
-                            2023 Singapore Grand Prix (1-Stop)
+                            2024 Italian Grand Prix (1-Stop)
                         </h2>
                         <p className="text-lg mb-4" data-aos="fade-up">
-                            Race Length: 62 Laps | Conditions: Hot, Dry
+                            Race Length: 53 Laps | Weather: Sunny | Track
+                            Condition: Dry
                         </p>
                         <div
                             className="bg-gray-800 p-6 rounded-lg shadow-lg"
@@ -284,7 +292,7 @@ function Home() {
                                 className="text-xl font-semibold mb-4"
                                 data-aos="fade-up"
                             >
-                                Carlos Sainz (Ferrari) - Victory Strategy
+                                Charles Leclerc (Ferrari) - Victory Strategy
                             </h3>
                             <div
                                 className="flex items-center mb-2"
@@ -294,7 +302,7 @@ function Home() {
                                     className="w-32 h-4 bg-yellow-400 rounded mr-2"
                                     data-aos="fade-up"
                                 ></div>
-                                <p>Laps 1-32: Medium</p>
+                                <p>Laps 1-27: Medium</p>
                             </div>
                             <div
                                 className="flex items-center"
@@ -304,14 +312,91 @@ function Home() {
                                     className="w-32 h-4 bg-gray-200 rounded mr-2"
                                     data-aos="fade-up"
                                 ></div>
-                                <p>Laps 33-62: Hard</p>
+                                <p>Laps 28-53: Hard</p>
                             </div>
                             <p className="mt-4 text-lg" data-aos="fade-up">
-                                Sainz’s one-stop gamble on Medium to Hard tires
-                                capitalized on low degradation in Singapore’s
-                                humid conditions, holding off Lando Norris for
-                                the win.
+                                Leclerc’s one-stop strategy on Medium to Hard
+                                tires leveraged Monza’s low degradation,
+                                securing a home victory.
                             </p>
+                        </div>
+                        <div className="mt-4" data-aos="fade-up">
+                            <a
+                                href="https://www.youtube.com/watch?v=lkDDFVjj-4c"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:underline"
+                            >
+                                Watch Video
+                            </a>
+                        </div>
+                    </section>
+                    <section className="mb-12" data-aos="fade-up">
+                        <h2
+                            className="text-3xl font-bold mb-6"
+                            data-aos="fade-up"
+                        >
+                            2021 Spanish Grand Prix (2-Stop)
+                        </h2>
+                        <p className="text-lg mb-4" data-aos="fade-up">
+                            Race Length: 66 Laps | Weather: Sunny | Track
+                            Condition: Dry
+                        </p>
+                        <div
+                            className="bg-gray-800 p-6 rounded-lg shadow-lg"
+                            data-aos="fade-up"
+                        >
+                            <h3
+                                className="text-xl font-semibold mb-4"
+                                data-aos="fade-up"
+                            >
+                                Lewis Hamilton (Mercedes) - Victory Strategy
+                            </h3>
+                            <div
+                                className="flex items-center mb-2"
+                                data-aos="fade-up"
+                            >
+                                <div
+                                    className="w-24 h-4 bg-red-500 rounded mr-2"
+                                    data-aos="fade-up"
+                                ></div>
+                                <p>Laps 1-20: Soft</p>
+                            </div>
+                            <div
+                                className="flex items-center mb-2"
+                                data-aos="fade-up"
+                            >
+                                <div
+                                    className="w-24 h-4 bg-yellow-400 rounded mr-2"
+                                    data-aos="fade-up"
+                                ></div>
+                                <p>Laps 21-45: Medium</p>
+                            </div>
+                            <div
+                                className="flex items-center"
+                                data-aos="fade-up"
+                            >
+                                <div
+                                    className="w-24 h-4 bg-gray-200 rounded mr-2"
+                                    data-aos="fade-up"
+                                ></div>
+                                <p>Laps 46-66: Hard</p>
+                            </div>
+                            <p className="mt-4 text-lg" data-aos="fade-up">
+                                Hamilton’s two-stop strategy adapted to
+                                Barcelona’s shifting conditions, moving from
+                                Soft to Medium to Hard for the win.
+                            </p>
+                        </div>
+                        <div className="mt-4" data-aos="fade-up">
+                            <a
+                                href="https://www.youtube.com/watch?v=7bjpguXESI8"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:underline"
+                            >
+                                Watch Video
+                            </a>
                         </div>
                     </section>
                     <section className="mb-12" data-aos="fade-up">
@@ -322,7 +407,8 @@ function Home() {
                             2024 British Grand Prix (2-Stop)
                         </h2>
                         <p className="text-lg mb-4" data-aos="fade-up">
-                            Race Length: 52 Laps | Conditions: Wet to Dry
+                            Race Length: 52 Laps | Weather: Light Rain | Track
+                            Condition: Damp
                         </p>
                         <div
                             className="bg-gray-800 p-6 rounded-lg shadow-lg"
@@ -332,18 +418,8 @@ function Home() {
                                 className="text-xl font-semibold mb-4"
                                 data-aos="fade-up"
                             >
-                                Max Verstappen (Red Bull) - P2 Finish
+                                Lewis Hamilton (Mercedes) - Victory Strategy
                             </h3>
-                            <div
-                                className="flex items-center mb-2"
-                                data-aos="fade-up"
-                            >
-                                <div
-                                    className="w-24 h-4 bg-blue-400 rounded mr-2"
-                                    data-aos="fade-up"
-                                ></div>
-                                <p>Laps 1-15: Wet</p>
-                            </div>
                             <div
                                 className="flex items-center mb-2"
                                 data-aos="fade-up"
@@ -352,71 +428,43 @@ function Home() {
                                     className="w-24 h-4 bg-green-400 rounded mr-2"
                                     data-aos="fade-up"
                                 ></div>
-                                <p>Laps 16-35: Intermediate</p>
+                                <p>Laps 1-20: Intermediate</p>
                             </div>
                             <div
-                                className="flex items-center"
+                                className="flex items-center mb-2"
                                 data-aos="fade-up"
                             >
                                 <div
                                     className="w-24 h-4 bg-yellow-400 rounded mr-2"
                                     data-aos="fade-up"
                                 ></div>
-                                <p>Laps 36-52: Medium</p>
-                            </div>
-                            <p className="mt-4 text-lg" data-aos="fade-up">
-                                Verstappen’s two-stop strategy navigated
-                                Silverstone’s shifting weather, switching from
-                                Wet to Intermediate to Medium, securing a strong
-                                second place.
-                            </p>
-                        </div>
-                    </section>
-                    <section className="mb-12" data-aos="fade-up">
-                        <h2
-                            className="text-3xl font-bold mb-6"
-                            data-aos="fade-up"
-                        >
-                            2023 Monaco Grand Prix (1-Stop)
-                        </h2>
-                        <p className="text-lg mb-4" data-aos="fade-up">
-                            Race Length: 78 Laps | Conditions: Dry
-                        </p>
-                        <div
-                            className="bg-gray-800 p-6 rounded-lg shadow-lg"
-                            data-aos="fade-up"
-                        >
-                            <h3
-                                className="text-xl font-semibold mb-4"
-                                data-aos="fade-up"
-                            >
-                                Lewis Hamilton (Mercedes) - P4 Finish
-                            </h3>
-                            <div
-                                className="flex items-center mb-2"
-                                data-aos="fade-up"
-                            >
-                                <div
-                                    className="w-32 h-4 bg-red-500 rounded mr-2"
-                                    data-aos="fade-up"
-                                ></div>
-                                <p>Laps 1-40: Soft</p>
+                                <p>Laps 21-40: Medium</p>
                             </div>
                             <div
                                 className="flex items-center"
                                 data-aos="fade-up"
                             >
                                 <div
-                                    className="w-32 h-4 bg-gray-200 rounded mr-2"
+                                    className="w-24 h-4 bg-gray-200 rounded mr-2"
                                     data-aos="fade-up"
                                 ></div>
-                                <p>Laps 41-78: Hard</p>
+                                <p>Laps 41-52: Hard</p>
                             </div>
                             <p className="mt-4 text-lg" data-aos="fade-up">
-                                Hamilton’s one-stop strategy on Soft to Hard
-                                tires managed Monaco’s tight streets, overcoming
-                                tire wear for a solid fourth.
+                                Hamilton’s two-stop strategy mastered
+                                Silverstone’s light rain, transitioning from
+                                Intermediate to Medium to Hard for the win.
                             </p>
+                        </div>
+                        <div className="mt-4" data-aos="fade-up">
+                            <a
+                                href="https://www.youtube.com/watch?v=hzlqtID692Y&t=13s"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:underline"
+                            >
+                                Watch Video
+                            </a>
                         </div>
                     </section>
                 </main>
@@ -430,7 +478,7 @@ function Home() {
                 </div>
             </main>
             <footer className="bg-black py-4 text-center text-gray-400">
-                <p>&copy; 2025 Kinn. All Rights Reserved.</p>
+                <p>© 2025 Kinn. All Rights Reserved.</p>
             </footer>
         </div>
     );
