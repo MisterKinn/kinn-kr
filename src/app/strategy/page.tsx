@@ -9,6 +9,18 @@ interface RaceCondition {
     weather: string;
     trackTemp: string;
     trackCondition: string;
+    rainProbability: number;
+}
+
+interface WeatherStint {
+    startRangeMin: number;
+    startRangeMax: number;
+    durationMin: number;
+    durationMax: number;
+    weather: string;
+    rainProbability: number;
+    actualStart: number;
+    actualDuration: number;
 }
 
 interface Stint {
@@ -26,155 +38,249 @@ const StrategyPage: NextPage = () => {
         weather: "",
         trackTemp: "",
         trackCondition: "",
+        rainProbability: 10,
     });
     const [userStrategy, setUserStrategy] = useState<Strategy | null>(null);
     const [score, setScore] = useState<number | null>(null);
     const [totalRaceLaps, setTotalRaceLaps] = useState<number>(56);
-    const [stintLaps, setStintLaps] = useState<number[]>([0, 0, 0]); // Track laps for each stint
+    const [stintLaps, setStintLaps] = useState<number[]>([0, 0, 0]);
+    const [weatherForecast, setWeatherForecast] = useState<WeatherStint[]>([]);
 
     useEffect(() => {
-        const randomWeather = [
+        const randomLaps = Math.floor(Math.random() * (70 - 30 + 1)) + 30;
+        setTotalRaceLaps(randomLaps);
+
+        // Randomly determine number of weather stints (1 to 4)
+        const numStints = Math.floor(Math.random() * 4) + 1;
+        const weatherTypes = [
             "Sunny",
             "Cloudy",
-            "Possible Rain",
             "Light Rain",
             "Heavy Rain",
-        ][Math.floor(Math.random() * 5)];
-        const randomTemp = `${Math.floor(Math.random() * 15 + 20)}°C`;
-        const randomCondition = ["Dry", "Damp", "Wet"][
-            Math.floor(Math.random() * 3)
-        ];
-        const randomLaps = Math.floor(Math.random() * (70 - 30 + 1)) + 30; // Random between 30 and 70
-        setRaceConditions({
-            weather: randomWeather,
-            trackTemp: randomTemp,
-            trackCondition: randomCondition,
+        ] as const;
+        type WeatherType = (typeof weatherTypes)[number];
+        const selectedWeather: WeatherType[] = [];
+        for (let i = 0; i < numStints; i++) {
+            const weather = weatherTypes[
+                Math.floor(Math.random() * weatherTypes.length)
+            ] as WeatherType;
+            selectedWeather.push(weather);
+        }
+
+        const baseStints = selectedWeather.map((weather, index) => {
+            const baseRanges: Record<
+                WeatherType,
+                {
+                    startRangeMin: number;
+                    startRangeMax: number;
+                    durationMin: number;
+                    durationMax: number;
+                }
+            > = {
+                Sunny: {
+                    startRangeMin: 1,
+                    startRangeMax: 17,
+                    durationMin: 0,
+                    durationMax: 0,
+                },
+                Cloudy: {
+                    startRangeMin: 18,
+                    startRangeMax: 37,
+                    durationMin: 0,
+                    durationMax: 0,
+                },
+                "Light Rain": {
+                    startRangeMin: 25,
+                    startRangeMax: 50,
+                    durationMin: 1,
+                    durationMax: 5,
+                },
+                "Heavy Rain": {
+                    startRangeMin: 38,
+                    startRangeMax: 70,
+                    durationMin: 1,
+                    durationMax: 5,
+                },
+            };
+            const range = baseRanges[weather];
+            return {
+                startRangeMin: Math.floor(
+                    (range.startRangeMin / 70) * randomLaps
+                ),
+                startRangeMax: Math.floor(
+                    (range.startRangeMax / 70) * randomLaps
+                ),
+                durationMin: range.durationMin,
+                durationMax: range.durationMax,
+                weather: weather,
+                baseProbability:
+                    {
+                        Sunny: 10,
+                        Cloudy: 5,
+                        "Light Rain": 50,
+                        "Heavy Rain": 70,
+                    }[weather] || 10,
+            };
         });
-        setTotalRaceLaps(randomLaps);
-        setStintLaps([0, 0, 0]); // Reset stint laps on new race conditions
+
+        const scaledStints = baseStints.map((stint) => {
+            const rangeSize = stint.startRangeMax - stint.startRangeMin + 1;
+            const maxDuration =
+                stint.weather === "Sunny" || stint.weather === "Cloudy"
+                    ? rangeSize
+                    : Math.min(rangeSize - 1, stint.durationMax);
+            return {
+                startRangeMin: stint.startRangeMin,
+                startRangeMax: stint.startRangeMax,
+                durationMin: stint.durationMin,
+                durationMax: maxDuration,
+                weather: stint.weather,
+                rainProbability: Math.floor(Math.random() * 101), // Random 0-100%
+                actualStart:
+                    Math.floor(
+                        Math.random() *
+                            (stint.startRangeMax - stint.startRangeMin + 1)
+                    ) + stint.startRangeMin,
+                actualDuration:
+                    stint.weather === "Sunny" || stint.weather === "Cloudy"
+                        ? Math.floor(Math.random() * (maxDuration + 1))
+                        : Math.floor(
+                              Math.random() *
+                                  (maxDuration - stint.durationMin + 1)
+                          ) + stint.durationMin,
+            };
+        });
+
+        // Adjust actual end laps to fit within total laps and avoid overlap
+        let currentLap = 0;
+        scaledStints.forEach((stint, index) => {
+            stint.actualStart = Math.max(currentLap + 1, stint.actualStart);
+            const endLap = stint.actualStart + stint.actualDuration - 1;
+            if (index < scaledStints.length - 1) {
+                currentLap = Math.min(
+                    endLap,
+                    scaledStints[index + 1].actualStart - 1
+                );
+            } else {
+                currentLap = Math.min(endLap, randomLaps);
+            }
+            stint.actualDuration = currentLap - stint.actualStart + 1;
+        });
+
+        // Random track temperature (15°C to 40°C)
+        const trackTemp = `${Math.floor(Math.random() * (40 - 15 + 1)) + 15}°C`;
+        // Random track condition
+        const trackConditions = ["Dry", "Damp", "Greasy"];
+        const trackCondition =
+            trackConditions[Math.floor(Math.random() * trackConditions.length)];
+
+        setWeatherForecast(scaledStints);
+        setRaceConditions({
+            ...raceConditions,
+            weather: scaledStints[0].weather,
+            rainProbability: scaledStints[0].rainProbability,
+            trackTemp,
+            trackCondition,
+        });
+        setStintLaps([0, 0, 0, 0]); // Adjust for 3 stops
     }, []);
 
     const getOptimalStrategy = (): Strategy => {
-        // Tire selection based on weather and track condition
-        let initialTire = "";
-        if (raceConditions.weather === "Heavy Rain") {
-            initialTire = "Wet"; // Mandatory Wet tires in Heavy Rain regardless of track
-        } else if (raceConditions.weather === "Light Rain") {
-            initialTire = "Intermediate"; // Mandatory Intermediate for first stint in Light Rain
-        } else if (
-            raceConditions.weather === "Possible Rain" &&
-            raceConditions.trackCondition === "Damp"
-        ) {
-            initialTire = Math.random() < 0.5 ? "Medium" : "Intermediate"; // 50% chance for dry or intermediate
-        } else if (
-            (raceConditions.weather === "Sunny" ||
-                raceConditions.weather === "Cloudy") &&
-            raceConditions.trackCondition === "Dry"
-        ) {
-            initialTire = "Medium"; // Default to Medium as a balanced slick tire
-        } else {
-            initialTire = "Intermediate"; // Fallback for mixed or unexpected conditions
-        }
-
-        if (raceConditions.weather === "Heavy Rain" && totalRaceLaps < 50) {
+        if (weatherForecast.length === 0)
             return {
-                stops: 0, // 0-stop allowed in Heavy Rain for races under 50 laps
-                stints: [{ tire: "Wet", laps: totalRaceLaps }],
+                stops: 1,
+                stints: [{ tire: "Medium", laps: totalRaceLaps }],
             };
+
+        let currentLap = 0;
+        const stints: Stint[] = [];
+        let stops = 0;
+
+        weatherForecast.forEach((stint, index) => {
+            const remainingLaps = totalRaceLaps - currentLap;
+            const stintLaps = Math.min(
+                remainingLaps,
+                Math.max(1, stint.actualDuration)
+            ); // Ensure at least 1 lap, never negative
+
+            let tire = "";
+            if (index === 0) {
+                if (stint.weather === "Light Rain") {
+                    tire = "Intermediate";
+                } else if (stint.weather === "Heavy Rain") {
+                    tire = "Wet";
+                } else {
+                    tire = "Medium"; // Default for Sunny/Cloudy
+                }
+            } else {
+                if (stint.rainProbability > 70) {
+                    tire = "Wet";
+                } else if (stint.rainProbability > 45) {
+                    tire = "Intermediate";
+                } else {
+                    tire = "Medium"; // Default slick tire
+                }
+            }
+
+            if (index > 0 && tire !== stints[stints.length - 1].tire) {
+                stops++;
+            }
+
+            stints.push({ tire, laps: stintLaps });
+            currentLap += stintLaps;
+        });
+
+        // Adjust last stint to match total laps and avoid negative
+        if (stints.length > 0) {
+            const remainingLaps =
+                totalRaceLaps - (currentLap - stints[stints.length - 1].laps);
+            stints[stints.length - 1].laps = Math.max(1, remainingLaps); // Ensure at least 1 lap
         }
 
-        const tempNum = parseInt(raceConditions.trackTemp.replace("°C", ""));
-        let baseTire = initialTire;
-        if (
-            raceConditions.trackCondition === "Dry" &&
-            raceConditions.weather !== "Light Rain" &&
-            raceConditions.weather !== "Heavy Rain"
-        )
-            baseTire = "Medium";
-        else if (
-            raceConditions.trackCondition === "Damp" &&
-            raceConditions.weather !== "Heavy Rain"
-        )
-            baseTire = "Intermediate";
-        else if (
-            raceConditions.trackCondition === "Wet" &&
-            raceConditions.weather !== "Heavy Rain"
-        )
-            baseTire = "Wet";
+        // Redistribute laps if currentLap is less than totalRaceLaps
+        if (currentLap < totalRaceLaps) {
+            let remaining = totalRaceLaps - currentLap;
+            for (let i = stints.length - 1; i >= 0 && remaining > 0; i--) {
+                const additionalLaps = Math.min(
+                    remaining,
+                    Math.max(1, stints[i].laps)
+                ); // Distribute remaining laps
+                stints[i].laps += additionalLaps;
+                remaining -= additionalLaps;
+            }
+        }
 
-        let tempInfluence = "";
-        if (tempNum > 30) tempInfluence = "Hard";
-        else tempInfluence = "Soft";
+        // Restrict 0-stop to full Heavy Rain race
+        const isFullWet = weatherForecast.every(
+            (s) => s.weather === "Heavy Rain" && s.rainProbability > 70
+        );
+        if (!isFullWet && stops === 0) {
+            stops = 1;
+            stints.splice(1, 0, {
+                tire: stints[0].tire,
+                laps: Math.floor(totalRaceLaps / 2),
+            });
+            stints[0].laps = Math.ceil(totalRaceLaps / 2);
+        }
 
-        let primaryTire = baseTire;
+        // Ensure at least 1 stop for 50+ laps with >70% rain probability from the start
         if (
-            tempInfluence === "Hard" &&
-            baseTire !== "Soft" &&
-            baseTire !== "Wet" &&
-            baseTire !== "Intermediate"
-        )
-            primaryTire = "Hard";
-        else if (
-            tempInfluence === "Soft" &&
-            baseTire !== "Hard" &&
-            baseTire !== "Wet" &&
-            baseTire !== "Intermediate"
-        )
-            primaryTire = "Soft";
-
-        if (
-            raceConditions.weather === "Possible Rain" ||
-            raceConditions.weather === "Light Rain"
+            totalRaceLaps >= 50 &&
+            weatherForecast.some(
+                (s) => s.rainProbability > 70 && s.actualStart === 1
+            )
         ) {
-            return {
-                stops: 2,
-                stints: [
-                    { tire: baseTire, laps: Math.floor(totalRaceLaps * 0.4) },
-                    {
-                        tire: primaryTire,
-                        laps: Math.floor(totalRaceLaps * 0.4),
-                    },
-                    {
-                        tire: "Hard",
-                        laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.8),
-                    },
-                ],
-            };
+            if (stops === 0) {
+                stops = 1;
+                stints.splice(1, 0, {
+                    tire: "Wet",
+                    laps: Math.floor(totalRaceLaps / 2),
+                });
+                stints[0].laps = Math.ceil(totalRaceLaps / 2);
+            }
         }
 
-        if (tempNum > 30 || raceConditions.trackCondition === "Damp") {
-            return {
-                stops: 2,
-                stints: [
-                    {
-                        tire: primaryTire,
-                        laps: Math.floor(totalRaceLaps * 0.4),
-                    },
-                    {
-                        tire:
-                            primaryTire === "Soft" || primaryTire === "Medium"
-                                ? "Hard"
-                                : "Medium",
-                        laps: Math.floor(totalRaceLaps * 0.4),
-                    },
-                    {
-                        tire: "Hard",
-                        laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.8),
-                    },
-                ],
-            };
-        }
-
-        return {
-            stops: 1,
-            stints: [
-                { tire: primaryTire, laps: Math.floor(totalRaceLaps * 0.6) },
-                {
-                    tire: "Hard",
-                    laps: totalRaceLaps - Math.floor(totalRaceLaps * 0.6),
-                },
-            ],
-        };
+        return { stops, stints };
     };
 
     const optimalStrategy = getOptimalStrategy();
@@ -203,10 +309,14 @@ const StrategyPage: NextPage = () => {
         const stops = parseInt((e.target as any).stops.value);
         if (
             stops === 0 &&
-            (raceConditions.weather !== "Heavy Rain" || totalRaceLaps >= 50)
+            (weatherForecast.length === 0 ||
+                (totalRaceLaps >= 50 &&
+                    weatherForecast.some(
+                        (s) => s.rainProbability > 70 && s.actualStart === 1
+                    )))
         ) {
             alert(
-                "0-stop strategy is only allowed in Heavy Rain with races under 50 laps!"
+                "0-stop strategy is not allowed in 50+ lap races with over 70% rain probability from the start!"
             );
             return;
         }
@@ -229,6 +339,21 @@ const StrategyPage: NextPage = () => {
                           laps: parseInt((e.target as any).laps2.value),
                       },
                   ]
+                : stops === 2
+                ? [
+                      {
+                          tire: (e.target as any).tire1.value,
+                          laps: parseInt((e.target as any).laps1.value),
+                      },
+                      {
+                          tire: (e.target as any).tire2.value,
+                          laps: parseInt((e.target as any).laps2.value),
+                      },
+                      {
+                          tire: (e.target as any).tire3.value,
+                          laps: parseInt((e.target as any).laps3.value),
+                      },
+                  ]
                 : [
                       {
                           tire: (e.target as any).tire1.value,
@@ -242,24 +367,48 @@ const StrategyPage: NextPage = () => {
                           tire: (e.target as any).tire3.value,
                           laps: parseInt((e.target as any).laps3.value),
                       },
+                      {
+                          tire: (e.target as any).tire4.value,
+                          laps: parseInt((e.target as any).laps4.value),
+                      },
                   ].filter((s) => s.laps > 0);
-        if (
-            raceConditions.weather === "Heavy Rain" &&
-            stints[0].tire !== "Wet"
-        ) {
-            alert("Wet tires are mandatory in Heavy Rain conditions!");
-            return;
-        }
-        if (
-            raceConditions.weather === "Light Rain" &&
-            stints[0].tire !== "Intermediate"
-        ) {
-            alert(
-                "Intermediate tires are mandatory for the first stint in Light Rain conditions!"
-            );
-            return;
-        }
         const totalLaps = stints.reduce((sum, s) => sum + s.laps, 0);
+
+        // Check weather for the first stint's lap range
+        const firstStintLaps = stints[0].laps;
+        const firstStintEndLap = firstStintLaps;
+        const applicableWeather = weatherForecast.find(
+            (w) =>
+                w.actualStart <= firstStintEndLap &&
+                w.actualStart + w.actualDuration - 1 >= firstStintEndLap
+        );
+        if (applicableWeather) {
+            if (
+                applicableWeather.rainProbability > 70 &&
+                stints[0].tire !== "Wet"
+            ) {
+                alert("Wet tires are mandatory for over 70% rain probability!");
+                return;
+            }
+            if (
+                applicableWeather.rainProbability > 45 &&
+                applicableWeather.rainProbability <= 70 &&
+                stints[0].tire !== "Intermediate"
+            ) {
+                alert(
+                    "Intermediate tires are mandatory for 46%-70% rain probability!"
+                );
+                return;
+            }
+            if (
+                applicableWeather.rainProbability <= 45 &&
+                ["Intermediate", "Wet"].includes(stints[0].tire)
+            ) {
+                alert("Slick tires are mandatory for 0%-45% rain probability!");
+                return;
+            }
+        }
+
         if (totalLaps !== totalRaceLaps) {
             alert(
                 `Total laps must equal ${totalRaceLaps}! You entered ${totalLaps} laps.`
@@ -280,7 +429,7 @@ const StrategyPage: NextPage = () => {
 
     const handleStopsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStops(parseInt(e.target.value));
-        setStintLaps([0, 0, 0]); // Reset laps when stops change
+        setStintLaps([0, 0, 0, 0]); // Adjust for 3 stops
     };
 
     return (
@@ -335,6 +484,29 @@ const StrategyPage: NextPage = () => {
                             </p>
                         </div>
                     </div>
+                    <div className="bg-gray-800 p-4 rounded-lg shadow-lg mt-4">
+                        <h3 className="text-xl font-bold mb-2">
+                            Weather Forecast
+                        </h3>
+                        {weatherForecast.map((stint, index) => {
+                            if (
+                                stint.weather === "Light Rain" ||
+                                stint.weather === "Heavy Rain"
+                            ) {
+                                return (
+                                    <p key={index} className="text-lg">
+                                        Weather {stint.weather} expected between
+                                        laps {stint.startRangeMin}-
+                                        {stint.startRangeMax} for{" "}
+                                        {stint.durationMin}-{stint.durationMax}{" "}
+                                        laps, {stint.rainProbability}% chance of
+                                        occurrence
+                                    </p>
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
                 </section>
                 <section className="mb-8">
                     <h2 className="text-3xl font-bold mb-6">
@@ -357,6 +529,7 @@ const StrategyPage: NextPage = () => {
                                 <option value="0">0 Stop</option>
                                 <option value="1">1 Stop</option>
                                 <option value="2">2 Stops</option>
+                                <option value="3">3 Stops</option>
                             </select>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -395,8 +568,9 @@ const StrategyPage: NextPage = () => {
                                     {totalRaceLaps -
                                         (stintLaps[0] +
                                             stintLaps[1] +
-                                            (stops >= 2
-                                                ? stintLaps[2]
+                                            (stops >= 2 ? stintLaps[2] : 0) +
+                                            (stops >= 3
+                                                ? stintLaps[3]
                                                 : 0))}{" "}
                                     laps
                                 </p>
@@ -436,14 +610,15 @@ const StrategyPage: NextPage = () => {
                                     {totalRaceLaps -
                                         (stintLaps[0] +
                                             stintLaps[1] +
-                                            (stops >= 2
-                                                ? stintLaps[2]
+                                            (stops >= 2 ? stintLaps[2] : 0) +
+                                            (stops >= 3
+                                                ? stintLaps[3]
                                                 : 0))}{" "}
                                     laps
                                 </p>
                             </div>
                         </div>
-                        {stops === 2 && (
+                        {stops >= 2 && (
                             <div className="mt-6">
                                 <label className="block text-lg mb-2">
                                     Stint 3 Tire:
@@ -479,8 +654,53 @@ const StrategyPage: NextPage = () => {
                                     {totalRaceLaps -
                                         (stintLaps[0] +
                                             stintLaps[1] +
-                                            (stops >= 2
-                                                ? stintLaps[2]
+                                            (stops >= 2 ? stintLaps[2] : 0) +
+                                            (stops >= 3
+                                                ? stintLaps[3]
+                                                : 0))}{" "}
+                                    laps
+                                </p>
+                            </div>
+                        )}
+                        {stops >= 3 && (
+                            <div className="mt-6">
+                                <label className="block text-lg mb-2">
+                                    Stint 4 Tire:
+                                </label>
+                                <select
+                                    name="tire4"
+                                    className="bg-gray-700 p-2 rounded w-full text-white"
+                                >
+                                    <option value="Soft">Soft</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Hard">Hard</option>
+                                    <option value="Intermediate">
+                                        Intermediate
+                                    </option>
+                                    <option value="Wet">Wet</option>
+                                </select>
+                                <label className="block text-lg mt-2 mb-2">
+                                    Stint 4 Laps:
+                                </label>
+                                <input
+                                    type="number"
+                                    name="laps4"
+                                    className="bg-gray-700 p-2 rounded w-full text-white"
+                                    min="1"
+                                    max={totalRaceLaps}
+                                    onChange={(e) =>
+                                        handleLapChange(3, e.target.value)
+                                    }
+                                    value={stintLaps[3] || ""}
+                                />
+                                <p className="text-sm text-gray-400">
+                                    Remaining:{" "}
+                                    {totalRaceLaps -
+                                        (stintLaps[0] +
+                                            stintLaps[1] +
+                                            (stops >= 2 ? stintLaps[2] : 0) +
+                                            (stops >= 3
+                                                ? stintLaps[3]
                                                 : 0))}{" "}
                                     laps
                                 </p>
