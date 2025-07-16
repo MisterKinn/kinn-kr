@@ -190,7 +190,7 @@ const StrategyPage: NextPage = () => {
             };
 
         let currentLap = 0;
-        const stints: Stint[] = [];
+        let stints: Stint[] = []; // Changed from const to let
         let stops = 0;
 
         weatherForecast.forEach((stint, index) => {
@@ -259,7 +259,35 @@ const StrategyPage: NextPage = () => {
                     validStints[validStints.length - 1].laps += finalAdjustment;
                 }
             }
-            return { stops: validStints.length - 1, stints: validStints };
+            stops = validStints.length - 1;
+            stints = validStints; // Reassignment is now allowed with let
+        }
+
+        // Enforce two different tire compounds if weather is not "Heavy Rain" and track condition is not "Wet"
+        if (
+            raceConditions.weather !== "Heavy Rain" &&
+            raceConditions.trackCondition !== "Wet"
+        ) {
+            const uniqueTires = new Set(stints.map((s) => s.tire));
+            if (uniqueTires.size < 2) {
+                stops = Math.max(1, stops); // Ensure at least one stop
+                if (stints.length === 1) {
+                    const secondTire =
+                        stints[0].tire === "Medium" ? "Hard" : "Medium";
+                    const firstHalf = Math.ceil(totalRaceLaps / 2);
+                    const secondHalf = totalRaceLaps - firstHalf;
+                    stints = [
+                        { tire: stints[0].tire, laps: firstHalf },
+                        { tire: secondTire, laps: secondHalf },
+                    ]; // Reassign with new array
+                } else {
+                    // Ensure the second stint has a different tire
+                    const firstTire = stints[0].tire;
+                    const secondTire =
+                        firstTire === "Medium" ? "Hard" : "Medium";
+                    stints[1].tire = secondTire;
+                }
+            }
         }
 
         const isFullWet = weatherForecast.every(
@@ -397,6 +425,21 @@ const StrategyPage: NextPage = () => {
             );
             return;
         }
+
+        // Enforce two different tire compounds for user's strategy if weather is not "Heavy Rain" and track condition is not "Wet"
+        if (
+            raceConditions.weather !== "Heavy Rain" &&
+            raceConditions.trackCondition !== "Wet"
+        ) {
+            const uniqueTires = new Set(stints.map((s) => s.tire));
+            if (uniqueTires.size < 2) {
+                alert(
+                    "Please use at least two different tire compounds for this condition!"
+                );
+                return;
+            }
+        }
+
         setUserStrategy({ stops, stints });
         setScore(calculateScore(stints));
     };
