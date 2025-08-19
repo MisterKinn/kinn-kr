@@ -22,7 +22,7 @@ function Portfolio() {
                     target="_blank"
                     className="m-portfolio-item"
                 >
-                    <div className="m-portfolio-card">
+                    <div className="m-portfolio-card" data-aos="fade-up">
                         <div className="m-card-preview-small">
                             <img
                                 loading="lazy"
