@@ -19,8 +19,6 @@ import MobileAbout from "@/components/machim/mobile/About";
 import MobileManage from "@/components/machim/mobile/Manage";
 import MobileUtility from "@/components/machim/mobile/Utility";
 import MobileSupport from "@/components/machim/mobile/Support";
-import MobileBanner from "@/components/home/mobile/Banner";
-import MobileFooter from "@/components/home/mobile/Footer";
 
 function Page() {
     useEffect(() => {
@@ -39,8 +37,8 @@ function Page() {
                 <MobileManage />
                 <MobileUtility />
                 <MobileSupport />
-                <MobileBanner />
-                <MobileFooter />
+                <Banner />
+                <Footer />
             </div>
         );
     } else {

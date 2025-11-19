@@ -2,7 +2,7 @@ import "../../../styles/home/desktop/experience.css";
 
 function Experience() {
     return (
-        <div id="Experience">
+        <div>
             <div className="experience-header">
                 <h2 id="list" data-aos="fade-up">
                     Experience

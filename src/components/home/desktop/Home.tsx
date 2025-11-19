@@ -2,7 +2,7 @@ import "../../../styles/home/desktop/home.css";
 
 function Home() {
     return (
-        <div id="Home">
+        <div>
             <div className="home-container">
                 <div className="home-content">
                     <div>

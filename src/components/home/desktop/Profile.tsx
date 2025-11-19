@@ -2,7 +2,7 @@ import "../../../styles/home/desktop/profile.css";
 
 function Profile() {
     return (
-        <div id="Profile" data-aos="fade-up">
+        <div className="desktop-profile" data-aos="fade-up">
             <h2 id="list" data-aos="fade-up">
                 Profile
             </h2>

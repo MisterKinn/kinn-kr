@@ -136,3 +136,42 @@
         bottom: 2em;
     }
 }
+
+@media (max-width: 900px) {
+    .home-container {
+        padding: 0 1.5rem;
+        min-height: 90vh;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .home-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .greeting {
+        font-size: 2.2em;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        font-size: 1em;
+        line-height: 1.5;
+        margin: 1.5rem 0 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .gradient-overlay {
+        height: 150px;
+    }
+
+    .arrow-container {
+        margin-top: -12.5em;
+        margin-bottom: 20em;
+    }
+
+    .arrow {
+        width: 4em;
+    }
+}

@@ -2,7 +2,7 @@ import "@/styles/home/desktop/portfolio.css";
 
 export default function Outsource() {
     return (
-        <div id="Outsource" data-aos="fade-up">
+        <div data-aos="fade-up">
             <h2 id="list">Outsource</h2>
             <h3 id="explain">
                 Building extraordinary outsourcing results that pleases the

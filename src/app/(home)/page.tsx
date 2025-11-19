@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
 import { Analytics } from "@vercel/analytics/react";
 import "../../styles/style.css";
 import AOS from "aos";
@@ -16,15 +15,6 @@ import Profile from "@/components/home/desktop/Profile";
 import Banner from "@/components/home/desktop/Banner";
 import Footer from "@/components/home/desktop/Footer";
 
-import SideBar from "@/components/home/mobile/Sidebar";
-import MobileHome from "@/components/home/mobile/Home";
-import MobilePortfolio from "@/components/home/mobile/Portfolio";
-import MobileOutsource from "@/components/home/mobile/Outsource";
-import MobileSkills from "@/components/home/mobile/Skills";
-import MobileProfile from "@/components/home/mobile/Profile";
-import MobileBanner from "@/components/home/mobile/Banner";
-import MobileFooter from "@/components/home/mobile/Footer";
-
 function Page() {
     useEffect(() => {
         AOS.init({
@@ -32,39 +22,39 @@ function Page() {
         });
     }, []);
 
-    const isMobile = useMediaQuery({ query: "(max-width: 800px)" });
+    return (
+        <div id="page">
+            <Analytics />
+            <NavBar />
 
-    if (isMobile) {
-        return (
-            <div id="page">
-                <Analytics />
-                <SideBar />
-                <MobileHome />
-                <MobilePortfolio />
-                <MobileOutsource />
-                <Experience />
-                <MobileSkills />
-                <MobileProfile />
-                <MobileBanner />
-                <MobileFooter />
-            </div>
-        );
-    } else {
-        return (
-            <div id="page">
-                <Analytics />
-                <NavBar />
+            <section id="Home">
                 <Home />
+            </section>
+
+            <section id="Portfolio">
                 <Portfolio />
+            </section>
+
+            <section id="Outsource">
                 <OutSource />
+            </section>
+
+            <section id="Experience">
                 <Experience />
+            </section>
+
+            <section id="Skills">
                 <Skills />
+            </section>
+
+            <section id="Profile">
                 <Profile />
-                <Banner />
-                <Footer />
-            </div>
-        );
-    }
+            </section>
+
+            <Banner />
+            <Footer />
+        </div>
+    );
 }
 
 export default Page;

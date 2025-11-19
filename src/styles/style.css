@@ -38,14 +38,6 @@ body {
     margin-right: auto;
 }
 
-.mobile-banner {
-    height: 12em;
-    width: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .footer-text {
     margin-top: -2.5em;
     margin-bottom: 2.5em;
@@ -54,10 +46,22 @@ body {
     color: #bbbbbb;
 }
 
-.m-footer-text {
-    margin-top: -1.5em;
-    margin-bottom: 2.5em;
-    text-align: center;
-    font-size: 1.5em;
-    color: #bbbbbb;
+.footer-line-break {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .banner {
+        height: 12em;
+    }
+
+    .footer-text {
+        margin-top: -1.5em;
+        font-size: 1.25em;
+        line-height: 1.6;
+    }
+
+    .footer-line-break {
+        display: inline;
+    }
 }

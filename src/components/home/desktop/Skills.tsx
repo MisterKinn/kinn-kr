@@ -2,7 +2,7 @@ import "../../../styles/home/desktop/skills.css";
 
 function Skills() {
     return (
-        <div id="Skills">
+        <div className="desktop-skills">
             <h2 id="list" data-aos="fade-up">
                 Skills
             </h2>

@@ -2,7 +2,7 @@ import "../../../styles/home/desktop/portfolio.css";
 
 function Portfolio() {
     return (
-        <div id="Portfolio" className="portfolio-3d">
+        <div className="portfolio-3d">
             <h2 id="list" data-aos="fade-up">
                 Portfolio
             </h2>
