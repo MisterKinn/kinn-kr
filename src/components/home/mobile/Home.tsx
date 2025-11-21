@@ -1,4 +1,4 @@
-import "../../../styles/home/mobile/home.css";
+import "@/styles/home/home.css";
 
 function HomeMobile() {
     return (

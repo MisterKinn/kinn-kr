@@ -74,8 +74,8 @@ function NavBar() {
                         <strong>{label}</strong>
                     </Link>
                 ))}
-                </div>
-            </nav>
+            </div>
+        </nav>
     );
 }
 

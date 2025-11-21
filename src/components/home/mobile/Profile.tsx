@@ -1,4 +1,4 @@
-import "../../../styles/home/mobile/profile.css";
+import "@/styles/home/profile.css";
 
 function Profile() {
     return (

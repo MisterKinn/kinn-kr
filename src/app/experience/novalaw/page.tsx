@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import "../../../styles/style.css";
-import "../../../styles/home/desktop/highthon.css";
+import "@/styles/home/highthon.css";
 import AOS from "aos";
 import "@/styles/aos.css";
 

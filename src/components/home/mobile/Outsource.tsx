@@ -1,4 +1,4 @@
-import "@/styles/home/mobile/portfolio.css";
+import "@/styles/home/portfolio.css";
 
 export default function Outsource() {
     return (

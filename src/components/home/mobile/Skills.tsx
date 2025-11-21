@@ -1,8 +1,8 @@
-import "../../../styles/home/mobile/skills.css";
+import "@/styles/home/skills.css";
 
 function MobileSkills() {
     return (
-        <div id="Skills" data-aos="fade-up">
+        <div id="Skills" className="mobile-skills" data-aos="fade-up">
             <h2 id="m-list">Skills</h2>
             <h3 id="m-explain">
                 Creating immersive web experiences
