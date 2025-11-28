@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "../../styles/kjs.css";
-import Banner from "../../components/archive/home/desktop/Banner";
-import Footer from "../../components/archive/home/desktop/Footer";
+import Banner from "../../components/archive/home2/desktop/Banner";
+import Footer from "../../components/archive/home2/desktop/Footer";
 import styled from "styled-components";
 
 const MobileBox = styled.div`

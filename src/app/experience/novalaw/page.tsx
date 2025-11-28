@@ -6,8 +6,8 @@ import "@/styles/home/highthon.css";
 import AOS from "aos";
 import "@/styles/aos.css";
 
-import Banner from "../../../components/archive/home/desktop/Banner";
-import Footer from "../../../components/archive/home/desktop/Footer";
+import Banner from "../../../components/archive/home2/desktop/Banner";
+import Footer from "../../../components/archive/home2/desktop/Footer";
 
 const sections = [
     {
