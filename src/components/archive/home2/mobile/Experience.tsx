@@ -1,4 +1,4 @@
-import Experience from "@/components/archive/home/desktop/Experience";
+import Experience from "@/components/archive/home2/desktop/Experience";
 import "@/styles/home/experience.css";
 
 function MobileExperience() {
