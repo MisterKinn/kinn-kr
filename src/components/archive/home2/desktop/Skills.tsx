@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import "@/styles/home/skills.css";
-import MobileSkills from "@/components/archive/home/mobile/Skills";
+import MobileSkills from "@/components/archive/home2/mobile/Skills";
 
 function Skills() {
     const [isMobile, setIsMobile] = useState(false);
