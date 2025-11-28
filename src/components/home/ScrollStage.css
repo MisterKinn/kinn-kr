@@ -9,6 +9,9 @@
     --skill-card-bg: #0d1a26; /* Dark slate blue */
     --skill-title-color: #00e0ff; /* Bright cyan/aqua */
     --skill-date-color: #007799; /* Muted cyan */
+    /* Adjustable skill card controls */
+    --skill-card-width: 4.5; /* Width used by the 3D card component */
+    --skill-title-size: 0.32; /* Font size (in 3D units) for skill card titles */
 }
 
 /* --- Container and General Layout --- */

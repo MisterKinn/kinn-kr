@@ -87,7 +87,7 @@ const OUTSOURCE_ITEMS = [
     {
         title: "Nova Law Firm",
         desc: "Official Web Page of\nNovaLaw, which is\na Law Firm\nin Incheon, Songdo.",
-        img: "img/novalaw.jpg",
+        img: "img/novalaw-icon.png",
         link: "https://novalaw.kr",
         date: "24. 03. 31. - 24. 07. 11",
     },
@@ -102,14 +102,14 @@ const EXPERIENCE_ITEMS = [
         date: "21. 09. 17 - 21. 11. 01",
     },
     {
-        title: "Highthon",
+        title: "\nHighthon",
         desc: "Secured a Grand Prize at Highthon,\na prestigious hackathon\nfor high school students.",
         img: "img/trophy.png",
         link: "/experience/highthon",
         date: "24. 02. 17 - 24. 02. 18",
     },
     {
-        title: "RoadMap",
+        title: "\nRoadMap",
         desc: "Founded and Operating RoadMap,\nwhich is Web Development Circle\nof my high school.",
         img: "img/road-map.png",
         link: "https://gmsh.kr",
@@ -161,12 +161,14 @@ function ChildCard({
     style = "glass",
     imageScale = [1.75, 1.25],
     cardHeight = 5.2,
+    cardWidth,
     side = "right",
 }: {
     item: any;
     style?: string;
     imageScale?: [number, number];
     cardHeight?: number;
+    cardWidth?: number;
     side?: "left" | "right";
 }) {
     const cleanDesc = item.desc
@@ -227,13 +229,24 @@ function ChildCard({
     const isTech = style === "tech";
     const isPaper = style === "paper";
     const isHorizontal = style === "horizontal";
-    const isGlass = style === "glass" || (!isTech && !isPaper && !isHorizontal);
+    const isSkills = style === "skills";
+    const isProfile = style === "profile";
+    const isGlass = style === "glass" || (!isTech && !isPaper && !isHorizontal && !isProfile && !isSkills);
 
-    const tColor = isPaper ? "#111" : isTech ? "#00ff00" : titleColor;
-    const dColor = isPaper ? "#333" : isTech ? "#00cc00" : descColor;
-    const dtColor = isPaper ? "#555" : isTech ? "#008800" : dateColor;
+    const tColor = isPaper ? "#111" : isTech ? "#00ff00" : isProfile ? "#ffffff" : titleColor;
+    const dColor = isPaper ? "#333" : isTech ? "#00cc00" : isProfile ? "#cccccc" : descColor;
+    const dtColor = isPaper ? "#555" : isTech ? "#008800" : isProfile ? "#aaaaaa" : dateColor;
 
-    if (isHorizontal) {
+    // Skills-specific styles (read from CSS variables so you can tweak via CSS)
+    const skillCardBg = useCSSVar("--skill-card-bg", "#0d1a26");
+    const skillTitleColor = useCSSVar("--skill-title-color", "#00e0ff");
+    const skillDateColor = useCSSVar("--skill-date-color", "#007799");
+    const skillCardWidthVar = useCSSVar("--skill-card-width", "4.5");
+    const skillTitleSizeVar = useCSSVar("--skill-title-size", "0.32");
+    const skillCardWidth = parseFloat(skillCardWidthVar) || 4.5;
+    const skillTitleSize = parseFloat(skillTitleSizeVar) || 0.32;
+
+    if (isProfile) {
         return (
             <group
                 ref={groupRef}
@@ -242,7 +255,7 @@ function ChildCard({
                 onPointerOut={handlePointerOut}
             >
                 <RoundedBox
-                    args={[6.0, 3.0, 0.1]}
+                    args={[2.4, 3.0, 0.1]}
                     radius={RADIUS}
                     smoothness={4}
                 >
@@ -260,24 +273,145 @@ function ChildCard({
 
                 <Image
                     url={item.img}
-                    position={[-1.7, 0, 0.08]}
+                    position={[0, 1.0, 0.07]}
+                    scale={imageScale}
+                    transparent
+                />
+
+                <group position={[-0.9, -0.2, 0.07]}>
+                    <Text
+                        position={[0, -0.4, 0]}
+                        fontSize={0.28}
+                        color={tColor}
+                        anchorX="left"
+                        anchorY="top"
+                        maxWidth={1.8}
+                        fontWeight={700}
+                    >
+                        {item.title}
+                    </Text>
+
+                    <Text
+                        position={[0, -0.85, 0]}
+                        fontSize={0.18}
+                        color={dColor}
+                        anchorX="left"
+                        anchorY="top"
+                        maxWidth={1.8}
+                        lineHeight={1.3}
+                    >
+                        {cleanDesc}
+                    </Text>
+                </group>
+            </group>
+        );
+    }
+
+    if (isSkills) {
+        return (
+            <group
+                ref={groupRef}
+                onClick={handleClick}
+                onPointerOver={handlePointerOver}
+                onPointerOut={handlePointerOut}
+            >
+                <RoundedBox
+                    args={[skillCardWidth, 3.0, 0.1]}
+                    radius={RADIUS}
+                    smoothness={4}
+                >
+                    <meshPhysicalMaterial
+                        color={skillCardBg}
+                        transmission={0.95}
+                        roughness={0.1}
+                        thickness={0.2}
+                        ior={1.5}
+                        clearcoat={1}
+                        transparent
+                        side={THREE.DoubleSide}
+                    />
+                </RoundedBox>
+
+                <Image
+                    url={item.img}
+                    position={[-1.2, 0, 0.08]}
+                    scale={item.imageScale || imageScale}
+                    transparent
+                />
+
+                <group position={[-0.4, 0.6, 0.08]}>
+                    <Text
+                        position={[0, 0.1, 0]}
+                        fontSize={skillTitleSize}
+                        color={skillTitleColor}
+                        anchorX="left"
+                        anchorY="top"
+                        maxWidth={2.2}
+                        fontWeight={700}
+                    >
+                        {item.title}
+                    </Text>
+                    <Text
+                        position={[0, -0.45, 0]}
+                        fontSize={0.14}
+                        color={skillDateColor}
+                        anchorX="left"
+                        anchorY="top"
+                        maxWidth={2.2}
+                    >
+                        {item.desc}
+                    </Text>
+                </group>
+            </group>
+        );
+    }
+
+    if (isHorizontal) {
+        return (
+            <group
+                ref={groupRef}
+                onClick={handleClick}
+                onPointerOver={handlePointerOver}
+                onPointerOut={handlePointerOut}
+            >
+                <RoundedBox
+                    args={[cardWidth || 5.0, 3.0, 0.1]}
+                    radius={RADIUS}
+                    smoothness={4}
+                >
+                    <meshPhysicalMaterial
+                        color={bg}
+                        transmission={0.95}
+                        roughness={0.1}
+                        thickness={0.2}
+                        ior={1.5}
+                        clearcoat={1}
+                        transparent
+                        side={THREE.DoubleSide}
+                    />
+                </RoundedBox>
+
+                <Image
+                    url={item.img}
+                    position={[-1.75, 0, 0.08]}
                     scale={item.imageScale || imageScale}
                     transparent
                 />
 
                 <group position={[-0.5, 0.8, 0.08]}>
                     <Text
-                        position={[0, 0, 0]}
-                        fontSize={0.25}
+                        position={[0, 0.25, 0]}
+                        fontSize={style === "horizontal" ? 0.32 : 0.25}
                         color={tColor}
                         anchorX="left"
                         anchorY="top"
                         maxWidth={3.0}
+                        fontWeight={style === "horizontal" ? 700 : 400}
                     >
                         {item.title}
                     </Text>
                     <Text
-                        position={[0, -0.5, 0]}
+                        position={[0, -0.75, 0]}
                         fontSize={0.18}
                         color={dColor}
                         anchorX="left"
@@ -288,7 +422,7 @@ function ChildCard({
                         {cleanDesc}
                     </Text>
                     <Text
-                        position={[0, -1.5, 0]}
+                        position={[0, -1.75, 0]}
                         fontSize={0.15}
                         color={dtColor}
                         anchorX="left"
@@ -431,12 +565,13 @@ function OutsourceCard({ item }: { item: any }) {
         >
             <RoundedBox args={[5.5, 3.0, 0.1]} radius={0.15} smoothness={4}>
                 <meshPhysicalMaterial
-                    color="#ffffff"
-                    transmission={0.95}
-                    roughness={0.1}
+                    color="#000000"
+                    transmission={0.0}
+                    roughness={0.0}
                     metalness={0.0}
-                    clearcoat={1.0}
+                    clearcoat={0.0}
                     transparent
+                    opacity={0.0}
                     side={THREE.DoubleSide}
                 />
             </RoundedBox>
@@ -444,13 +579,13 @@ function OutsourceCard({ item }: { item: any }) {
             <Image
                 url={item.img}
                 position={[-1.4, 0, 0.06]}
-                scale={[2.2, 2.2]}
+                scale={[2, 1.5]}
                 transparent
             />
 
             <group position={[-0.1, 1.1, 0.06]}>
                 <Text
-                    color="#000000"
+                    color="#ffffff"
                     anchorX="left"
                     anchorY="top"
                     fontSize={0.35}
@@ -459,7 +594,7 @@ function OutsourceCard({ item }: { item: any }) {
                     {item.title}
                 </Text>
                 <Text
-                    color="#444444"
+                    color="#cccccc"
                     anchorX="left"
                     anchorY="top"
                     fontSize={0.2}
@@ -470,7 +605,7 @@ function OutsourceCard({ item }: { item: any }) {
                     {item.desc}
                 </Text>
                 <Text
-                    color="#666666"
+                    color="#aaaaaa"
                     anchorX="left"
                     anchorY="top"
                     fontSize={0.15}
@@ -488,12 +623,14 @@ function ItemMesh({
     style,
     imageScale,
     cardHeight,
+    cardWidth,
     side,
 }: {
     item: any;
     style?: string;
     imageScale?: [number, number];
     cardHeight?: number;
+    cardWidth?: number;
     side?: "left" | "right";
 }) {
     if (style === "outsource") {
@@ -505,6 +642,7 @@ function ItemMesh({
             style={style}
             imageScale={item.imageScale || imageScale}
             cardHeight={cardHeight}
+            cardWidth={cardWidth}
             side={side}
         />
     );
@@ -532,7 +670,8 @@ function SectionGroup({
     const positions = useMemo(() => {
         return items.map((_, i) => {
             const spacing = 4;
-            const xOffset = style === "horizontal" ? 6.5 : 3.5;
+            let xOffset = style === "horizontal" ? 6.5 : 3.5;
+            if (style === "profile") xOffset = 5.0;
             const z = 15 - i * spacing;
             const x = i % 2 === 0 ? -xOffset : xOffset;
             const y = 0;
@@ -585,6 +724,7 @@ function SectionGroup({
                             style={style}
                             imageScale={item.imageScale || imageScale}
                             cardHeight={cardHeight}
+                            cardWidth={title === "Experience" ? 6.0 : undefined}
                             side={side}
                         />
                     </group>
@@ -755,7 +895,7 @@ function SceneContent() {
             <LandingSection position={[0, 0, -15]} />
 
             <SectionGroup
-                position={[0, 0, -70]}
+                position={[0, 0, -60]}
                 title="Portfolio"
                 items={PORTFOLIO_ITEMS}
                 color="#4ecdc4"
@@ -767,7 +907,7 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -140]}
+                position={[0, 0, -120]}
                 title="Outsource"
                 items={OUTSOURCE_ITEMS}
                 color="#ffe66d"
@@ -778,7 +918,7 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -180]}
+                position={[0, 0, -160]}
                 title="Experience"
                 items={EXPERIENCE_ITEMS}
                 color="#1a535c"
@@ -790,7 +930,7 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -220]}
+                position={[0, 0, -200]}
                 title="Skills"
                 items={SKILLS_ITEMS}
                 color="#ff00ff"
@@ -802,10 +942,11 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -260]}
+                position={[0, 0, -240]}
                 title="Profile"
                 items={PROFILE_ITEM}
                 color="#f7fff7"
+                style="profile"
                 imageScale={[2, 1.5]}
                 description={
                     "Build deeper connection with me in every ways.\nClick the card to connect with me."
