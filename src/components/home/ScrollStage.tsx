@@ -3,12 +3,10 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
     ScrollControls,
-    Scroll,
     useScroll,
     Stars,
     Text,
     Float,
-    Html,
     Image,
     RoundedBox,
     Environment,
@@ -17,10 +15,36 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import * as THREE from "three";
 import "./ScrollStage.css";
 
+// --- Constants ---
+const MOBILE_BREAKPOINT = 768;
+const TOTAL_DEPTH = 300;
+const SCROLL_PAGES = 12;
+const CANVAS_LOAD_DELAY = 500;
+
+// Particle System Constants
+const PARTICLE_COUNT = 30000;
+const PARTICLE_SPREAD = 300;
+const PARTICLE_SIZE = 0.15;
+const PARTICLE_OPACITY = 0.6;
+const PARTICLE_COLOR = "#4ecdc4";
+const MOUSE_INFLUENCE = 1.2;
+const MOUSE_INFLUENCE_RADIUS = 25;
+const MOUSE_SMOOTHING = 0.05;
+const MOUSE_SCALE = 30;
+
+// Section Positioning Constants
+const SECTION_SPACING = 6;
+const MOBILE_SPACING = 13;
+const MOBILE_Y_OFFSET = 3;
+const MOBILE_START_Z = 7;
+const DESKTOP_START_Z = 15;
+const SECTION_TITLE_Z = 10;
+
+// --- Hooks ---
 function useMobile() {
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768);
+        const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
         check();
         window.addEventListener("resize", check);
         return () => window.removeEventListener("resize", check);
@@ -286,7 +310,9 @@ function ChildCard({
                         anchorX="center"
                         anchorY="top"
                         maxWidth={1.8}
+
                         fontWeight={700}
+
                         textAlign="center"
                     >
                         {item.title}
@@ -670,18 +696,30 @@ function SectionGroup({
     cardHeight?: number;
     description?: string;
 }) {
+    const isMobile = useMobile();
     const positions = useMemo(() => {
         return items.map((_, i) => {
-            const spacing = 4;
             let xOffset = style === "horizontal" ? 5.0 : 3.5;
-            if (style === "profile") xOffset = 5.0;
+            if (style === "profile") {
+                xOffset = isMobile ? 5.0 : 3.5;
+            }
             if (style === "skills") xOffset = 5.0;
-            const z = 15 - i * spacing;
-            const x = i % 2 === 0 ? -xOffset : xOffset;
-            const y = 0;
-            return [x, y, z] as [number, number, number];
+            
+            if (isMobile) {
+                // Mobile: arrange top and bottom
+                const z = MOBILE_START_Z - Math.floor(i / 2) * MOBILE_SPACING;
+                const x = 0;
+                const y = i % 2 === 0 ? MOBILE_Y_OFFSET : -MOBILE_Y_OFFSET;
+                return [x, y, z] as [number, number, number];
+            } else {
+                // Desktop: arrange left and right
+                const z = DESKTOP_START_Z - i * SECTION_SPACING;
+                const x = i % 2 === 0 ? -xOffset : xOffset;
+                const y = 0;
+                return [x, y, z] as [number, number, number];
+            }
         });
-    }, [items, style]);
+    }, [items, style, isMobile]);
 
     return (
         <group position={position}>
@@ -689,9 +727,9 @@ function SectionGroup({
                 color={color}
                 anchorX="center"
                 anchorY="middle"
-                fontSize={4}
+                fontSize={isMobile ? 1.75 : 4}
                 fontWeight={900}
-                position={[0, 9, 10]}
+                position={[0, isMobile ? 6.9 : 9, SECTION_TITLE_Z]}
                 outlineWidth={0.05}
                 outlineColor="#000"
                 // @ts-ignore
@@ -705,8 +743,8 @@ function SectionGroup({
                     color="#aaaaaa"
                     anchorX="center"
                     anchorY="top"
-                    fontSize={0.6}
-                    position={[0, 6.6, 10]}
+                    fontSize={isMobile ? 0.3 : 0.6}
+                    position={[0, isMobile ? 5.75 : 6.6, SECTION_TITLE_Z]}
                     textAlign="center"
                     maxWidth={20}
                     lineHeight={1.5}
@@ -801,6 +839,53 @@ function LandingSection({ position }: { position: [number, number, number] }) {
     );
 }
 
+function FinalSection({ position }: { position: [number, number, number] }) {
+    const isMobile = useMobile();
+    const titleRef = useRef<any>(null);
+
+    useFrame((state) => {
+        if (titleRef.current) {
+            const time = state.clock.getElapsedTime();
+            const hue = (time * 0.2) % 1;
+            titleRef.current.color = new THREE.Color().setHSL(hue, 1, 0.7);
+        }
+    });
+
+    return (
+        <group position={position}>
+            <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.2}>
+                <Text
+                    ref={titleRef}
+                    anchorX="center"
+                    anchorY="middle"
+                    fontSize={isMobile ? 1.25 : 3.8}
+                    position={[0, isMobile ? 2 : 2.5, 0]}
+                    fontWeight={900}
+                    outlineWidth={0.02}
+                    outlineColor="white"
+                >
+                    Thank You!
+                </Text>
+
+                <Text
+                    color="#cccccc"
+                    anchorX="center"
+                    anchorY="top"
+                    fontSize={isMobile ? 0.5 : 0.7}
+                    position={[0, isMobile ? 0.75 : -1.0, 0]}
+                    maxWidth={14}
+                    textAlign="center"
+                    lineHeight={1.6}
+                >
+                    Thank you for exploring my portfolio.{"\n"}
+                    I hope you enjoyed the journey{"\n"}
+                    through my projects and experiences.
+                </Text>
+            </Float>
+        </group>
+    );
+}
+
 function ScrollEventHandler() {
     const scroll = useScroll();
 
@@ -808,7 +893,6 @@ function ScrollEventHandler() {
         const handleScrollTo = (e: Event) => {
             const customEvent = e as CustomEvent;
             const targetZ = customEvent.detail;
-            const TOTAL_DEPTH = 300;
             const offset = (10 - targetZ) / TOTAL_DEPTH;
 
             if (scroll.el) {
@@ -823,6 +907,104 @@ function ScrollEventHandler() {
     }, [scroll]);
 
     return null;
+}
+
+function MouseReactiveParticles() {
+    const particlesRef = useRef<THREE.Points>(null);
+    const mouseRef = useRef({ x: 0, y: 0 });
+    const mouseTargetRef = useRef({ x: 0, y: 0 });
+    const basePositionsRef = useRef<Float32Array | null>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            // Normalize mouse position to -1 to 1
+            mouseTargetRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseTargetRef.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
+
+    const positions = useMemo(() => {
+        const positions = new Float32Array(PARTICLE_COUNT * 3);
+        for (let i = 0; i < PARTICLE_COUNT * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * PARTICLE_SPREAD;
+            positions[i + 1] = (Math.random() - 0.5) * PARTICLE_SPREAD;
+            positions[i + 2] = (Math.random() - 0.5) * PARTICLE_SPREAD;
+        }
+        basePositionsRef.current = new Float32Array(positions);
+        return positions;
+    }, []);
+
+    useFrame((state) => {
+        if (!particlesRef.current || !basePositionsRef.current) return;
+
+        // Smooth mouse interpolation
+        mouseRef.current.x +=
+            (mouseTargetRef.current.x - mouseRef.current.x) * MOUSE_SMOOTHING;
+        mouseRef.current.y +=
+            (mouseTargetRef.current.y - mouseRef.current.y) * MOUSE_SMOOTHING;
+
+        const positions = particlesRef.current.geometry.attributes.position
+            .array as Float32Array;
+        const basePositions = basePositionsRef.current;
+        const time = state.clock.getElapsedTime();
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const i3 = i * 3;
+            const baseX = basePositions[i3];
+            const baseY = basePositions[i3 + 1];
+            const baseZ = basePositions[i3 + 2];
+
+            // Calculate mouse influence
+            const mouseX = mouseRef.current.x * MOUSE_SCALE;
+            const mouseY = mouseRef.current.y * MOUSE_SCALE;
+            const distFromMouse = Math.sqrt(
+                Math.pow(baseX - mouseX, 2) + Math.pow(baseY - mouseY, 2)
+            );
+
+            const influence = Math.max(0, 1 - distFromMouse / MOUSE_INFLUENCE_RADIUS);
+            const pushStrength = influence * MOUSE_INFLUENCE;
+
+            // Apply mouse push effect
+            const angle = Math.atan2(baseY - mouseY, baseX - mouseX);
+
+            // Calculate new positions from base positions
+            positions[i3] =
+                baseX +
+                Math.cos(angle) * pushStrength +
+                Math.sin(time * 0.5 + i * 0.01) * 0.1;
+            positions[i3 + 1] =
+                baseY +
+                Math.sin(angle) * pushStrength +
+                Math.cos(time * 0.5 + i * 0.01) * 0.1;
+            positions[i3 + 2] =
+                baseZ + Math.sin(time * 0.3 + i * 0.02) * 0.2;
+        }
+
+        particlesRef.current.geometry.attributes.position.needsUpdate = true;
+    });
+
+    return (
+        <points ref={particlesRef}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={PARTICLE_COUNT}
+                    array={positions}
+                    itemSize={3}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={PARTICLE_SIZE}
+                color={PARTICLE_COLOR}
+                transparent
+                opacity={PARTICLE_OPACITY}
+                sizeAttenuation={true}
+            />
+        </points>
+    );
 }
 
 function SceneContent() {
@@ -902,6 +1084,9 @@ function SceneContent() {
             <fog attach="fog" args={["#050505", 10, 40]} />
             <Environment preset="city" />
 
+            {/* Mouse Reactive Particles */}
+            <MouseReactiveParticles />
+
             <LandingSection position={[0, 0, -15]} />
 
             <SectionGroup
@@ -917,13 +1102,13 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -120]}
+                position={[0, 0, -130]}
                 title="Outsource"
                 items={OUTSOURCE_ITEMS}
                 color="#ffe66d"
                 style="outsource"
                 description={
-                    "Building extraordinary outsourcing results that pleases the clients.\nClick the card to see the detail."
+                    "Building extraordinary outsourcing results\nthat pleases the clients.\nClick the card to see the detail."
                 }
             />
 
@@ -952,7 +1137,7 @@ function SceneContent() {
             />
 
             <SectionGroup
-                position={[0, 0, -240]}
+                position={[0, 0, -250]}
                 title="Profile"
                 items={PROFILE_ITEM}
                 color="#f7fff7"
@@ -962,6 +1147,8 @@ function SceneContent() {
                     "Build deeper connection with me in every ways.\nClick the card to connect with me."
                 }
             />
+
+            <FinalSection position={[0, 0, -TOTAL_DEPTH]} />
 
             <Stars
                 radius={150}
@@ -976,14 +1163,29 @@ function SceneContent() {
     );
 }
 
-export default function ScrollStage() {
-    const TOTAL_DEPTH = 300;
-    const PAGES = 12;
+export default function ScrollStage({
+    onLoaded,
+}: {
+    onLoaded?: () => void;
+}) {
+    const loadedRef = useRef(false);
+
+    const handleCanvasCreated = () => {
+        if (!loadedRef.current && onLoaded) {
+            loadedRef.current = true;
+            setTimeout(() => {
+                onLoaded?.();
+            }, CANVAS_LOAD_DELAY);
+        }
+    };
 
     return (
         <div className="scroll-stage-container">
-            <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-                <ScrollControls pages={PAGES} damping={0.2}>
+            <Canvas
+                camera={{ position: [0, 0, 10], fov: 50 }}
+                onCreated={handleCanvasCreated}
+            >
+                <ScrollControls pages={SCROLL_PAGES} damping={0.2}>
                     <CameraController totalDepth={TOTAL_DEPTH} />
                     <ScrollEventHandler />
                     <SceneContent />
