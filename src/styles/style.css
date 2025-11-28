@@ -1,0 +1,67 @@
+@import url("https://static.toss.im/tps/main.css");
+@import url("https://static.toss.im/tps/others.css");
+
+nextjs-portal {
+    display: none;
+}
+
+* {
+    font-family: "Toss Product Sans";
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+#About,
+#Portfolio,
+#Experience,
+#Skills,
+#Profile {
+    overflow-y: hidden;
+}
+
+.blank {
+    margin-top: 12.5em;
+}
+
+.banner {
+    height: 17.5em;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-text {
+    margin-top: -2.5em;
+    margin-bottom: 2.5em;
+    text-align: center;
+    font-size: 1.5em;
+    color: #bbbbbb;
+}
+
+.footer-line-break {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .banner {
+        height: 12em;
+    }
+
+    .footer-text {
+        margin-top: -1.5em;
+        font-size: 1.25em;
+        line-height: 1.6;
+    }
+
+    .footer-line-break {
+        display: inline;
+    }
+}
