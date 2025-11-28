@@ -244,7 +244,7 @@ function ChildCard({
     const skillCardWidthVar = useCSSVar("--skill-card-width", "4.5");
     const skillTitleSizeVar = useCSSVar("--skill-title-size", "0.32");
     const skillCardWidth = parseFloat(skillCardWidthVar) || 4.5;
-    const skillTitleSize = parseFloat(skillTitleSizeVar) || 0.32;
+    const skillTitleSize = parseFloat(skillTitleSizeVar) || 1;
 
     if (isProfile) {
         return (
@@ -255,7 +255,7 @@ function ChildCard({
                 onPointerOut={handlePointerOut}
             >
                 <RoundedBox
-                    args={[2.4, 3.0, 0.1]}
+                    args={[2.4, 4.0, 0.1]}
                     radius={RADIUS}
                     smoothness={4}
                 >
@@ -273,32 +273,34 @@ function ChildCard({
 
                 <Image
                     url={item.img}
-                    position={[0, 1.0, 0.07]}
-                    scale={imageScale}
+                    position={[0, 0.75, 0.07]}
+                    scale={item.imageScale || [1.5, 1.5]}
                     transparent
                 />
 
-                <group position={[-0.9, -0.2, 0.07]}>
+                <group position={[0, -0.2, 0.07]}>
                     <Text
                         position={[0, -0.4, 0]}
-                        fontSize={0.28}
+                        fontSize={0.3}
                         color={tColor}
-                        anchorX="left"
+                        anchorX="center"
                         anchorY="top"
                         maxWidth={1.8}
                         fontWeight={700}
+                        textAlign="center"
                     >
                         {item.title}
                     </Text>
 
                     <Text
                         position={[0, -0.85, 0]}
-                        fontSize={0.18}
+                        fontSize={0.2}
                         color={dColor}
-                        anchorX="left"
+                        anchorX="center"
                         anchorY="top"
                         maxWidth={1.8}
                         lineHeight={1.3}
+                        textAlign="center"
                     >
                         {cleanDesc}
                     </Text>
@@ -316,7 +318,7 @@ function ChildCard({
                 onPointerOut={handlePointerOut}
             >
                 <RoundedBox
-                    args={[skillCardWidth, 3.0, 0.1]}
+                    args={[cardWidth || skillCardWidth, 3.0, 0.1]}
                     radius={RADIUS}
                     smoothness={4}
                 >
@@ -334,26 +336,27 @@ function ChildCard({
 
                 <Image
                     url={item.img}
-                    position={[-1.2, 0, 0.08]}
+                    position={[-1.5, 0, 0.08]}
                     scale={item.imageScale || imageScale}
                     transparent
                 />
 
-                <group position={[-0.4, 0.6, 0.08]}>
+                <group position={[0.5, 0.6, 0.08]}>
                     <Text
-                        position={[0, 0.1, 0]}
-                        fontSize={skillTitleSize}
+                        position={[0.25, 0.1, 0]}
+                        fontSize={0.7}
                         color={skillTitleColor}
-                        anchorX="left"
+                        anchorX="center"
                         anchorY="top"
                         maxWidth={2.2}
                         fontWeight={700}
+                        textAlign="center"
                     >
                         {item.title}
                     </Text>
                     <Text
-                        position={[0, -0.45, 0]}
-                        fontSize={0.14}
+                        position={[-0.25, -1.25, 0]}
+                        fontSize={0.3}
                         color={skillDateColor}
                         anchorX="left"
                         anchorY="top"
@@ -670,8 +673,9 @@ function SectionGroup({
     const positions = useMemo(() => {
         return items.map((_, i) => {
             const spacing = 4;
-            let xOffset = style === "horizontal" ? 6.5 : 3.5;
+            let xOffset = style === "horizontal" ? 5.0 : 3.5;
             if (style === "profile") xOffset = 5.0;
+            if (style === "skills") xOffset = 5.0;
             const z = 15 - i * spacing;
             const x = i % 2 === 0 ? -xOffset : xOffset;
             const y = 0;
@@ -724,7 +728,7 @@ function SectionGroup({
                             style={style}
                             imageScale={item.imageScale || imageScale}
                             cardHeight={cardHeight}
-                            cardWidth={title === "Experience" ? 6.0 : undefined}
+                            cardWidth={title === "Experience" ? 6.0 : title === "Skills" ? 5.5 : undefined}
                             side={side}
                         />
                     </group>
@@ -838,7 +842,7 @@ function SceneContent() {
             imageScale: [1.5, 1.5],
         },
         {
-            title: "JavaScript",
+            title: "JS",
             desc: "21.01.13~",
             img: "img/js.png",
             imageScale: [1.5, 1.5],
@@ -862,26 +866,32 @@ function SceneContent() {
             title: "Mail",
             desc: "kinn@kinn.kr",
             img: "img/mail.png",
+            link: "mailto:kinn@kinn.kr",
         },
         {
             title: "Instagram",
             desc: "@kinn__sy",
             img: "img/instagram.png",
+            link: "https://www.instagram.com/kinn__sy",
         },
         {
             title: "Discord",
             desc: "mrkinn",
             img: "img/discord.png",
+            link: "https://discord.com/users/602459845534416896/",
+            imageScale: [1.75, 1.3],
         },
         {
             title: "Linkedin",
             desc: "SeongYeon Kim",
             img: "img/linkedin.png",
+            link: "https://www.linkedin.com/in/%E3%85%A4seongyeon-kim-223994296/",
         },
         {
             title: "GitHub",
             desc: "MisterKinn",
             img: "img/github.png",
+            link: "https://github.com/MisterKinn",
         },
     ];
 
@@ -934,7 +944,7 @@ function SceneContent() {
                 title="Skills"
                 items={SKILLS_ITEMS}
                 color="#ff00ff"
-                style="horizontal"
+                style="skills"
                 imageScale={[2, 2]}
                 description={
                     "Creating immersive web experiences with cutting-edge technologies."
