@@ -74,31 +74,31 @@ export default function Sidebar() {
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-35)}
+                        onClick={() => scrollTo(-25)}
                     >
                         Portfolio
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-105)}
+                        onClick={() => scrollTo(-95)}
                     >
                         Outsource
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-145)}
+                        onClick={() => scrollTo(-125)}
                     >
                         Experience
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-185)}
+                        onClick={() => scrollTo(-165)}
                     >
                         Skills
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-225)}
+                        onClick={() => scrollTo(-215)}
                     >
                         Profile
                     </button>
