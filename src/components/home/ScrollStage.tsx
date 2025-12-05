@@ -117,7 +117,7 @@ const OUTSOURCE_ITEMS = [
     },
     {
         title: "Prego Abroad",
-        desc: "Official Web Page of\nPrego, which is\na Law Firm\nin Incheon, Songdo.",
+        desc: "Official Web Page of\nPrego, which is\na overseas study agency.",
         img: "img/prego-icon.png",
         link: "https://uhak.prego.im",
         date: "25. 11. 21. - 25. 12. 05.",
