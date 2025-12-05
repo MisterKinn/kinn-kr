@@ -110,10 +110,17 @@ const PORTFOLIO_ITEMS = [
 const OUTSOURCE_ITEMS = [
     {
         title: "Nova Law Firm",
-        desc: "Official Web Page of\nNovaLaw, which is\na Law Firm\nin Incheon, Songdo.",
+        desc: "Official Web Page of\nNovaLaw, which is\na overseas study agency.",
         img: "img/novalaw-icon.png",
         link: "https://novalaw.kr",
-        date: "24. 03. 31. - 24. 07. 11",
+        date: "24. 03. 31. - 24. 07. 11.",
+    },
+    {
+        title: "Prego Abroad",
+        desc: "Official Web Page of\nPrego, which is\na Law Firm\nin Incheon, Songdo.",
+        img: "img/prego-icon.png",
+        link: "https://uhak.prego.im",
+        date: "25. 11. 21. - 25. 12. 05.",
     },
 ];
 
@@ -123,14 +130,14 @@ const EXPERIENCE_ITEMS = [
         desc: "Graduted a Gifted Education\nCenter hosted by Gyeonggi\nGoyang Office of Education.",
         img: "img/education.png",
         link: "/experience/education",
-        date: "21. 09. 17 - 21. 11. 01",
+        date: "21. 09. 17 - 21. 11. 01.",
     },
     {
         title: "\nHighthon",
         desc: "Secured a Grand Prize at Highthon,\na prestigious hackathon\nfor high school students.",
         img: "img/trophy.png",
         link: "/experience/highthon",
-        date: "24. 02. 17 - 24. 02. 18",
+        date: "24. 02. 17 - 24. 02. 18.",
     },
     {
         title: "\nRoadMap",
@@ -144,7 +151,7 @@ const EXPERIENCE_ITEMS = [
         desc: "Made Official Web Page of\nNovaLaw, which is a Law firm\nin Incheon, Songdo.",
         img: "img/outsource.png",
         link: "/experience/novalaw",
-        date: "24. 03. 31 - 24. 08. 13",
+        date: "24. 03. 31. - 24. 08. 13.",
     },
 ];
 
