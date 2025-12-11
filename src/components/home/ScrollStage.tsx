@@ -1048,6 +1048,12 @@ function SceneContent() {
             img: "img/nextjs.png",
             imageScale: [1.5, 1.5],
         },
+        {
+            tritle: "Three.js",
+            desc: "25.12.09~",
+            img: "img/3js.png",
+            imageScale: [1.5, 1.5],
+        },
     ];
 
     const PROFILE_ITEM = [
