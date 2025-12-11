@@ -1049,7 +1049,7 @@ function SceneContent() {
             imageScale: [1.5, 1.5],
         },
         {
-            tritle: "Three.js",
+            title: "Three.js",
             desc: "25.12.09~",
             img: "img/3js.png",
             imageScale: [1.5, 1.5],
