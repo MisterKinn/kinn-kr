@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
 import styles from "./english.module.css";
 
 const faqCategories = {
@@ -68,6 +69,10 @@ const categoryLabels: Record<Category, string> = {
 type Category = keyof typeof faqCategories;
 
 export default function FAQ() {
+    useEffect(() => {
+        AOS.init({ duration: 900, once: true });
+    }, []);
+
     const [activeCategory, setActiveCategory] = useState<Category>("학습법");
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
@@ -76,10 +81,12 @@ export default function FAQ() {
     return (
         <section id="faq" className={styles.sectionBase}>
             <div className={styles.sectionInner}>
-                <h2 className={styles.benefitsTitle}>자주 묻는 질문</h2>
+                <h2 className={styles.benefitsTitle} data-aos="fade-up">
+                    자주 묻는 질문
+                </h2>
 
                 {/* Category tabs */}
-                <div className={styles.faqTabs}>
+                <div className={styles.faqTabs} data-aos="fade-up">
                     {(Object.keys(faqCategories) as Category[]).map(
                         (category) => (
                             <button
@@ -101,7 +108,7 @@ export default function FAQ() {
                 </div>
 
                 {/* FAQ items */}
-                <div className={styles.stack4}>
+                <div className={styles.stack4} data-aos="fade-up">
                     {currentFAQs.map((faq, index) => (
                         <div
                             key={index}

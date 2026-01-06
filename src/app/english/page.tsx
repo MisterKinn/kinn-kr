@@ -1,11 +1,18 @@
 "use client";
+import { useEffect } from "react";
+import AOS from "aos";
 import EnglishNavBar from "./EnglishNavBar";
 import EnglishSidebar from "./EnglishSidebar";
 import FAQ from "./FAQ";
 import "../../styles/style.css";
+import "@/styles/aos.css";
 import styles from "./english.module.css";
 
 export default function EnglishPage() {
+    useEffect(() => {
+        AOS.init({ duration: 900, once: true });
+    }, []);
+
     return (
         <>
             <EnglishNavBar />
@@ -13,7 +20,7 @@ export default function EnglishPage() {
 
             <main className={styles.page}>
                 <div className={styles.container}>
-                    <header className={styles.hero}>
+                    <header className={styles.hero} data-aos="fade-in">
                         <p className={styles.kicker}>
                             English Self-Taught Journey
                         </p>
@@ -26,7 +33,11 @@ export default function EnglishPage() {
                             학원·유학 없이 5개월 만에 노베이스에서 프리토킹까지
                         </p>
                     </header>
-                    <section id="intro" className={styles.section}>
+                    <section
+                        id="intro"
+                        className={styles.section}
+                        data-aos="fade-in"
+                    >
                         <h2 className={styles.sectionTitle}>들어가며</h2>
                         <p className={styles.paragraph}>
                             우리는 흔히 “영어는 재능이다”, “해외에서 살아야
@@ -50,7 +61,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="principles" className={styles.section}>
+                    <section
+                        id="principles"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>
                             학습의 핵심 원칙: 주체적으로 최대한 많은 영어 노출
                         </h2>
@@ -87,7 +102,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="reading" className={styles.section}>
+                    <section
+                        id="reading"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>
                             1. Reading: 관심 있는 주제를 영어로
                         </h2>
@@ -133,7 +152,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="writing" className={styles.section}>
+                    <section
+                        id="writing"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>
                             2. Writing: 틀려도 괜찮은 환경에서 많이 쓰기
                         </h2>
@@ -154,7 +177,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="speaking" className={styles.section}>
+                    <section
+                        id="speaking"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>
                             3. Speaking: AI와 매일 영어로 말하기
                         </h2>
@@ -179,7 +206,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="listening" className={styles.section}>
+                    <section
+                        id="listening"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>
                             4. Listening: 귀가 영어에 익숙해질 때까지
                         </h2>
@@ -240,7 +271,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="results" className={styles.section}>
+                    <section
+                        id="results"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h2 className={styles.sectionTitle}>결과와 느낀 점</h2>
                         <p className={styles.paragraph}></p>
 
@@ -305,7 +340,11 @@ export default function EnglishPage() {
                         </p>
                     </section>
 
-                    <section id="disclaimer" className={styles.section}>
+                    <section
+                        id="disclaimer"
+                        className={styles.section}
+                        data-aos="fade-up"
+                    >
                         <h3 className={styles.sectionTitle}>Disclaimer</h3>
                         <p className={styles.paragraph}>
                             본 글의 내용은 저의 개인적인 경험과 기록을 바탕으로
