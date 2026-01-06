@@ -1,0 +1,137 @@
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+#nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 200;
+}
+
+.topnav {
+    display: flex;
+    gap: 0.25rem;
+    background: transparent;
+}
+
+.nav-link {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 0.9rem 1.25rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 999px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.nav-toggle {
+    display: none;
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    z-index: 250;
+}
+
+.nav-toggle img,
+.nav-close img {
+    width: 32px;
+    height: auto;
+    pointer-events: none;
+}
+
+.nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 0;
+    padding-top: 4rem;
+    background-color: #a9a9a9;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: width 0.3s ease;
+    z-index: 300;
+}
+
+.nav-drawer.open {
+    width: 250px;
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+}
+
+.nav-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.drawer-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: color 0.2s ease;
+}
+
+.drawer-link:last-child {
+    border-bottom: none;
+}
+
+.drawer-link:hover {
+    color: #333333;
+}
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 250;
+}
+
+@media (max-width: 1024px) {
+    #nav-bar {
+        display: flex;
+        justify-content: flex-end;
+        z-index: 200;
+        background-color: transparent;
+        backdrop-filter: blur(0);
+        -webkit-backdrop-filter: blur(0);
+    }
+
+    .topnav {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+}

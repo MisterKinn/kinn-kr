@@ -1,0 +1,142 @@
+body {
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    background-size: 400% 400%; /* For animation */
+    animation: gradientBackground 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gradient animation */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20px;
+    color: black;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styling */
+form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-url-label {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mobile-url-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #4a90e2;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-url-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+    outline: none;
+}
+
+.mobile-analyze-button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-analyze-button:hover {
+    background-color: #357abd;
+}
+
+/* Disabled state for button */
+.mobile-analyze-button.disabled {
+    background-color: #ccc; /* Gray background */
+    color: #666; /* Darker gray text */
+    cursor: not-allowed; /* Show "not-allowed" cursor */
+}
+
+.mobile-analyze-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Feedback Section */
+.mobile-feedback-section {
+    margin-top: 40px;
+    background-color: #fafafa;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #4a90e2;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mobile-feedback-item,
+.mobile-location-item {
+    background-color: #eef6ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid #4a90e2;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-feedback-item:hover,
+.mobile-location-item:hover {
+    background-color: #dfefff;
+}
+
+.mobile-feedback-index {
+    font-weight: bold;
+    color: #4a90e2;
+}
+
+/* Error Styling */
+.mobile-error {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}

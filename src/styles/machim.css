@@ -1,0 +1,247 @@
+nextjs-portal {
+    display: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "__Inter_aaf875", "__Inter_Fallback_aaf875";
+    background-color: black;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 5em;
+}
+
+.hello-world {
+    margin: 0.5em;
+    font-size: 110px;
+    color: white;
+}
+
+.mobile-hello-world {
+    margin: 0.5em;
+    text-align: center;
+    font-size: 90px;
+    color: white;
+}
+
+.join {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #333333;
+    height: 3em;
+    width: 10em;
+    margin: 0.25em;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #333333;
+    text-decoration: none;
+    font-size: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.join:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.banner {
+    height: 30%;
+    width: 30%;
+    display: block;
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-me {
+    text-align: center;
+    padding-top: 3em;
+    font-size: 50px;
+    color: #0064ff;
+}
+
+.mobile-about-me {
+    text-align: center;
+    padding-top: 3em;
+    font-size: 40px;
+    color: #0064ff;
+}
+
+.about-machim {
+    text-align: center;
+    font-size: 25px;
+    color: grey;
+}
+
+.mobile-about-machim {
+    text-align: center;
+    font-size: 20px;
+    color: grey;
+}
+
+.white {
+    font-weight: bold;
+    color: white;
+}
+
+.center {
+    text-align: center;
+}
+
+.list {
+    text-align: center;
+    padding-right: 70%;
+    margin-top: 15%;
+    padding-top: 3em;
+    font-size: 50px;
+    color: white;
+}
+
+.mobile-list {
+    text-align: center;
+    margin-top: 15%;
+    padding-top: 3em;
+    font-size: 50px;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(25% - 5px);
+    height: 5em;
+    width: 13em;
+    gap: 30px;
+    background-color: #1c1c1c;
+    box-shadow: 0px 2px 4px rbga(0, 0, 0, 0, 3);
+    border-radius: 16px;
+    margin: 10px;
+    padding: 24px;
+}
+
+.mobile-card-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(25% - 5px);
+    height: 5em;
+    width: 9em;
+    gap: 30px;
+    background-color: #1c1c1c;
+    box-shadow: 0px 2px 4px rbga(0, 0, 0, 0, 3);
+    border-radius: 16px;
+    margin: 10px;
+    padding: 24px;
+}
+
+.card-img {
+    height: 50px;
+    width: auto;
+}
+
+.card-title {
+    font-size: 30px;
+    color: white;
+}
+
+.column-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.5em;
+}
+
+.card-text {
+    text-align: left;
+    font-size: 21px;
+    color: #a0a0a0;
+}
+
+.mobile-card-text {
+    text-align: left;
+    font-size: 20px;
+    color: #a0a0a0;
+}
+
+.card-footer {
+    font-size: 17px;
+    color: white;
+}
+
+.spec {
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+}
+
+.spec2 {
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+    height: 10em;
+    width: 7em;
+}
+
+.support {
+    text-align: center;
+    margin-top: 3em;
+    font-size: 50px;
+    color: #0064ff;
+}
+
+.mobile-support {
+    text-align: center;
+    margin-top: 3em;
+    font-size: 40px;
+    color: #0064ff;
+}
+
+.mobile-banner {
+    height: 12em;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin10 {
+    margin-top: 10%;
+}
+
+.footer-text {
+    margin-top: -0.5em;
+    text-align: center;
+    font-size: 2em;
+    color: #a0a0a0;
+}
+
+p {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #a0a0a0;
+}
+
+#Home,
+#About,
+#Manage,
+#Utility,
+#Support {
+    overflow-y: hidden;
+}

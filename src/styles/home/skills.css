@@ -1,0 +1,256 @@
+.desktop-skills {
+    padding: 4rem 2rem;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2.5em;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.spec2 {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+    height: 3em;
+    width: 7em;
+}
+
+.card-container2 {
+    background-color: #ffffff10;
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.card-container2:hover {
+    transform: translateY(-10px);
+    background-color: #ffffff18;
+}
+
+.column-center2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-img2 {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.card-title2 {
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+}
+
+.card-footer2 {
+    text-align: center;
+    font-size: 0.5em;
+    color: #a0a0a0;
+}
+
+.scroll {
+    margin-top: 2rem;
+}
+
+.card-img {
+    transition: transform 0.3s ease;
+}
+
+.card-container2:hover .card-img {
+    transform: scale(1.1);
+}
+
+.spec2 {
+    transition: transform 0.3s ease;
+}
+
+.spec2:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+    .desktop-skills {
+        padding: 2rem 1rem;
+    }
+
+    .desktop-skills #list {
+        font-size: 2.5em;
+        padding: 0 0.25rem;
+    }
+
+    .desktop-skills #explain {
+        margin-top: -0.5em;
+        padding: 0 0.25rem;
+        font-size: 0.9em;
+        line-height: 1.6;
+        color: #dddddd;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .spec2 {
+        width: 100%;
+        max-width: 260px;
+        margin: 0.5rem auto;
+        height: auto;
+    }
+
+    .card-container2 {
+        border-radius: 10px;
+        padding: 1rem;
+    }
+
+    .column-center2 {
+        gap: 0.5rem;
+    }
+
+    .card-img2 {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-title2 {
+        font-size: 1.1em;
+    }
+
+    .card-footer2 {
+        font-size: 0.9em;
+    }
+    /* Mobile cards (former <= 768px) */
+    #m-list {
+        font-size: 2.5em;
+        align-self: flex-start;
+        text-align: left;
+        padding: 0 0.25rem;
+        max-width: 1200px;
+        color: #e0e0ff;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        animation: fadeIn 1s ease-out;
+    }
+
+    #m-explain {
+        margin-top: -0.5em;
+        align-self: flex-start;
+        font-weight: normal;
+        text-align: left;
+        color: #dddddd;
+        padding: 0 0.25rem;
+        max-width: 1200px;
+        font-size: 0.9em;
+        line-height: 1.6;
+    }
+
+    .mobile-skills {
+        padding: 2rem 1rem;
+        overflow-x: hidden;
+    }
+
+    .m-container2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    .m-spec {
+        margin: 0.5em;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-card-container2 {
+        background-color: #ffffff10;
+        border-radius: 10px;
+        padding: 0.75em;
+        height: 100%;
+        width: 45%;
+        max-width: 240px;
+        transition: all 0.3s ease;
+        margin: 0 auto;
+    }
+
+    .m-card-container2:hover {
+        transform: translateY(-5px);
+        background-color: #ffffff18;
+    }
+
+    .m-column-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .m-icon-title-group {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .m-card-img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .m-card-title {
+        font-size: 1.1em;
+        color: white;
+    }
+
+    .m-card-footer {
+        text-align: center;
+        font-size: 0.8em;
+        color: #a0a0a0;
+        margin-top: 0.5em;
+    }
+
+    .m-card-container2:hover .m-card-img {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 360px) {
+    .m-container2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .m-card-img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .m-card-title {
+        font-size: 0.7em;
+    }
+}

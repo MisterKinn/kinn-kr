@@ -1,0 +1,247 @@
+.container {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    padding: 5rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 4rem;
+    text-align: center;
+    color: #333;
+}
+
+.form {
+    margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0051bb;
+    transition: 0.5s;
+}
+
+.result {
+    text-align: left;
+    max-width: 600px;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.my-avg {
+    margin-bottom: 1.5rem;
+}
+
+.my-avg h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(90deg, #0070f3, #00c4cc);
+    margin-top: 0.25em;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 112, 243, 0.3);
+}
+
+.university-list h3 {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #333;
+    margin-top: -1em;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #0070f3;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+.university-card {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.university-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.university-card h4 {
+    margin-top: 0.25em;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: #fafafa;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.4rem;
+}
+
+.value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.4rem;
+}
+
+.percentage {
+    display: block;
+    font-size: 1rem;
+    color: #e67e22;
+    font-weight: 500;
+}
+
+.error {
+    color: #dc3545;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    background: #ffe6e6;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .main {
+        padding: 2rem 0;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem; 
+    }
+
+    .form {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .result {
+        padding: 1rem; 
+        margin-top: 1rem;
+    }
+
+    .my-avg h3 {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .university-list h3 {
+        font-size: 1.4rem; 
+        margin-top: -0.5em;
+    }
+
+    .university-card {
+        padding: 1rem; 
+    }
+
+    .university-card h4 {
+        font-size: 1.2rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .stat-item {
+        padding: 0.5rem; 
+    }
+
+    .label {
+        font-size: 0.8rem; 
+    }
+
+    .value {
+        font-size: 1rem; 
+    }
+
+    .percentage {
+        font-size: 0.9rem; 
+    }
+
+    .error {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}

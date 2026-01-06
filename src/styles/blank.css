@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    height: 100vh;
+    width: auto;
+    text-align: center;
+    background-color: #212529;
+    font-family: "Verdana";
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.date {
+    font-size: 65px;
+    color: #888787;
+    margin: 0;
+}
+
+.time {
+    font-size: 125px;
+    color: #ccc;
+    margin: 0;
+}

@@ -1,0 +1,116 @@
+.container {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 1rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.fileInput {
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    margin: 1rem auto;
+    padding: 0.75rem;
+    border: 2px dashed #3498db;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.fileInput:hover {
+    border-color: #2980b9;
+    background: #f7f9fc;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    background: #fde8e8;
+    border-radius: 6px;
+}
+
+.metadataContainer {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.metadataTitle {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.metadataContent {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e1e8ed;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.metadataGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metadataGroup {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+}
+
+.groupTitle {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 2rem;
+        margin: 2rem auto;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .fileInput {
+        padding: 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .metadataGrid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .metadataGroup {
+        padding: 1rem;
+    }
+
+    .groupTitle {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}
