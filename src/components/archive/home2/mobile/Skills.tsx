@@ -97,7 +97,7 @@ function MobileSkills() {
                             <div className="m-icon-title-group">
                                 <img
                                     loading="lazy"
-                                    src="img/Nextjs.png"
+                                    src="img/nextjs.png"
                                     className="m-card-img"
                                 />
                                 <span className="m-card-title">
