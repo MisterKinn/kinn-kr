@@ -1,6 +1,7 @@
 "use client";
 
 import "../../styles/style.css";
+import "../../styles/navbar.css";
 
 export default function EnglishNavBar() {
     const scrollTo = (sectionId: string) => {
@@ -17,9 +18,9 @@ export default function EnglishNavBar() {
 
     return (
         <nav className="nav-overlay">
-            <div className="nav-logo" onClick={() => scrollTo("intro")}>
+            <a href="/" className="nav-logo">
                 SeongYeon Kim
-            </div>
+            </a>
             <div className="nav-links">
                 <button
                     className="nav-btn"
