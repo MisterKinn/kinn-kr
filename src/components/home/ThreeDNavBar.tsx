@@ -3,40 +3,47 @@
 import "./ScrollStage.css";
 
 export default function ThreeDNavBar() {
-    const scrollTo = (targetZ: number) => {
-        if (typeof window !== "undefined") {
-            window.dispatchEvent(
-                new CustomEvent("3d-scroll-to", { detail: targetZ })
-            );
+    const scrollTo = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
         }
     };
 
     return (
         <nav className="nav-overlay">
-            <div className="nav-logo" onClick={() => scrollTo(10)}>
+            <div className="nav-logo" onClick={() => scrollTo("Home")}>
                 SeongYeon Kim
             </div>
             <div className="nav-links">
-                <button className="nav-btn" onClick={() => scrollTo(10)}>
+                <button className="nav-btn" onClick={() => scrollTo("Home")}>
                     Home
                 </button>
-                <button className="nav-btn" onClick={() => scrollTo(-35)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => scrollTo("Portfolio")}
+                >
                     Portfolio
                 </button>
-                <button className="nav-btn" onClick={() => scrollTo(-105)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => scrollTo("Outsource")}
+                >
                     Outsource
                 </button>
-                <button className="nav-btn" onClick={() => scrollTo(-145)}>
+                <button
+                    className="nav-btn"
+                    onClick={() => scrollTo("Experience")}
+                >
                     Experience
                 </button>
-                <button className="nav-btn" onClick={() => scrollTo(-185)}>
+                <button className="nav-btn" onClick={() => scrollTo("Skills")}>
                     Skills
                 </button>
-                <button className="nav-btn" onClick={() => scrollTo(-225)}>
+                <button className="nav-btn" onClick={() => scrollTo("Profile")}>
                     Profile
                 </button>
             </div>
         </nav>
     );
 }
-

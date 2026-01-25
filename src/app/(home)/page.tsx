@@ -1,54 +1,49 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Analytics } from "@vercel/analytics/react";
+import { useEffect } from "react";
 import "../../styles/style.css";
 import AOS from "aos";
 import "@/styles/aos.css";
 
-import dynamic from "next/dynamic";
 import ThreeDNavBar from "@/components/home/ThreeDNavBar";
 import Sidebar from "@/components/home/Sidebar";
-import Landing2D from "@/components/home/Landing2D";
-
-const ScrollStage = dynamic(() => import("@/components/home/ScrollStage"), {
-    ssr: false,
-});
+import Home from "@/components/archive/home2/desktop/Home";
+import Portfolio from "@/components/archive/home2/desktop/Portfolio";
+import Outsource from "@/components/archive/home2/desktop/Outsource";
+import Experience from "@/components/archive/home2/desktop/Experience";
+import Skills from "@/components/archive/home2/desktop/Skills";
+import Profile from "@/components/archive/home2/desktop/Profile";
+import Footer from "@/components/archive/home2/desktop/Footer";
 
 export default function Page() {
-    const [is3DLoaded, setIs3DLoaded] = useState(false);
-    const [show3D, setShow3D] = useState(false);
-
     useEffect(() => {
         AOS.init({
             duration: 1000,
         });
     }, []);
 
-    const handle3DLoaded = () => {
-        setIs3DLoaded(true);
-        // Small delay before showing 3D to ensure smooth transition
-        setTimeout(() => {
-            setShow3D(true);
-        }, 300);
-    };
-
     return (
         <>
-            {!show3D && <Landing2D />}
-            {is3DLoaded && (
-                <>
-                    <ThreeDNavBar />
-                    <Sidebar />
-                </>
-            )}
-            <div
-                style={{
-                    opacity: show3D ? 1 : 0,
-                    transition: "opacity 0.5s ease",
-                }}
-            >
-                <ScrollStage onLoaded={handle3DLoaded} />
+            <ThreeDNavBar />
+            <Sidebar />
+            <div id="Home">
+                <Home />
             </div>
+            <div id="Portfolio">
+                <Portfolio />
+            </div>
+            <div id="Outsource">
+                <Outsource />
+            </div>
+            <div id="Experience">
+                <Experience />
+            </div>
+            <div id="Skills">
+                <Skills />
+            </div>
+            <div id="Profile">
+                <Profile />
+            </div>
+            <Footer />
         </>
     );
 }

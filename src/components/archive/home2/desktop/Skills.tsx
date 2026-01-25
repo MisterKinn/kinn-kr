@@ -145,6 +145,29 @@ function Skills() {
                         </div>
                     </div>
                 </div>
+
+                <div className="spec2">
+                    <div className="card-container2">
+                        <div>
+                            <div className="column-center">
+                                <img
+                                    loading="lazy"
+                                    src="img/3js.png"
+                                    className="card-img2"
+                                />
+                                <span className="card-title2">
+                                    <strong>Three.js</strong>
+                                </span>
+                            </div>
+                            <div className="card-footer2">
+                                <strong>
+                                    <br />
+                                    25. 12. 09~
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="blank"></div>

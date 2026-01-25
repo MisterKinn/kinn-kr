@@ -186,6 +186,92 @@ function Experience() {
                                 </div>
                             </a>
                         </div>
+
+                        <div className="timeline-year" data-aos="fade-up">
+                            2025
+                        </div>
+                        <div className="timeline-item" data-aos="fade-up">
+                            <div className="timeline-marker"></div>
+                            <a
+                                href="https://uhak.prego.im"
+                                target="_blank"
+                                title="Prego Abroad Outsource"
+                                className="timeline-content"
+                            >
+                                <div className="experience-glow"></div>
+                                <div className="timeline-header">
+                                    <img
+                                        loading="lazy"
+                                        src="img/uhak.png"
+                                        className="timeline-img"
+                                    />
+                                    <span className="experience-title">
+                                        Prego Abroad Outsource
+                                    </span>
+                                </div>
+                                <div className="timeline-text">
+                                    <span className="experience-description">
+                                        Made Official Web Page of{" "}
+                                        <strong>Prego Abroad</strong>,
+                                        <br />
+                                        an overseas education consulting
+                                        service.
+                                    </span>
+                                    <div className="experience-meta">
+                                        <span>25. 11. 21 - 26. 01. 12</span>
+                                        <span>Outsource</span>
+                                    </div>
+                                </div>
+                                <div className="overlay">
+                                    <span>
+                                        Click to learn more about
+                                        <br />
+                                        Prego Abroad Outsource
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div className="timeline-item" data-aos="fade-up">
+                            <div className="timeline-marker"></div>
+                            <a
+                                href="#"
+                                target="_blank"
+                                title="DongDong Outsource"
+                                className="timeline-content"
+                            >
+                                <div className="experience-glow"></div>
+                                <div className="timeline-header">
+                                    <img
+                                        loading="lazy"
+                                        src="img/dong.png"
+                                        className="timeline-img"
+                                    />
+                                    <span className="experience-title">
+                                        DongDong Outsource
+                                    </span>
+                                </div>
+                                <div className="timeline-text">
+                                    <span className="experience-description">
+                                        Made FrontEnd part of{" "}
+                                        <strong>동반자동행</strong> app,
+                                        <br />
+                                        an accompany service for seniors.
+                                    </span>
+                                    <div className="experience-meta">
+                                        <span>25. 12. 20 - 25. 12. 29</span>
+                                        <span>Outsource</span>
+                                    </div>
+                                </div>
+                                <div className="overlay">
+                                    <span>
+                                        Click to learn more about
+                                        <br />
+                                        DongDong Outsource
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

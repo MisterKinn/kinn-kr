@@ -42,6 +42,14 @@
     background-color: #ffffff18;
 }
 
+.column-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
 .column-center2 {
     display: flex;
     flex-direction: column;

@@ -14,11 +14,10 @@ export default function Sidebar() {
         return () => window.removeEventListener("resize", check);
     }, []);
 
-    const scrollTo = (targetZ: number) => {
-        if (typeof window !== "undefined") {
-            window.dispatchEvent(
-                new CustomEvent("3d-scroll-to", { detail: targetZ })
-            );
+    const scrollTo = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
         }
         setIsOpen(false); // Close sidebar after navigation
     };
@@ -54,7 +53,10 @@ export default function Sidebar() {
             {/* Sidebar */}
             <aside className={`sidebar ${isOpen ? "open" : ""}`}>
                 <div className="sidebar-header">
-                    <div className="sidebar-logo" onClick={() => scrollTo(10)}>
+                    <div
+                        className="sidebar-logo"
+                        onClick={() => scrollTo("Home")}
+                    >
                         SeongYeon Kim
                     </div>
                     <button
@@ -68,37 +70,37 @@ export default function Sidebar() {
                 <nav className="sidebar-nav">
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(10)}
+                        onClick={() => scrollTo("Home")}
                     >
                         Home
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-25)}
+                        onClick={() => scrollTo("Portfolio")}
                     >
                         Portfolio
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-95)}
+                        onClick={() => scrollTo("Outsource")}
                     >
                         Outsource
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-125)}
+                        onClick={() => scrollTo("Experience")}
                     >
                         Experience
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-165)}
+                        onClick={() => scrollTo("Skills")}
                     >
                         Skills
                     </button>
                     <button
                         className="sidebar-link"
-                        onClick={() => scrollTo(-215)}
+                        onClick={() => scrollTo("Profile")}
                     >
                         Profile
                     </button>
@@ -107,4 +109,3 @@ export default function Sidebar() {
         </>
     );
 }
-

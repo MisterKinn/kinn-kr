@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import "../../../styles/navbar.css";
+import "@/styles/navbar.css";
 
 const NAV_LINKS = [
     { href: "../#Home", label: "Home" },

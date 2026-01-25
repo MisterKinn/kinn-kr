@@ -135,6 +135,27 @@
     font-size: 0.8rem;
 }
 
+/* Outsource card specific styles */
+.outsource-preview {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+}
+
+.outsource-preview img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.outsource-item .portfolio-card {
+    height: auto;
+}
+
+.outsource-item .card-info {
+    flex: none;
+}
+
 .portfolio-3d h2 {
     text-align: center;
     margin-bottom: 2rem;
