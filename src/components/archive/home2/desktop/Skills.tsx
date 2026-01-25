@@ -129,7 +129,7 @@ function Skills() {
                             <div className="column-center">
                                 <img
                                     loading="lazy"
-                                    src="img/nextjs.png"
+                                    src="img/next.png"
                                     className="card-img2"
                                 />
                                 <span className="card-title2">
