@@ -127,14 +127,14 @@ function Experience() {
                                 </div>
                                 <div className="timeline-text">
                                     <span className="experience-description">
-                                        Founded and Operating{" "}
-                                        <strong>RoadMap</strong>, which is
+                                        Founded and Operated{" "}
+                                        <strong>RoadMap</strong>, which was
                                         <br />
                                         Web Development Circle of my high
                                         school.
                                     </span>
                                     <div className="experience-meta">
-                                        <span>24. 03. 08 ~ </span>
+                                        <span>24. 03. 08 ~ 25.11.23.</span>
                                         <span>Circle</span>
                                     </div>
                                 </div>

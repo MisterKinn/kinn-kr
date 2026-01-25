@@ -124,7 +124,7 @@ function Portfolio() {
                         <div className="card-info">
                             <h3>RoadMap</h3>
                             <p>
-                                Operated RoadMap, which was
+                                Founded and Operated RoadMap, which was
                                 <br />
                                 Web Development Circle of my high school.
                             </p>
