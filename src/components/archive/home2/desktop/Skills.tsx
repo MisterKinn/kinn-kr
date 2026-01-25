@@ -106,7 +106,7 @@ function Skills() {
                             <div className="column-center">
                                 <img
                                     loading="lazy"
-                                    src="img/React.png"
+                                    src="img/react.png"
                                     className="card-img2"
                                 />
                                 <span className="card-title2">
